@@ -6,4 +6,5 @@
     <input type="submit" value="Logout" />
 </form>
 <h1>Hello {{ user.get_full_name }}</h1>
+<a href="{% url 'view-profile' %}" />View Profile</a>
 {% endblock %}
