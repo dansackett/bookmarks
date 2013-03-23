@@ -10,7 +10,7 @@
 
 # coverage
 .coverage
-.coverage_html
+htmlcov
 
 # settings
 /bookshelf/local_settings.py
