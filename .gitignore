@@ -1,6 +1,16 @@
+# python stuff
 *.py[co]
 .ropeproject/
+
+# vim
+*.sw[op]
+
+# sqlite databases
+/*.db
+
+# coverage
 .coverage
-.coverage/
-.coverage_html/
-bookshelf/local_settings.py
+.coverage_html
+
+# settings
+/bookshelf/local_settings.py
