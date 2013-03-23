@@ -78,6 +78,20 @@ def test_registration_form_is_not_valid_due_to_bad_password():
 
 
 @pytest.mark.django_db
+def test_registration_form_is_not_valid_due_to_bad_username():
+    form = RegistrationForm({
+        'email': 'test@testers.com',
+        'first_name': 'Dan',
+        'last_name': 'Sackett',
+        'username': 'test!user',
+        'password': 'P@ssw0rd!',
+        'confirm_password': 'P@ssw0rd!',
+    })
+    assert not form.is_valid()
+    assert ['username'] == form.errors.keys()
+
+
+@pytest.mark.django_db
 def test_registration_form_is_not_valid_due_to_confirm_password_missing():
     form = RegistrationForm({
         'email': 'test@testers.com',

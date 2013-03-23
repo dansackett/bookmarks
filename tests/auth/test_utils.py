@@ -7,6 +7,7 @@ from auth.utils import (
     is_mixed_case,
     is_printable,
     password_is_good,
+    valid_username,
 )
 
 
@@ -100,3 +101,24 @@ def test_is_mixed_case(string, result):
 ])
 def test_is_printable(string, result):
     assert is_printable(string) is result
+
+
+@pytest.mark.parametrize(('string', 'result'), [
+    ('asdf@1234', True),
+    ('asdf+1234', True),
+    ('asdf-1234', True),
+    ('asdf_1234', True),
+    ('asdf!1234', False),
+    ('asdf#1234', False),
+    ('asdf$1234', False),
+    ('asdf%1234', False),
+    ('asdf^1234', False),
+    ('asdf&1234', False),
+    ('asdf*1234', False),
+    ('asdf?1234', False),
+    ('asdf~1234', False),
+    ('1234', True),
+    ('asdf1234', True),
+])
+def test_valid_username(string, result):
+    assert valid_username(string) is result

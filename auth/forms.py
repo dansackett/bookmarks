@@ -2,10 +2,9 @@ import datetime
 import re
 
 from django import forms
-from django.core import validators
 from django.contrib.auth.models import User
 
-from auth.utils import password_is_good
+from auth.utils import password_is_good, valid_username
 
 
 class LoginForm(forms.Form):
@@ -21,13 +20,15 @@ class RegistrationForm(forms.Form):
     email = forms.EmailField()
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
-    username = forms.CharField(max_length=30, help_text=username_help_text,
-                               validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'), 'Enter a valid username.', 'invalid')])
+    username = forms.CharField(max_length=30, help_text=username_help_text)
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
+
+        if not valid_username(username):
+            raise forms.ValidationError(self.username_help_text)
 
         if User.objects.filter(username=username):
             raise forms.ValidationError('That username already exists.')

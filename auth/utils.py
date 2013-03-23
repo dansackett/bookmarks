@@ -51,3 +51,7 @@ def is_printable(string):
     if re.search(r'[^ -~]', string):
         return False
     return True
+
+
+def valid_username(string):
+    return bool(re.match('^[\w.@+-]+$', string))
