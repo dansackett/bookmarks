@@ -1,0 +1,6 @@
+*.py[co]
+.ropeproject/
+.coverage
+.coverage/
+.coverage_html/
+bookshelf/local_settings.py

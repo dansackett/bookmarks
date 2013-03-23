@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# source this file from your virtualenv postdeactivate hook
+# eg:
+#    . /path/to/repo/bin/postdeactivate
+
+if [ "$PYTHONPATH_OLD" == "" ]; then
+    unset PYTHONPATH
+else
+    export PYTHONPATH=$PYTHONPATH_OLD
+    unset PYTHONPATH_OLD
+fi
+unset REPO_PATH
+unset DJANGO_SETTINGS_MODULE

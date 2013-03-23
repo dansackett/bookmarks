@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# source this file from your virtualenv postactivate hook
+# eg:
+#    . /path/to/repo/bin/postactivate
+
+REPO_PATH="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" && pwd )"
+if [ "$PYTHONPATH" == "" ]; then
+    export PYTHONPATH=$REPO_PATH:$REPO_PATH/apps
+else
+    PYTHONPATH_OLD=$PYTHONPATH
+    export PYTHONPATH=$REPO_PATH:$REPO_PATH/apps:$PYTHONPATH
+fi
+export DJANGO_SETTINGS_MODULE=bookshelf.settings
