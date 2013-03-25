@@ -1,39 +1,60 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
-# from bookmarks.models import Bookmark
-# from tags.models import Tag
-# from bookmarks.forms import AddBookmarkForm, EditBookmarkForm
+from bookmarks.models import Bookmark
+from tags.models import Tag
+from bookmarks.forms import NewBookmarkForm, EditBookmarkForm
 
 
-def list_bookmarks(request, tag_id,
-                   template_name='bookmarks/list_bookmarks.html'):
-    """Show a list of bookmarks for a specific tag"""
+def list_bookmarks(request, template_name='bookmarks/list_bookmarks.html'):
+    """Show a list of all bookmarks for a user"""
+    bookmarks = Bookmark.objects.filter(user=request.user)
 
-    context = {}
+    context = {
+        'bookmarks': bookmarks,
+    }
     return render(request, template_name, context)
 
 
-def add_bookmark(request, tag_id, form_class='AddBookmarkForm',
+def add_bookmark(request, tag_slug, form_class=NewBookmarkForm,
                  template_name='bookmarks/add_bookmark.html'):
     """Add a new bookmark for a specific tag"""
+    tag = Tag.objects.get(user=request.user, slug=tag_slug)
+    form = form_class(request.POST or None, user=request.user, tag=tag)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('user-home')
 
-    context = {}
+    context = {
+        'tag': tag,
+        'form': form,
+    }
     return render(request, template_name, context)
 
 
-def edit_bookmark(request, tag_id, bookmark_id, form_class='EditBookmarkForm',
+def edit_bookmark(request, slug, tag_slug, form_class=EditBookmarkForm,
                   template_name='bookmarks/edit_bookmark.html'):
     """Edit an existing bookmark"""
+    tag = Tag.objects.get(user=request.user, slug=tag_slug)
+    bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
+    form = form_class(request.POST or None, user=request.user, tag=tag,
+                      bookmark=bookmark)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('view-tag', tag_slug)
 
-    context = {}
+    context = {
+        'tag': tag,
+        'form': form,
+    }
     return render(request, template_name, context)
 
 
 @require_POST
-def delete_bookmark(request, tag_id, bookmark_id,
+def delete_bookmark(request, slug, tag_slug,
                     template_name='bookmarks/Delete_bookmark.html'):
     """Delete a bookmark"""
-
-    context = {}
-    return render(request, template_name, context)
+    tag = Tag.objects.get(user=request.user, slug=tag_slug)
+    bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
+    bookmark.delete()
+    return redirect('view-tag', tag_slug)

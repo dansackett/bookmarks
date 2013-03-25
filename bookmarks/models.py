@@ -13,6 +13,7 @@ class Bookmark(models.Model):
     description = models.TextField(blank=True, null=True)
     tags = models.ForeignKey(Tag)
     url = models.URLField()
+    favorited = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
 
@@ -26,9 +27,11 @@ class Bookmark(models.Model):
     @permalink
     def get_edit_url(self):
         """Return the edit link for a bookmark"""
-        return ('edit_bookmark', (), {'slug': self.slug})
+        return ('edit-bookmark', (), {'slug': self.slug,
+                                      'tag_slug': self.tags.slug})
 
     @permalink
     def get_delete_url(self):
         """Return the delete link for a bookmark"""
-        return ('delete_bookmark', (), {'slug': self.slug})
+        return ('delete-bookmark', (), {'slug': self.slug,
+                                        'tag_slug': self.tags.slug})

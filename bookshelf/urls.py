@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     (r'^$', lambda r: redirect('login')),
     (r'^', include('auth.urls')),
     (r'^account/', include('account.urls')),
+    (r'^bookmarks/', include('bookmarks.urls')),
 )
 
 if settings.DEBUG:
