@@ -62,5 +62,8 @@ def edit_tag(request, slug, form_class=EditTagForm,
 def delete_tag(request, slug, template_name='tags/delete_tag.html'):
     """Delete a tag"""
     tag = Tag.objects.get(user=request.user, slug=slug)
+    bookmarks = Bookmark.objects.filter(user=request.user, tags=tag)
     tag.delete()
+    for bookmark in bookmarks:
+        bookmark.delete()
     return redirect('user-home')
