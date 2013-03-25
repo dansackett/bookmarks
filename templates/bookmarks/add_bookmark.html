@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Add Bookmark</h1>
-<form method="post" action="{% url 'add-bookmark' tag.slug %}">
+<form method="post" action="{% url 'add-bookmark' %}">
     {% csrf_token %}
     {% if form.errors %}
         <ul>
@@ -13,6 +13,6 @@
     {% endif %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />
-    <a href="{{ tag.get_absolute_url }}">Cancel</a>
+    <a href="{% url 'user-home' %}">Cancel</a>
 </form>
 {% endblock %}

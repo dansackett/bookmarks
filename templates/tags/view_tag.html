@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Bookmarks filed under {{ tag.title }}</h2>
-<a href="{% url 'add-bookmark' tag.slug %}">Add Bookmark</a>
+<a href="{% url 'add-bookmark' %}">Add Bookmark</a>
 <ul>
 {% for bookmark in bookmarks %}
 <li>

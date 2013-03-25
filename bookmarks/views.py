@@ -16,17 +16,15 @@ def list_bookmarks(request, template_name='bookmarks/list_bookmarks.html'):
     return render(request, template_name, context)
 
 
-def add_bookmark(request, tag_slug, form_class=NewBookmarkForm,
+def add_bookmark(request, form_class=NewBookmarkForm,
                  template_name='bookmarks/add_bookmark.html'):
     """Add a new bookmark for a specific tag"""
-    tag = Tag.objects.get(user=request.user, slug=tag_slug)
-    form = form_class(request.POST or None, user=request.user, tag=tag)
+    form = form_class(request.POST or None, user=request.user)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('user-home')
 
     context = {
-        'tag': tag,
         'form': form,
     }
     return render(request, template_name, context)

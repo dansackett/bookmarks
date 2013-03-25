@@ -10,16 +10,16 @@ from tags.models import Tag
 
 
 class NewBookmarkForm(forms.Form):
+    tags_error = {'required': 'You need to have a tag to add a bookmark'}
 
     title = forms.CharField(max_length=100)
     description = forms.CharField(widget=forms.Textarea)
     url = forms.URLField()
-    tags = forms.ChoiceField(widget=forms.Select)
+    tags = forms.ChoiceField(widget=forms.Select, error_messages=tags_error)
     favorited = forms.BooleanField(widget=forms.CheckboxInput, required=False)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
-        self.tag = kwargs.pop('tag', None)
         super(NewBookmarkForm, self).__init__(*args, **kwargs)
 
         tags = Tag.objects.filter(user=self.user)
@@ -59,7 +59,6 @@ class EditBookmarkForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
-        self.tag = kwargs.pop('tag', None)
         self.bookmark = kwargs.pop('bookmark', None)
         kwargs['initial'] = self._build_initial()
         super(EditBookmarkForm, self).__init__(*args, **kwargs)
