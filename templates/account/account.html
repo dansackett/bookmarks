@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <input type="submit" value="Logout" />
-</form>
+
 <h2>Most Popular</h2>
 {% if popular_tags %}
     <ul>
     {% for count, tag in popular_tags %}
     <li>
-        <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a> - {{ count }}
+        <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a> ({{ count }})
         <form method="post" action="{{ tag.get_delete_url }}">
             {% csrf_token %}
             <a href="{{ tag.get_edit_url }}">Edit</a>

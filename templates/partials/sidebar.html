@@ -1,0 +1,15 @@
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <input type="submit" value="Logout" />
+</form>
+<h2>Counts</h2>
+<strong>Tags</strong> ({{ tags_count }})<br />
+<strong>Bookmarks</strong> ({{ bookmarks_count }})<br />
+<strong>Favorited</strong> ({{ favorited_count }})<br />
+{% if all_tags %}
+    <ul>
+    {% for tag in all_tags %}
+        <li><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}

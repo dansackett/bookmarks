@@ -105,6 +105,17 @@ TEMPLATE_DIRS = (
     rel('templates'),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = {
+    # defaults
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+    # custom
+    'bookshelf.context_processors.global_values',
+}
+
 INSTALLED_APPS = (
     # Django
     'django.contrib.auth',
