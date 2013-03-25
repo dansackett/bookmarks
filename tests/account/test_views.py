@@ -32,14 +32,6 @@ def test_dashboard_renders(client):
 
 
 @pytest.mark.django_db
-def test_view_profile_renders(client):
-    password = 'P@ssw0rd!'
-    user = make_users(1)[0]
-    assert client.login(username=user.username, password=password)
-    assert client.get('/account/profile/')
-
-
-@pytest.mark.django_db
 def test_edit_profile_renders(client):
     password = 'P@ssw0rd!'
     user = make_users(1)[0]

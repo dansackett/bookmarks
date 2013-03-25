@@ -5,6 +5,31 @@
     {% csrf_token %}
     <input type="submit" value="Logout" />
 </form>
-<h1>Hello {{ user.get_full_name }}</h1>
-<a href="{% url 'view-profile' %}" />View Profile</a>
+<h2>Most Popular</h2>
+<ul>
+{% for count, tag in popular_tags %}
+<li>
+    <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a> - {{ count }}
+    <form method="post" action="{{ tag.get_delete_url }}">
+        {% csrf_token %}
+        <a href="{{ tag.get_edit_url }}">Edit</a>
+        <input type="submit" value="Delete" />
+    </form>
+</li>
+{% endfor %}
+</ul>
+
+<h2>Favorited</h2>
+<ul>
+{% for bookmark in favorited %}
+    <li><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Recent</h2>
+<ul>
+{% for bookmark in new_bookmarks %}
+    <li><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></li>
+{% endfor %}
+</ul>
 {% endblock %}
