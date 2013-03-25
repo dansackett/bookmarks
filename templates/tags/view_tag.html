@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Bookmarks filed under {{ tag.title }}</h2>
+<a href="{% url 'add-bookmark' tag.slug %}">Add Bookmark</a>
+<ul>
+{% for bookmark in bookmarks %}
+<li>
+    <a href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
+    <em>{{ bookmark.description }}</em><br />
+    {% if bookmark.favorited %}
+    <strong>Favorite</strong><br />
+    {% endif %}
+    <a href="{{ bookmark.get_edit_url }}">Edit</a>
+    <form method="post" action="{{ bookmark.get_delete_url }}">
+        {% csrf_token %}
+        <input type="submit" value="Delete" />
+    </form>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

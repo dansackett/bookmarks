@@ -1,37 +1,66 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
-# from bookmarks.models import Bookmark
-# from tags.models import Tag
-# from tags.forms import AddTagForm, EditTagForm
+from bookmarks.models import Bookmark
+from tags.models import Tag
+from tags.forms import NewTagForm, EditTagForm
 
 
 def list_tags(request, template_name='tags/list_tags.html'):
     """Show a list of tags"""
+    tags = Tag.objects.filter(user=request.user)
 
-    context = {}
+    context = {
+        'tags': tags,
+    }
     return render(request, template_name, context)
 
 
-def add_tag(request, form_class='AddTagForm',
+def view_tag(request, slug, template_name='tags/view_tag.html'):
+    """Show a tag's bookmarks"""
+    tag = Tag.objects.get(user=request.user, slug=slug)
+    bookmarks = Bookmark.objects.filter(user=request.user, tags=tag)
+
+    context = {
+        'bookmarks': bookmarks,
+        'tag': tag,
+    }
+    return render(request, template_name, context)
+
+
+def add_tag(request, form_class=NewTagForm,
             template_name='tags/add_tag.html'):
     """Add a new tag"""
+    form = form_class(request.POST or None, user=request.user)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('user-home')
 
-    context = {}
+    context = {
+        'form': form,
+    }
     return render(request, template_name, context)
 
 
-def edit_tag(request, tag_id, form_class='EditTagForm',
+def edit_tag(request, slug, form_class=EditTagForm,
              template_name='tags/edit_tag.html'):
     """Edit an existing tag"""
+    tag = Tag.objects.get(user=request.user, slug=slug)
+    form = form_class(request.POST or None, user=request.user, tag=tag)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('user-home')
 
-    context = {}
+    context = {
+        'tag': tag,
+        'form': form,
+    }
     return render(request, template_name, context)
 
 
 @require_POST
-def delete_tag(request, tag_id, template_name='tags/delete_tag.html'):
+def delete_tag(request, slug, template_name='tags/delete_tag.html'):
     """Delete a tag"""
-
-    context = {}
-    return render(request, template_name, context)
+    tag = Tag.objects.get(user=request.user, slug=slug)
+    tag.delete()
+    return redirect('user-home')

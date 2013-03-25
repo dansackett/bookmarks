@@ -21,14 +21,22 @@ class Tag(models.Model):
     @permalink
     def get_absolute_url(self):
         """Return the view link for a tag"""
-        return ('tag', (), {'slug': self.slug})
+        return ('view-tag', (), {'slug': self.slug})
 
     @permalink
     def get_edit_url(self):
         """Return the edit link for a tag"""
-        return ('edit_tag', (), {'slug': self.slug})
+        return ('edit-tag', (), {'slug': self.slug})
 
     @permalink
     def get_delete_url(self):
         """Return the delete link for a tag"""
-        return ('delete_tag', (), {'slug': self.slug})
+        return ('delete-tag', (), {'slug': self.slug})
+
+    def bookmarks_count(self, tag=None):
+        # late binding to avoid ciclical import
+        from bookmarks.models import Bookmark
+        if tag:
+            return Bookmark.objects.filter(tags=tag).count()
+        else:
+            return Bookmark.objects.filter(tags=self).count()

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Add Tag</h1>
+<form method="post" action="{% url 'add-tag' %}">
+    {% csrf_token %}
+    {% if form.errors %}
+        <ul>
+        {% for e in form.non_field_errors %}
+            <li>{{ e }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+    <a href="{% url 'user-home' %}">Cancel</a>
+</form>
+{% endblock %}
