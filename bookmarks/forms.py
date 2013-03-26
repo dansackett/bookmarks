@@ -13,7 +13,7 @@ class NewBookmarkForm(forms.Form):
     tags_error = {'required': 'You need to have a tag to add a bookmark'}
 
     title = forms.CharField(max_length=100)
-    description = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(required=False, widget=forms.Textarea)
     url = forms.URLField()
     tags = forms.ChoiceField(widget=forms.Select, error_messages=tags_error)
     favorited = forms.BooleanField(widget=forms.CheckboxInput, required=False)
@@ -52,7 +52,7 @@ class NewBookmarkForm(forms.Form):
 class EditBookmarkForm(forms.Form):
 
     title = forms.CharField(max_length=100)
-    description = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(required=False, widget=forms.Textarea)
     url = forms.URLField()
     tags = forms.ChoiceField(widget=forms.Select)
     favorited = forms.BooleanField(widget=forms.CheckboxInput, required=False)

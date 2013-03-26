@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
@@ -34,10 +35,10 @@ def add_bookmark(request, form_class=NewBookmarkForm,
 def edit_bookmark(request, slug, tag_slug, form_class=EditBookmarkForm,
                   template_name='bookmarks/edit_bookmark.html'):
     """Edit an existing bookmark"""
-    tag = Tag.objects.get(user=request.user, slug=tag_slug)
     try:
+        tag = Tag.objects.get(user=request.user, slug=tag_slug)
         bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
-    except Bookmark.DoesNotExist:
+    except ObjectDoesNotExist:
         raise Http404
 
     form = form_class(request.POST or None, user=request.user,
@@ -58,10 +59,6 @@ def delete_bookmark(request, slug, tag_slug,
                     template_name='bookmarks/Delete_bookmark.html'):
     """Delete a bookmark"""
     tag = Tag.objects.get(user=request.user, slug=tag_slug)
-
-    try:
-        bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
-        bookmark.delete()
-        return redirect('view-tag', tag_slug)
-    except Bookmark.DoesNotExist:
-        raise Http404
+    bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
+    bookmark.delete()
+    return redirect('view-tag', tag_slug)
