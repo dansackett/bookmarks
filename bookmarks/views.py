@@ -8,9 +8,12 @@ from bookmarks.forms import NewBookmarkForm, EditBookmarkForm
 from tags.models import Tag
 
 
-def list_bookmarks(request, template_name='bookmarks/list_bookmarks.html'):
+def list_bookmarks(request, favorited=False, template_name='bookmarks/list_bookmarks.html'):
     """Show a list of all bookmarks for a user"""
-    bookmarks = Bookmark.objects.filter(user=request.user)
+    if favorited:
+        bookmarks = Bookmark.objects.filter(user=request.user, favorited=True)
+    else:
+        bookmarks = Bookmark.objects.filter(user=request.user)
 
     context = {
         'bookmarks': bookmarks,
