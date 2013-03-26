@@ -55,3 +55,27 @@ def test_tags_unicode_method_returns_title_correctly():
     Tag(title='Test Tag', slug='test-tag', user=user).save()
     tag = Tag.objects.get(pk=1)
     assert tag.__unicode__() == 'Test Tag'
+
+
+@pytest.mark.django_db
+def test_tags_get_absolute_url_returns_correct_url():
+    user = make_users(1)[0]
+    Tag(title='Test Tag', slug='test-tag', user=user).save()
+    tag = Tag.objects.get(pk=1)
+    assert tag.get_absolute_url() == '/tags/view/test-tag/'
+
+
+@pytest.mark.django_db
+def test_tags_get_edit_url_returns_correct_url():
+    user = make_users(1)[0]
+    Tag(title='Test Tag', slug='test-tag', user=user).save()
+    tag = Tag.objects.get(pk=1)
+    assert tag.get_edit_url() == '/tags/edit/test-tag/'
+
+
+@pytest.mark.django_db
+def test_tags_get_delete_url_returns_correct_url():
+    user = make_users(1)[0]
+    Tag(title='Test Tag', slug='test-tag', user=user).save()
+    tag = Tag.objects.get(pk=1)
+    assert tag.get_delete_url() == '/tags/delete/test-tag/'

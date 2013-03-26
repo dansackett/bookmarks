@@ -70,13 +70,6 @@ def edit_tag(request, slug, form_class=EditTagForm,
 @require_POST
 def delete_tag(request, slug, template_name='tags/delete_tag.html'):
     """Delete a tag"""
-    try:
-        tag = Tag.objects.get(user=request.user, slug=slug)
-    except Tag.DoesNotExist:
-        raise Http404
-
-    bookmarks = Bookmark.objects.filter(user=request.user, tags=tag)
+    tag = Tag.objects.get(user=request.user, slug=slug)
     tag.delete()
-    for bookmark in bookmarks:
-        bookmark.delete()
     return redirect('user-home')
