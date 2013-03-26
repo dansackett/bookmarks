@@ -1,6 +1,7 @@
 py.test --cov-config .coveragerc \
         --cov-report html \
         --cov tests \
+        --cov bookshelf \
         --cov bookmarks \
         --cov account \
         --cov auth \
