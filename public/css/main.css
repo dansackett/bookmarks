@@ -19,6 +19,8 @@ textarea {
 }
 
 body {
+    background: #FAFAFA;
+    color: #494949;
     font-size: 1em;
     line-height: 1.4;
 }
@@ -93,20 +95,77 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+/* green: #7BB724 */
+/* slightly lighter: #85c527 */
+/* lighter green: #96d836 */
+/* darker1: #71a921 */
+/* darker2: #689b1e */
+/* sidebar: #FAFAFA */
+/* main: #FFFFFF */
+/* black: #1A1A1B */
+/* text: #494949 */
+.wrap {
+    position: relative;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
 
+.wrap.active {
+    left: 16em;
+}
 
+a.menu-link {
+    display: block;
+    float: left;
+    padding: 1em;
+}
 
+.sidebar {
+    background: #FAFAFA;
+    border-right: 1px solid #EBEBEB;
+    clear: both;
+    left: -16em;
+    position: absolute;
+    width: 16em;
+}
 
+.sidebar .content {
+    padding: 1em 2em;
+}
 
+.sidebar ul {
+    list-style: none;
+    margin: 1em 0;
+    padding: 0;
+}
 
+.sidebar li a {
+    background: #EBEBEB;
+    display: block;
+    margin: 1em 0;
+    padding: 1em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
 
+.sidebar li a:hover, .sidebar li a.active {
+    background: #96d836;
+    cursor: pointer;
+}
 
+.sidebar li a span {
+    float: right;
+}
 
-
-
-
-
-
+.main-content {
+    clear: both;
+    padding: 1em;
+}
 
 
 /* ==========================================================================
@@ -181,14 +240,6 @@ textarea {
 
 /*
  * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
  */
 
 .clearfix:before,
@@ -211,21 +262,32 @@ textarea {
 }
 
 /* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
+   Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+@media screen and (min-width: 48.25em) {
+    a.menu-link {
+        display: none;
+    }
+
+    .sidebar {
+        float: left;
+        height: 100%;
+        position: static;
+        width: 30%;
+
+    }
+
+    .wrap.active {
+        left: 0;
+    }
+
+    .main-content {
+        clear: none;
+        margin-left: 30%;
+    }
 }
 
-@media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
 
 /* ==========================================================================
    Print styles.
