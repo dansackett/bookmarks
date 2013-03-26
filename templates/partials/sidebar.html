@@ -1,15 +1,38 @@
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <input type="submit" value="Logout" />
-</form>
-<h2>Counts</h2>
-<strong>Tags</strong> ({{ tags_count }})<br />
-<strong>Bookmarks</strong> ({{ bookmarks_count }})<br />
-<strong>Favorited</strong> ({{ favorited_count }})<br />
-{% if all_tags %}
-    <ul>
-    {% for tag in all_tags %}
-        <li><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% endif %}
+<aside class="sidebar" id="menu" role="navigation">
+    <div class="content">
+        <h2>Statistics</h2>
+        <ul>
+            <li>
+                <a href="{% url 'list-tags' %}" {% if request.get_full_path == '/tags/' %}class='active'{% endif %}>
+                    Tags<span>{{ tags_count }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'list-bookmarks' %}" {% if request.get_full_path == '/bookmarks/' %}class='active'{% endif %}>
+                    Bookmarks<span>{{ bookmarks_count }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'favorited-bookmarks' %}" {% if request.get_full_path == '/bookmarks/favorited/' %}class='active'{% endif %}>
+                    Favorited Bookmarks<span>{{ favorited_count }}</span>
+                </a>
+            </li>
+        </ul>
+        <h2>Tags</h2>
+        {% if all_tags %}
+            <ul>
+            {% for tag in all_tags %}
+            <li>
+                <a href="{{ tag.get_absolute_url }}" {% if request.get_full_path == tag.get_absolute_url %}class='active'{% endif %}>
+                    {{ tag.title }}<span>{{ tag.bookmark_count }}</span>
+                </a>
+            </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <input type="submit" value="Logout" />
+        </form>
+    </div>
+</aside>
