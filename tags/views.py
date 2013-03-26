@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
@@ -18,7 +19,11 @@ def list_tags(request, template_name='tags/list_tags.html'):
 
 def view_tag(request, slug, template_name='tags/view_tag.html'):
     """Show a tag's bookmarks"""
-    tag = Tag.objects.get(user=request.user, slug=slug)
+    try:
+        tag = Tag.objects.get(user=request.user, slug=slug)
+    except Tag.DoesNotExist:
+        raise Http404
+
     bookmarks = Bookmark.objects.filter(user=request.user, tags=tag)
 
     context = {
@@ -45,7 +50,11 @@ def add_tag(request, form_class=NewTagForm,
 def edit_tag(request, slug, form_class=EditTagForm,
              template_name='tags/edit_tag.html'):
     """Edit an existing tag"""
-    tag = Tag.objects.get(user=request.user, slug=slug)
+    try:
+        tag = Tag.objects.get(user=request.user, slug=slug)
+    except Tag.DoesNotExist:
+        raise Http404
+
     form = form_class(request.POST or None, user=request.user, tag=tag)
     if request.method == 'POST' and form.is_valid():
         form.save()
@@ -61,7 +70,11 @@ def edit_tag(request, slug, form_class=EditTagForm,
 @require_POST
 def delete_tag(request, slug, template_name='tags/delete_tag.html'):
     """Delete a tag"""
-    tag = Tag.objects.get(user=request.user, slug=slug)
+    try:
+        tag = Tag.objects.get(user=request.user, slug=slug)
+    except Tag.DoesNotExist:
+        raise Http404
+
     bookmarks = Bookmark.objects.filter(user=request.user, tags=tag)
     tag.delete()
     for bookmark in bookmarks:
