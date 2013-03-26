@@ -5,9 +5,11 @@ from tags.utils import total_tags
 
 def global_values(request):
     """Varianles available to all views"""
-    return {
-        'bookmarks_count': total_bookmarks(request.user),
-        'tags_count': total_tags(request.user),
-        'favorited_count': total_favorited(request.user),
-        'all_tags': Tag.objects.filter(user=request.user),
-    }
+    if request.user.is_authenticated():
+        return {
+            'bookmarks_count': total_bookmarks(request.user),
+            'tags_count': total_tags(request.user),
+            'favorited_count': total_favorited(request.user),
+            'all_tags': Tag.objects.filter(user=request.user),
+        }
+    return {}
