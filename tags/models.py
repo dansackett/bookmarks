@@ -7,6 +7,7 @@ class Tag(models.Model):
     """Tags models"""
     title = models.CharField(max_length=100)
     slug = models.SlugField()
+    description = models.TextField(blank=True, null=True)
     user = models.ForeignKey(User)
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)

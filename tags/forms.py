@@ -8,6 +8,7 @@ from tags.models import Tag
 
 class NewTagForm(forms.Form):
     title = forms.CharField(max_length=100)
+    description = forms.CharField(required=False, widget=forms.Textarea)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -26,6 +27,7 @@ class NewTagForm(forms.Form):
         tag = Tag(
             title=title,
             slug=slugify(title),
+            description=self.cleaned_data.get('description'),
             user=self.user,
         )
         tag.save()
@@ -33,6 +35,7 @@ class NewTagForm(forms.Form):
 
 class EditTagForm(forms.Form):
     title = forms.CharField(max_length=100)
+    description = forms.CharField(required=False, widget=forms.Textarea)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -44,6 +47,7 @@ class EditTagForm(forms.Form):
         user = self.user
         initial = {
             'title': self.tag.title,
+            'description': self.tag.description,
         }
 
         return initial
@@ -61,5 +65,7 @@ class EditTagForm(forms.Form):
         title = self.cleaned_data.get('title')
         tag = self.tag
         tag.title = title
+        tag.slug = slugify(title)
+        tag.description = self.cleaned_data.get('description')
         tag.modified_on = datetime.datetime.now()
         tag.save()
