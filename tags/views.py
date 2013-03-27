@@ -24,7 +24,7 @@ def view_tag(request, slug, template_name='tags/view_tag.html'):
     except Tag.DoesNotExist:
         raise Http404
 
-    bookmarks = Bookmark.objects.filter(user=request.user, tags=tag)
+    bookmarks = Bookmark.objects.filter(user=request.user, tag=tag)
 
     context = {
         'bookmarks': bookmarks,

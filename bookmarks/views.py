@@ -40,7 +40,7 @@ def edit_bookmark(request, slug, tag_slug, form_class=EditBookmarkForm,
     """Edit an existing bookmark"""
     try:
         tag = Tag.objects.get(user=request.user, slug=tag_slug)
-        bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
+        bookmark = Bookmark.objects.get(user=request.user, tag=tag, slug=slug)
     except ObjectDoesNotExist:
         raise Http404
 
@@ -62,6 +62,6 @@ def delete_bookmark(request, slug, tag_slug,
                     template_name='bookmarks/Delete_bookmark.html'):
     """Delete a bookmark"""
     tag = Tag.objects.get(user=request.user, slug=tag_slug)
-    bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
+    bookmark = Bookmark.objects.get(user=request.user, tag=tag, slug=slug)
     bookmark.delete()
     return redirect('user-home')

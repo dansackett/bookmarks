@@ -9,7 +9,7 @@
         <li class="item">
             <a href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
             <em>{{ bookmark.description }}</em><br />
-            <strong>Filed Under:</strong> <a href="{{ bookmark.tags.get_absolute_url }}">{{ bookmark.tags }}</a>
+            <strong>Filed Under:</strong> <a href="{{ bookmark.tag.get_absolute_url }}">{{ bookmark.tag }}</a>
             <div class="tools">
                 <a href="#" class="link-button">{% if bookmark.favorited %}<i class="star icon-star"></i>{% else %}<i class="star icon-star-empty"></i>{% endif %}</a>
                 <a href="{{ bookmark.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i></span></a>

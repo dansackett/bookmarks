@@ -38,6 +38,6 @@ class Tag(models.Model):
         # late binding to avoid ciclical import
         from bookmarks.models import Bookmark
         if tag:
-            return Bookmark.objects.filter(tags=tag).count()
+            return Bookmark.objects.filter(tag=tag).count()
         else:
-            return Bookmark.objects.filter(tags=self).count()
+            return Bookmark.objects.filter(tag=self).count()

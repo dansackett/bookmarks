@@ -6,7 +6,7 @@
     {% for bookmark in bookmarks %}
     <li>
         <a href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
-        <strong>{{ bookmark.tags }}</strong><br />
+        <strong>{{ bookmark.tag }}</strong><br />
         <em>{{ bookmark.description }}</em><br />
         {% if bookmark.favorited %}
         <strong>Favorite</strong><br />
