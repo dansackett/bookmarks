@@ -64,4 +64,4 @@ def delete_bookmark(request, slug, tag_slug,
     tag = Tag.objects.get(user=request.user, slug=tag_slug)
     bookmark = Bookmark.objects.get(user=request.user, tags=tag, slug=slug)
     bookmark.delete()
-    return redirect('view-tag', tag_slug)
+    return redirect('user-home')

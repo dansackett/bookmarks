@@ -13,6 +13,6 @@
     {% endif %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />
-    <a href="{{ tag.get_absolute_url }}">Cancel</a>
+    <a href="{% url 'user-home' %}">Cancel</a>
 </form>
 {% endblock %}
