@@ -12,7 +12,6 @@ def list_tags(request, template_name='tags/list_tags.html'):
     tags = Tag.objects.filter(user=request.user)
 
     context = {
-        'request': request,
         'tags': tags,
     }
     return render(request, template_name, context)
@@ -29,7 +28,6 @@ def view_tag(request, slug, template_name='tags/view_tag.html'):
 
     context = {
         'bookmarks': bookmarks,
-        'request': request,
         'tag': tag,
     }
     return render(request, template_name, context)

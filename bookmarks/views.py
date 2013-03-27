@@ -17,7 +17,6 @@ def list_bookmarks(request, favorited=False, template_name='bookmarks/list_bookm
 
     context = {
         'bookmarks': bookmarks,
-        'request': request,
     }
     return render(request, template_name, context)
 
