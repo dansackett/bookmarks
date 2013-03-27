@@ -2,43 +2,53 @@
 
 {% block content %}
 
-<h2>Most Popular</h2>
-{% if popular_tags %}
-    <ul>
-    {% for count, tag in popular_tags %}
-    <li>
-        <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a> ({{ count }})
-        <form method="post" action="{{ tag.get_delete_url }}">
-            {% csrf_token %}
-            <a href="{{ tag.get_edit_url }}">Edit</a>
-            <input type="submit" onclick="return confirm('Are you sure you\'d like to delete this tag and all of its bookmarks?')" value="Delete" />
-        </form>
-    </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    You have not created any tags yet.
-{% endif %}
+    <h2>Freshly Added Bookmarks</h2>
+    {% if new_bookmarks %}
+        <ul>
+        {% for bookmark in new_bookmarks %}
+        <li class="item">
+            <a href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
+            <em>{{ bookmark.description }}</em><br />
+            <strong>Filed Under:</strong> <a href="{{ bookmark.tags.get_absolute_url }}">{{ bookmark.tags }}</a>
+            <div class="tools">
+                <a href="#" class="link-button">{% if bookmark.favorited %}<i class="star icon-star"></i>{% else %}<i class="star icon-star-empty"></i>{% endif %}</a>
+                <a href="{{ bookmark.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i></span></a>
+                <form method="post" action="{{ bookmark.get_delete_url }}">
+                    {% csrf_token %}
+                    <button class="link-button" type="submit" onclick="return confirm('Are you sure you\'d like to delete this bookmark?')" />
+                        <i class="icon-remove"></i>
+                    </button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        You have not created any bookmarks yet.
+    {% endif %}
 
-<h2>Favorited</h2>
-{% if favorited %}
-    <ul>
-    {% for bookmark in favorited %}
-        <li><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    You have not favorited any bookmarks yet.
-{% endif %}
+    <h2>Your Popular Tags</h2>
+    {% if popular_tags %}
+        <ul>
+        {% for count, title, tag in popular_tags %}
+        <li class="item">
+            <a href="{{ tag.get_absolute_url }}">{{ title }}</a><br />
+            <em>{{ tag.description }}</em><br />
+            <strong>Number of Bookmarks:</strong> {{ count }}
+            <div class="tools">
+                <a href="{{ tag.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i></span></a>
+                <form method="post" action="{{ tag.get_delete_url }}">
+                    {% csrf_token %}
+                    <button class="link-button" type="submit" onclick="return confirm('Are you sure you\'d like to delete this tag and all of its bookmarks?')" />
+                        <i class="icon-remove"></i>
+                    </button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        You have not created any tags yet.
+    {% endif %}
 
-<h2>Recent</h2>
-{% if new_bookmarks %}
-    <ul>
-    {% for bookmark in new_bookmarks %}
-        <li><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    You have not created any bookmarks yet.
-{% endif %}
 {% endblock %}
