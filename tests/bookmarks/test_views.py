@@ -33,7 +33,7 @@ def test_list_bookmarks(client):
     tag = Tag(title='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     response = client.get('/bookmarks/')
@@ -52,7 +52,7 @@ def test_add_bookmark(client):
     post_response = client.post('/bookmarks/add/', data={
         'title': 'Test Title',
         'user': user,
-        'tags': tag.pk,
+        'tag': tag.pk,
         'url': 'http://www.google.com',
     }, user=user)
     assert post_response.status_code == 302
@@ -71,7 +71,7 @@ def test_add_bookmark_has_invalid_data(client):
     post_response = client.post('/bookmarks/add/', data={
         'title': 'Test Title',
         'user': user,
-        'tags': tag.pk,
+        'tag': tag.pk,
         'url': 'blah',
     }, user=user)
     assert len(Bookmark.objects.all()) == 0
@@ -85,14 +85,14 @@ def test_edit_bookmark(client):
     tag = Tag(title='title', slug='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     assert client.get('/bookmarks/edit/title/test-bookmark/')
     post_response = client.post('/bookmarks/edit/title/test-bookmark/', data={
         'title': 'Test Title',
         'user': user,
-        'tags': tag.pk,
+        'tag': tag.pk,
         'url': 'http://www.google.com',
     }, user=user, slug='test-bookmark', tag_slug='title')
     assert post_response.status_code == 302
@@ -106,14 +106,14 @@ def test_edit_bookmark_has_invalid_data(client):
     tag = Tag(title='title', slug='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     assert client.get('/bookmarks/edit/title/test-bookmark/')
     post_response = client.post('/bookmarks/edit/title/test-bookmark/', data={
         'title': 'Test Title',
         'user': user,
-        'tags': tag.pk,
+        'tag': tag.pk,
         'url': 'blah',
     }, user=user, slug='test-bookmark', tag_slug='title')
     assert ['url'] == post_response.context['form'].errors.keys()
@@ -126,7 +126,7 @@ def test_edit_bookmark_has_bookmark_that_doesnt_exist(client):
     tag = Tag(title='title', slug='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     response = client.get('/bookmarks/edit/titleeeee/test-bookmark/')
@@ -140,7 +140,7 @@ def test_delete_bookmark(client):
     tag = Tag(title='title', slug='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     assert client.get('/bookmarks/delete/title/test-bookmark/')

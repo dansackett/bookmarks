@@ -36,7 +36,7 @@ def test_new_bookmark_form_is_valid():
         'title': 'test',
         'description': 'description',
         'url': 'http://www.google.com',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user)
     assert form.is_valid()
@@ -51,7 +51,7 @@ def test_new_bookmark_form_is_invalid_due_to_bad_url():
         'title': 'test',
         'description': 'description',
         'url': 'blah',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user)
     assert not form.is_valid()
@@ -64,12 +64,12 @@ def test_new_bookmark_form_is_invalid_because_bookmark_exists():
     tag = Tag(title='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     form = NewBookmarkForm({
         'title': 'Test Bookmark',
         'description': 'description',
         'url': 'http://www.google.com',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user)
     assert not form.is_valid()
@@ -85,7 +85,7 @@ def test_new_bookmark_form_saves_correctly():
         'title': 'Test Bookmark',
         'description': 'description',
         'url': 'http://www.google.com',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user)
     assert form.is_valid()
@@ -99,13 +99,13 @@ def test_edit_bookmark_form_is_valid():
     tag = Tag(title='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     bookmark = Bookmark.objects.get(pk=1)
     form = EditBookmarkForm({
         'title': 'Test Bookmark',
         'description': 'description',
         'url': 'http://www.google.com',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user, bookmark=bookmark)
     assert form.is_valid()
@@ -117,13 +117,13 @@ def test_edit_bookmark_form_is_invalid_due_to_bad_url():
     tag = Tag(title='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     bookmark = Bookmark.objects.get(pk=1)
     form = EditBookmarkForm({
         'title': 'Test Bookmark',
         'description': 'description',
         'url': 'blah',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user, bookmark=bookmark)
     assert not form.is_valid()
@@ -136,15 +136,15 @@ def test_edit_bookmark_form_is_invalid_because_bookmark_exists():
     tag = Tag(title='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark1', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     Bookmark(title='Test Bookmark2', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     bookmark1 = Bookmark.objects.get(pk=1)
     form = EditBookmarkForm({
         'title': 'Test Bookmark2',
         'description': 'description',
         'url': 'http://www.google.com',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user, bookmark=bookmark1)
     assert not form.is_valid()
@@ -157,13 +157,13 @@ def test_edit_bookmark_form_saves_correctly():
     tag = Tag(title='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     bookmark = Bookmark.objects.get(pk=1)
     form = EditBookmarkForm({
         'title': 'Test Bookmark New',
         'description': 'description',
         'url': 'http://www.google.com',
-        'tags': tag.pk,
+        'tag': tag.pk,
         'favorited': True,
     }, user=user, bookmark=bookmark)
     assert form.is_valid()

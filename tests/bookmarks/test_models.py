@@ -31,7 +31,7 @@ def test_bookmarks_unicode_method_returns_title_correctly():
     user = make_users(1)[0]
     tag = Tag(title='Test Tag', slug='test-tag', user=user)
     tag.save()
-    Bookmark(title='Test Bookmark', slug='test-bookmark', tags=tag,
+    Bookmark(title='Test Bookmark', slug='test-bookmark', tag=tag,
              url="http://www.testers.com", user=user).save()
     bookmark = Bookmark.objects.get(pk=1)
     assert bookmark.__unicode__() == 'Test Bookmark'
@@ -42,7 +42,7 @@ def test_bookmarks_get_edit_url_returns_correct_url():
     user = make_users(1)[0]
     tag = Tag(title='Test Tag', slug='test-tag', user=user)
     tag.save()
-    Bookmark(title='Test Bookmark', slug='test-bookmark', tags=tag,
+    Bookmark(title='Test Bookmark', slug='test-bookmark', tag=tag,
              url="http://www.testers.com", user=user).save()
     bookmark = Bookmark.objects.get(pk=1)
     assert bookmark.get_edit_url() == '/bookmarks/edit/test-tag/test-bookmark/'
@@ -53,7 +53,7 @@ def test_bookmarks_get_delete_url_returns_correct_url():
     user = make_users(1)[0]
     tag = Tag(title='Test Tag', slug='test-tag', user=user)
     tag.save()
-    Bookmark(title='Test Bookmark', slug='test-bookmark', tags=tag,
+    Bookmark(title='Test Bookmark', slug='test-bookmark', tag=tag,
              url="http://www.testers.com", user=user).save()
     bookmark = Bookmark.objects.get(pk=1)
     assert bookmark.get_delete_url() == '/bookmarks/delete/test-tag/test-bookmark/'

@@ -45,7 +45,7 @@ def test_view_tag(client):
     tag = Tag(title='title', slug='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     response = client.get('/tags/view/title/')
@@ -59,7 +59,7 @@ def test_view_tag_throws_404(client):
     tag = Tag(title='title', slug='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     response = client.get('/tags/view/titleeeee/')
@@ -171,7 +171,7 @@ def test_delete_tag_deletes_bookmarks_too(client):
     tag = Tag(title='title', slug='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
     client.post('/tags/delete/title/', user=user, slug=tag.slug)

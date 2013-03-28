@@ -32,7 +32,7 @@ def test_bookmarks_count_without_args():
     Tag(title='Test Tag', slug='test-tag', user=user).save()
     tag = Tag.objects.get(pk=1)
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     assert tag.bookmarks_count() == 1
 
 
@@ -44,7 +44,7 @@ def test_bookmarks_count_with_args():
     Tag(title='Test Tag2', slug='test-tag2', user=user).save()
     tag = Tag.objects.get(pk=1)
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
-             description='', tags=tag, url='http://www.google.com').save()
+             description='', tag=tag, url='http://www.google.com').save()
     bookmark = Bookmark.objects.get(pk=1)
     assert tag.bookmarks_count(tag=tag) == 1
 
