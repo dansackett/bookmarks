@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 import pytest
 
 from bookmarks.models import Bookmark
+from bookmarks.views import list_bookmarks
 from tags.models import Tag
 
 
@@ -38,6 +39,20 @@ def test_list_bookmarks(client):
     assert client.login(username=user.username, password=password)
     response = client.get('/bookmarks/')
     assert len(response.context['bookmarks']) == 1
+
+
+@pytest.mark.django_db
+def test_list_bookmarks_allows_favorited_mark(client):
+    password = 'P@ssw0rd!'
+    user = make_users(1)[0]
+    tag = Tag(title='title', user=user)
+    tag.save()
+    Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
+             description='', tag=tag, url='http://www.google.com').save()
+
+    assert client.login(username=user.username, password=password)
+    response = client.get('/bookmarks/favorited/', favorited=True)
+    assert len(response.context['bookmarks']) == 0
 
 
 @pytest.mark.django_db
@@ -143,7 +158,21 @@ def test_delete_bookmark(client):
              description='', tag=tag, url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
-    assert client.get('/bookmarks/delete/title/test-bookmark/')
     client.post('/bookmarks/delete/title/test-bookmark/', user=user,
                 slug='test-bookmark', tag_slug='title')
     assert len(Bookmark.objects.all()) == 0
+
+
+@pytest.mark.django_db
+def test_favorite_bookmark(client):
+    password = 'P@ssw0rd!'
+    user = make_users(1)[0]
+    tag = Tag(title='title', slug='title', user=user)
+    tag.save()
+    Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
+             description='', tag=tag, url='http://www.google.com').save()
+
+    assert client.login(username=user.username, password=password)
+    client.post('/bookmarks/favorite/title/test-bookmark/', user=user,
+                slug='test-bookmark', tag_slug='title')
+    assert Bookmark.objects.get(pk=1).favorited == True
