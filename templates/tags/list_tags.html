@@ -4,13 +4,19 @@
     <h2>All Tags</h2>
     <ul>
     {% for tag in tags %}
-    <li>
-        <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
-        <a href="{{ tag.get_edit_url }}">Edit</a> |
-        <form method="post" action="{{ tag.get_delete_url }}">
-            {% csrf_token %}
-            <input type="submit" value="Delete" />
-        </form>
+    <li class="item">
+        <i class="icon-tag"></i> <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a><br />
+        <em>{{ tag.description }}</em><br />
+        <strong>Number of Bookmarks:</strong> {{ tag.bookmarks_count }}
+        <div class="tools">
+            <a href="{{ tag.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i></span></a>
+            <form method="post" action="{{ tag.get_delete_url }}">
+                {% csrf_token %}
+                <button class="link-button" type="submit" onclick="return confirm('Are you sure you\'d like to delete this tag and all of its bookmarks?')" />
+                    <i class="icon-remove"></i>
+                </button>
+            </form>
+        </div>
     </li>
     {% endfor %}
     </ul>
