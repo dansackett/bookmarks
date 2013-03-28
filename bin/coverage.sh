@@ -1,7 +1,7 @@
 py.test --cov-config .coveragerc \
         --cov-report html \
         --cov tests \
-        --cov bookshelf \
+        --cov bookshelf/middleware.py \
         --cov bookmarks \
         --cov account \
         --cov auth \
