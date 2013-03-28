@@ -68,7 +68,7 @@ def edit_tag(request, slug, form_class=EditTagForm,
 
 
 @require_POST
-def delete_tag(request, slug, template_name='tags/delete_tag.html'):
+def delete_tag(request, slug):
     """Delete a tag"""
     tag = Tag.objects.get(user=request.user, slug=slug)
     tag.delete()

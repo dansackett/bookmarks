@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
@@ -58,8 +58,17 @@ def edit_bookmark(request, slug, tag_slug, form_class=EditBookmarkForm,
 
 
 @require_POST
-def delete_bookmark(request, slug, tag_slug,
-                    template_name='bookmarks/Delete_bookmark.html'):
+def favorite_bookmark(request, slug, tag_slug):
+    """Favorite a bookmark"""
+    tag = Tag.objects.get(user=request.user, slug=tag_slug)
+    bookmark = Bookmark.objects.get(user=request.user, tag=tag, slug=slug)
+    bookmark.favorited = not bookmark.favorited
+    bookmark.save()
+    return HttpResponse(bookmark.pk)
+
+
+@require_POST
+def delete_bookmark(request, slug, tag_slug):
     """Delete a bookmark"""
     tag = Tag.objects.get(user=request.user, slug=tag_slug)
     bookmark = Bookmark.objects.get(user=request.user, tag=tag, slug=slug)

@@ -19,7 +19,7 @@
             </li>
             <li>
                 <a href="{% url 'favorited-bookmarks' %}" {% if request.get_full_path == '/bookmarks/favorited/' %}class='active'{% endif %}>
-                    <i class="icon-star"></i> Favorited<span>{{ favorited_count }}</span>
+                    <i class="icon-star"></i> Favorited<span class="update-favorite">{{ favorited_count }}</span>
                 </a>
             </li>
         </ul>

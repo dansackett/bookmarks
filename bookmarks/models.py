@@ -31,6 +31,12 @@ class Bookmark(models.Model):
                                       'tag_slug': self.tag.slug})
 
     @permalink
+    def get_favorite_url(self):
+        """Return the favorite link for a bookmark"""
+        return ('favorite-bookmark', (), {'slug': self.slug,
+                                          'tag_slug': self.tag.slug})
+
+    @permalink
     def get_delete_url(self):
         """Return the delete link for a bookmark"""
         return ('delete-bookmark', (), {'slug': self.slug,

@@ -253,15 +253,21 @@ a.menu-link {
             border-radius: 5px;
 }
 
-.link-button:hover {
+.link-button:hover  {
     background: #96D836;
     border: 1px solid #85c527;
+    color: #FFF;
     cursor: pointer;
+}
+
+.link-button:hover i {
+    color: #FFF;
 }
 
 .star {
     color: #f7d43a;
 }
+
 
 /* ==========================================================================
    Helper classes

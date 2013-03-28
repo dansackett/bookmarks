@@ -8,4 +8,5 @@ urlpatterns = patterns('bookmarks.views',
     (r'^add/$', 'add_bookmark', {}, 'add-bookmark'),
     (r'^edit/(?P<tag_slug>[\w-]+)/(?P<slug>[\w-]+)/$', 'edit_bookmark', {}, 'edit-bookmark'),
     (r'^delete/(?P<tag_slug>[\w-]+)/(?P<slug>[\w-]+)/$', 'delete_bookmark', {}, 'delete-bookmark'),
+    (r'^favorite/(?P<tag_slug>[\w-]+)/(?P<slug>[\w-]+)/$', 'favorite_bookmark', {}, 'favorite-bookmark'),
 )
