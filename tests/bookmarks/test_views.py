@@ -42,7 +42,64 @@ def test_list_bookmarks(client):
 
 
 @pytest.mark.django_db
+def test_list_bookmarks_searches_correctly(client):
+    password = 'P@ssw0rd!'
+    user = make_users(1)[0]
+    tag = Tag(title='title', user=user)
+    tag.save()
+    Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
+             description='', tag=tag, url='http://www.google.com').save()
+    Bookmark(title='find me', slug='test-bookmark', user=user,
+             description='', tag=tag, url='http://www.google.com').save()
+
+    assert client.login(username=user.username, password=password)
+    response = client.post('/bookmarks/', {
+        'query': 'find',
+    })
+    assert len(response.context['bookmarks']) == 1
+    assert response.context['bookmarks'][0].title == 'find me'
+
+
+@pytest.mark.django_db
+def test_list_bookmarks_returns_all_on_empty_search(client):
+    password = 'P@ssw0rd!'
+    user = make_users(1)[0]
+    tag = Tag(title='title', user=user)
+    tag.save()
+    Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
+             description='', tag=tag, url='http://www.google.com').save()
+    Bookmark(title='find me', slug='test-bookmark', user=user,
+             description='', tag=tag, url='http://www.google.com').save()
+
+    assert client.login(username=user.username, password=password)
+    response = client.post('/bookmarks/', {
+        'query': '',
+    })
+    assert len(response.context['bookmarks']) == 2
+
+
+@pytest.mark.django_db
 def test_list_favorited_bookmarks(client):
+    password = 'P@ssw0rd!'
+    user = make_users(1)[0]
+    tag = Tag(title='title', user=user)
+    tag.save()
+    Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
+             description='', tag=tag, url='http://www.google.com').save()
+    Bookmark(title='find me', slug='test-bookmark-2', user=user,
+             favorited=True, description='', tag=tag,
+             url='http://www.google.com').save()
+
+    assert client.login(username=user.username, password=password)
+    response = client.post('/bookmarks/favorited/', {
+        'query': 'find',
+    })
+    assert len(response.context['bookmarks']) == 1
+    assert response.context['bookmarks'][0].title == 'find me'
+
+
+@pytest.mark.django_db
+def test_list_favorited_bookmarks_searches_correctly(client):
     password = 'P@ssw0rd!'
     user = make_users(1)[0]
     tag = Tag(title='title', user=user)
