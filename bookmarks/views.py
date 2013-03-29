@@ -5,15 +5,29 @@ from django.views.decorators.http import require_POST
 
 from bookmarks.models import Bookmark
 from bookmarks.forms import NewBookmarkForm, EditBookmarkForm
+from bookmarks.utils import search_bookmarks
 from tags.models import Tag
 
 
-def list_bookmarks(request, favorited=False, template_name='bookmarks/list_bookmarks.html'):
+def list_bookmarks(request, template_name='bookmarks/list_bookmarks.html'):
     """Show a list of all bookmarks for a user"""
-    if favorited:
-        bookmarks = Bookmark.objects.filter(user=request.user, favorited=True)
-    else:
-        bookmarks = Bookmark.objects.filter(user=request.user)
+    bookmarks = Bookmark.objects.filter(user=request.user)
+
+    if request.POST:
+        bookmarks = search_bookmarks(request.POST.get('query', None), bookmarks)
+
+    context = {
+        'bookmarks': bookmarks,
+    }
+    return render(request, template_name, context)
+
+
+def list_favorited_bookmarks(request, template_name='bookmarks/list_favorited_bookmarks.html'):
+    """Show a list of all favorited bookmarks for a user"""
+    bookmarks = Bookmark.objects.filter(user=request.user, favorited=True)
+
+    if request.POST:
+        bookmarks = search_bookmarks(request.POST.get('query', None), bookmarks)
 
     context = {
         'bookmarks': bookmarks,

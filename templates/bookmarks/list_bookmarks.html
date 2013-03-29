@@ -2,6 +2,11 @@
 
 {% block content %}
     <h2>All Bookmarks</h2>
+    <form method="post" action="{% url 'list-bookmarks' %}">
+        {% csrf_token %}
+        <input type="text" name="query"></input>
+        <button type="submit">Search</button>
+    </form>
     <ul>
     {% for bookmark in bookmarks %}
     <li class="item">
@@ -27,6 +32,8 @@
             </form>
         </div>
     </li>
+    {% empty %}
+        No bookmarks found.
     {% endfor %}
     </ul>
 {% endblock %}

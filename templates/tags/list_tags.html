@@ -2,6 +2,11 @@
 
 {% block content %}
     <h2>All Tags</h2>
+    <form method="post" action="{% url 'list-tags' %}">
+        {% csrf_token %}
+        <input type="text" name="query"></input>
+        <button type="submit">Search</button>
+    </form>
     <ul>
     {% for tag in tags %}
     <li class="item">

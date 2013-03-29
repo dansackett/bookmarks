@@ -3,13 +3,18 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
 from bookmarks.models import Bookmark
+from bookmarks.utils import search_bookmarks
 from tags.models import Tag
 from tags.forms import NewTagForm, EditTagForm
+from tags.utils import search_tags
 
 
 def list_tags(request, template_name='tags/list_tags.html'):
     """Show a list of tags"""
     tags = Tag.objects.filter(user=request.user)
+
+    if request.POST:
+        tags = search_tags(request.POST.get('query', None), tags)
 
     context = {
         'tags': tags,
@@ -25,6 +30,9 @@ def view_tag(request, slug, template_name='tags/view_tag.html'):
         raise Http404
 
     bookmarks = Bookmark.objects.filter(user=request.user, tag=tag)
+
+    if request.POST:
+        bookmarks = search_bookmarks(request.POST.get('query', None), bookmarks)
 
     context = {
         'bookmarks': bookmarks,

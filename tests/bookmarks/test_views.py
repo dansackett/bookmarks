@@ -42,17 +42,20 @@ def test_list_bookmarks(client):
 
 
 @pytest.mark.django_db
-def test_list_bookmarks_allows_favorited_mark(client):
+def test_list_favorited_bookmarks(client):
     password = 'P@ssw0rd!'
     user = make_users(1)[0]
     tag = Tag(title='title', user=user)
     tag.save()
     Bookmark(title='Test Bookmark', slug='test-bookmark', user=user,
              description='', tag=tag, url='http://www.google.com').save()
+    Bookmark(title='Test Bookmark 2', slug='test-bookmark-2', user=user,
+             favorited=True, description='', tag=tag,
+             url='http://www.google.com').save()
 
     assert client.login(username=user.username, password=password)
-    response = client.get('/bookmarks/favorited/', favorited=True)
-    assert len(response.context['bookmarks']) == 0
+    response = client.get('/bookmarks/favorited/')
+    assert len(response.context['bookmarks']) == 1
 
 
 @pytest.mark.django_db

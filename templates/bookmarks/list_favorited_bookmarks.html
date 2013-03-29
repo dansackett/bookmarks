@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Bookmarks filed under "{{ tag.title }}"</h2>
-<form method="post" action="{% url 'view-tag' tag.slug %}">
-    {% csrf_token %}
-    <input type="text" name="query"></input>
-    <button type="submit">Search</button>
-</form>
-<ul>
-{% for bookmark in bookmarks %}
+    <h2>Favorited Bookmarks</h2>
+    <form method="post" action="{% url 'favorited-bookmarks' %}">
+        {% csrf_token %}
+        <input type="text" name="query"></input>
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+    {% for bookmark in bookmarks %}
     <li class="item">
         <i class="icon-bookmark"></i> <a href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
         <em>{{ bookmark.description }}</em><br />
@@ -32,8 +32,8 @@
             </form>
         </div>
     </li>
-{% empty %}
-    There are currently no bookmarks for that tag.
-{% endfor %}
-</ul>
+    {% empty %}
+        No bookmarks found.
+    {% endfor %}
+    </ul>
 {% endblock %}
