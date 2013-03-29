@@ -1,18 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Add Tag</h1>
-<form method="post" action="{% url 'add-tag' %}">
-    {% csrf_token %}
-    {% if form.errors %}
-        <ul>
-        {% for e in form.non_field_errors %}
-            <li>{{ e }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-    <a href="{{ referer }}">Cancel</a>
-</form>
+    <h1>Add Tag</h1>
+    {% url 'add-tag' as add_tag %}
+    {% include "partials/form.html" with action=add_tag submit_text="Submit" %}
 {% endblock %}

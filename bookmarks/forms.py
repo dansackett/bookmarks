@@ -7,8 +7,6 @@ from bookmarks.models import Bookmark
 from tags.models import Tag
 
 
-
-
 class NewBookmarkForm(forms.Form):
     tags_error = {'required': 'You need to have a tag to add a bookmark'}
 

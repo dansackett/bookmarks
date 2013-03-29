@@ -1,0 +1,28 @@
+{% comment %}
+    {% include "partials/form.html" with action=url submit_text='Text' %}
+{% endcomment %}
+
+<form action="{{ action }}" method="{{ method|default:'post' }}">
+    {% csrf_token %}
+    <div class="non_field_errors">{{ form.non_field_errors }}</div>
+
+    {% for hidden in form.hidden_fields %}
+        {% block hidden_field %}{{ hidden }}{% endblock %}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+        <div class="field_wrapper{% if field.errors|length %} error{% endif %}">
+            <div class="field_label">{{ field.label_tag }}</div>
+            <div class="field_widget">{{ field }}</div>
+            <div class="field_additional">
+                <div class="field_help_text">{{ field.help_text }}</div>
+                <div class="field_errors">{{ field.errors }}</div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="buttons">
+        <input class="green_button" type="submit" name="submit" value="{{ submit_text|default:'Submit' }}" />
+        <a href="{{ referer }}">Cancel</a>
+    </div>
+</form>

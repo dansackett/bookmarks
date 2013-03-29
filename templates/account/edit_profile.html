@@ -1,18 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Edit Profile</h1>
-<form method="post" action="{% url 'edit-profile' %}">
-    {% csrf_token %}
-    {% if form.errors %}
-        <ul>
-        {% for e in form.non_field_errors %}
-            <li>{{ e }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-    <a href="{{ referer }}">Cancel</a>
-</form>
+    <h1>Edit Profile</h1>
+    {% url 'edit-profile' as edit_profile %}
+    {% include "partials/form.html" with action=edit_profile submit_text="Submit" %}
 {% endblock %}
