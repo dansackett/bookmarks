@@ -7,7 +7,7 @@ from bookmarks.utils import most_recent
 
 def dashboard(request, template_name='account/account.html'):
     """Renders the home template for logged in users"""
-    new_bookmarks = most_recent(request.user)[:5]
+    new_bookmarks = most_recent(request.user)[:3]
 
     context = {
         'new_bookmarks': new_bookmarks,
