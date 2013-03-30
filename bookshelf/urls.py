@@ -4,7 +4,6 @@ from django.shortcuts import redirect
 
 
 urlpatterns = patterns('',
-    (r'^$', lambda r: redirect('login')),
     (r'^', include('auth.urls')),
     (r'^account/', include('account.urls')),
     (r'^tags/', include('tags.urls')),
@@ -12,13 +11,6 @@ urlpatterns = patterns('',
 )
 
 if settings.DEBUG:
-    # enable admin
-    from django.contrib import admin
-    admin.autodiscover()
-    urlpatterns += patterns('',
-        (r'^admin/', include(admin.site.urls)),
-    )
-
     # handle media urls through django
     urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
