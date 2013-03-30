@@ -86,7 +86,7 @@ def test_profile_form_is_not_valid_due_to_bad_password():
         'username': 'test-user2',
         'first_name': 'First Name',
         'last_name': 'Last Name',
-        'password': 'password',
+        'password': 'pass',
         'confirm_password': 'pass',
     })
     assert not form.is_valid()

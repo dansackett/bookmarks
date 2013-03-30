@@ -13,12 +13,7 @@ from auth.utils import (
 
 @pytest.mark.parametrize(('password', 'result'), [
     ('goodPassword23!', (True, None)),  # happy path
-    ('ASdf', (False, 'Password is not long enough.')),
-    ('goodPassword!', (False, 'Password must contain digits.')),
-    ('900134$$1254!', (False, 'Password must contain letters.')),
-    ('asdfas2347!', (False, 'Password must contain both upper & lower case letters.')),
-    ('asdfASD3567', (False, 'Password does not contain a special character.')),
-    ('goodPas\x00sword23!', (False, 'Password contains invalid characters.')),
+    ('ASdf', (False, 'Passwords must be 8 characters long.')),
 ])
 def test_password_is_good(password, result):
     is_good, message = password_is_good(password)
