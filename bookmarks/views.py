@@ -58,8 +58,7 @@ def edit_bookmark(request, slug, tag_slug, form_class=EditBookmarkForm,
     except ObjectDoesNotExist:
         raise Http404
 
-    form = form_class(request.POST or None, user=request.user,
-                      bookmark=bookmark)
+    form = form_class(request.POST or None, user=request.user, instance=bookmark)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('view-tag', tag_slug)

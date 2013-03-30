@@ -63,7 +63,7 @@ def edit_tag(request, slug, form_class=EditTagForm,
     except Tag.DoesNotExist:
         raise Http404
 
-    form = form_class(request.POST or None, user=request.user, tag=tag)
+    form = form_class(request.POST or None, user=request.user, instance=tag)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('user-home')

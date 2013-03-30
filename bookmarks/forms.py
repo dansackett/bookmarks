@@ -1,28 +1,24 @@
-import datetime
-
 from django import forms
 from django.template.defaultfilters import slugify
 
 from bookmarks.models import Bookmark
-from tags.models import Tag
 
 
-class NewBookmarkForm(forms.Form):
-    tags_error = {'required': 'You need to have a tag to add a bookmark'}
+class BaseBookmarkForm(forms.ModelForm):
 
-    title = forms.CharField(max_length=100)
-    description = forms.CharField(required=False, widget=forms.Textarea)
-    url = forms.URLField()
-    tag = forms.ChoiceField(widget=forms.Select, error_messages=tags_error)
-    favorited = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    class Meta:
+        model = Bookmark
+        exclude = ('slug', 'user')
+
+
+class NewBookmarkForm(BaseBookmarkForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(NewBookmarkForm, self).__init__(*args, **kwargs)
 
-        tags = Tag.objects.filter(user=self.user)
-        self.fields['tag'].choices = [(tag.pk, tag.title) for tag in tags]
-
+        self.tags_error = {'required': 'You need to have a tag to add a bookmark'}
+        self.fields['tag'].error_messages = self.tags_error
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
@@ -32,68 +28,35 @@ class NewBookmarkForm(forms.Form):
 
         return title
 
-    def save(self):
+    def save(self, commit=True):
+        bookmark = super(NewBookmarkForm, self).save(commit=False)
         title = self.cleaned_data.get('title')
-        tag = Tag.objects.get(pk=self.cleaned_data.get('tag'))
-        bookmark = Bookmark(
-            title=title,
-            slug=slugify(title),
-            user=self.user,
-            tag=tag,
-            description=self.cleaned_data.get('description'),
-            url=self.cleaned_data.get('url'),
-            favorited=self.cleaned_data.get('favorited')
-        )
+        bookmark.slug = slugify(title)
+        bookmark.user = self.user
         bookmark.save()
+        return bookmark
 
 
-class EditBookmarkForm(forms.Form):
-
-    title = forms.CharField(max_length=100)
-    description = forms.CharField(required=False, widget=forms.Textarea)
-    url = forms.URLField()
-    tag = forms.ChoiceField(widget=forms.Select)
-    favorited = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+class EditBookmarkForm(BaseBookmarkForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         self.bookmark = kwargs.pop('bookmark', None)
-        kwargs['initial'] = self._build_initial()
         super(EditBookmarkForm, self).__init__(*args, **kwargs)
-
-        tags = Tag.objects.filter(user=self.user)
-        self.fields['tag'].choices = [(tag.pk, tag.title) for tag in tags]
-
-    def _build_initial(self):
-        user = self.user
-        initial = {
-            'title': self.bookmark.title,
-            'description': self.bookmark.description,
-            'url': self.bookmark.url,
-            'favorited': self.bookmark.favorited,
-            'tag': self.bookmark.tag.pk,
-        }
-
-        return initial
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
 
-        if self.bookmark.title != title:
+        if self.instance.title != title:
             if Bookmark.objects.filter(title=title, user=self.user):
                 raise forms.ValidationError('You already have a bookmark with that title.')
 
         return title
 
-    def save(self):
-        tag = Tag.objects.get(pk=self.cleaned_data.get('tag'))
-        bookmark = self.bookmark
-        bookmark.title = self.cleaned_data.get('title')
-        bookmark.slug = slugify(self.cleaned_data.get('title'))
+    def save(self, commit=True):
+        bookmark = super(EditBookmarkForm, self).save(commit=False)
+        title = self.cleaned_data.get('title')
+        bookmark.slug = slugify(title)
         bookmark.user = self.user
-        bookmark.tag = tag
-        bookmark.description = self.cleaned_data.get('description')
-        bookmark.url = self.cleaned_data.get('url')
-        bookmark.favorited = self.cleaned_data.get('favorited')
-        bookmark.modified_on = datetime.datetime.now()
         bookmark.save()
+        return bookmark

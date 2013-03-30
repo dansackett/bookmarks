@@ -1,14 +1,17 @@
-import datetime
-
 from django import forms
 from django.template.defaultfilters import slugify
 
 from tags.models import Tag
 
 
-class NewTagForm(forms.Form):
-    title = forms.CharField(max_length=100)
-    description = forms.CharField(required=False, widget=forms.Textarea)
+class BaseTagForm(forms.ModelForm):
+
+    class Meta:
+        model = Tag
+        exclude = ('slug', 'user')
+
+
+class NewTagForm(BaseTagForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -22,50 +25,34 @@ class NewTagForm(forms.Form):
 
         return title
 
-    def save(self):
+    def save(self, commit=True):
+        tag = super(NewTagForm, self).save(commit=False)
         title = self.cleaned_data.get('title')
-        tag = Tag(
-            title=title,
-            slug=slugify(title),
-            description=self.cleaned_data.get('description'),
-            user=self.user,
-        )
+        tag.slug = slugify(title)
+        tag.user = self.user
         tag.save()
+        return tag
 
 
-class EditTagForm(forms.Form):
-    title = forms.CharField(max_length=100)
-    description = forms.CharField(required=False, widget=forms.Textarea)
+class EditTagForm(BaseTagForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
-        self.tag = kwargs.pop('tag', None)
-        kwargs['initial'] = self._build_initial()
         super(EditTagForm, self).__init__(*args, **kwargs)
-
-    def _build_initial(self):
-        user = self.user
-        initial = {
-            'title': self.tag.title,
-            'description': self.tag.description,
-        }
-
-        return initial
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
 
-        if self.tag.title != title:
+        if self.instance.title != title:
             if Tag.objects.filter(title=title, user=self.user):
                 raise forms.ValidationError('You already have a tag with that title.')
 
         return title
 
-    def save(self):
+    def save(self, commit=True):
+        tag = super(EditTagForm, self).save(commit=False)
         title = self.cleaned_data.get('title')
-        tag = self.tag
-        tag.title = title
+        tag = self.instance
         tag.slug = slugify(title)
-        tag.description = self.cleaned_data.get('description')
-        tag.modified_on = datetime.datetime.now()
         tag.save()
+        return tag
