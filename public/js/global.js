@@ -44,5 +44,11 @@ $(document).ready(function() {
         });
         return false;
     });
+
+    // Use iCheck for checkboxes
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-grey',
+        radioClass: 'iradio_square-grey',
+    });
 });
 
