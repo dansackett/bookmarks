@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 
 
 urlpatterns = patterns('',
+    (r'^$', lambda r: redirect('/login/')),
     (r'^', include('auth.urls')),
     (r'^account/', include('account.urls')),
     (r'^tags/', include('tags.urls')),

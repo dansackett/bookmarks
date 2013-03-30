@@ -14,14 +14,18 @@ class LoginForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    username_help_text = 'Usernames can be 30 characters or fewer contaning \
-                          letters, numbers and \'@/./+/-/_\' characters.'
+    help_text = {
+        'username': 'Usernames can be 30 characters or fewer contaning \
+                     letters, numbers and \'@/./+/-/_\' characters.',
+        'password': 'Passwords must be at least 8 characters in length.'
+    }
 
     email = forms.EmailField()
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
-    username = forms.CharField(max_length=30, help_text=username_help_text)
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(max_length=30, help_text=help_text['username'])
+    password = forms.CharField(widget=forms.PasswordInput,
+                               help_text=help_text['password'])
     confirm_password = forms.CharField(widget=forms.PasswordInput)
 
     def clean_username(self):

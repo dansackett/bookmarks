@@ -1,24 +1,33 @@
 <aside class="sidebar" id="menu" role="navigation">
     <div class="content">
+        <strong>Hello, {{ user.get_full_name }}!</strong>
         <h2>Links</h2>
         <ul>
+            <li><a href="{% url 'user-home' %}"><i class="icon-home"></i> Home</a></li>
+            <li><a href="{% url 'edit-profile' %}"><i class="icon-user"></i> Edit Profile</a></li>
             <li><a href="{% url 'add-tag' %}"><i class="icon-tag"></i> New Tag</a></li>
             <li><a href="{% url 'add-bookmark' %}"><i class="icon-bookmark"></i> New Bookmark</a></li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class='sidebar-button' /><i class="icon-signout"></i> Logout</button>
+                </form>
+            </li>
         </ul>
         <h2>Statistics</h2>
         <ul>
             <li>
-                <a href="{% url 'list-tags' %}" {% if request.get_full_path == '/tags/' %}class='active'{% endif %}>
+                <a href="{% url 'list-tags' %}" {% if full_path == '/tags/' %}class='active'{% endif %}>
                     <i class="icon-tags"></i> Tags<span>{{ tags_count }}</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'list-bookmarks' %}" {% if request.get_full_path == '/bookmarks/' %}class='active'{% endif %}>
+                <a href="{% url 'list-bookmarks' %}" {% if full_path == '/bookmarks/' %}class='active'{% endif %}>
                     <i class="icon-bookmark"></i> Bookmarks<span>{{ bookmarks_count }}</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'favorited-bookmarks' %}" {% if request.get_full_path == '/bookmarks/favorited/' %}class='active'{% endif %}>
+                <a href="{% url 'favorited-bookmarks' %}" {% if full_path == '/bookmarks/favorited/' %}class='active'{% endif %}>
                     <i class="icon-star"></i> Favorited<span class="update-favorite">{{ favorited_count }}</span>
                 </a>
             </li>
@@ -28,8 +37,8 @@
             <ul>
             {% for count, title, tag in popular_tags %}
             <li>
-                <a href="{{ tag.get_absolute_url }}" {% if request.get_full_path == tag.get_absolute_url %}class='active'{% endif %}>
-                    <i class="icon-tag"></i> {{ title }}<span>{{ count }}</span>
+                <a href="{{ tag.get_absolute_url }}" {% if full_path == tag.get_absolute_url %}class='active'{% endif %}>
+                    <i class="icon-tag"></i> {{ title|truncatechars:12 }}<span>{{ count }}</span>
                 </a>
             </li>
             {% endfor %}

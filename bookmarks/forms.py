@@ -17,8 +17,9 @@ class NewBookmarkForm(BaseBookmarkForm):
         self.user = kwargs.pop('user', None)
         super(NewBookmarkForm, self).__init__(*args, **kwargs)
 
-        self.tags_error = {'required': 'You need to have a tag to add a bookmark'}
+        self.tags_error = {'required': 'You have to choose a tag first!'}
         self.fields['tag'].error_messages = self.tags_error
+        self.fields['url'].label = 'URL'
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

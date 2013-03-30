@@ -19,7 +19,8 @@ textarea {
 }
 
 body {
-    color: #494949;
+    background: #F0F1F5;
+    color: #364C75;
     height: 100%;
     font-size: 1em;
     line-height: 1.4;
@@ -95,43 +96,18 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-/* green: #7BB724 */
-/* slightly lighter: #85c527 */
-/* lighter green: #96d836 */
-/* darker1: #71a921 */
-/* darker2: #689b1e */
-/* sidebar: #FAFAFA */
-/* main: #FFFFFF */
-/* black: #1A1A1B */
-/* text: #494949 */
 a, a:visited, a:active {
-    color: #96D836;
+    color: #F33A5D;
     font-weight: 700;
     text-decoration: none;
 }
 
 a:hover {
-    color: #7BB724;
+    color: #f55a77;
+    text-decoration: underline;
 }
 
-.header {
-    background: #1A1A1B;
-}
-
-.logo {
-    font-size: 75px;
-    display: inline-block;
-    height: 100px;
-    width: 400px;
-}
-
-.user-info {
-    color: #FFF;
-    display: inline-block;
-    float: right;
-    margin: 1em;
-}
-
+/* Header stuff */
 .wrap {
     height: 100%;
     position: relative;
@@ -152,19 +128,29 @@ a.menu-link {
     padding: 1em;
 }
 
+
+/* Sidebar */
 .sidebar {
-    background: #FAFAFA;
-    border-bottom: 1px solid #EBEBEB;
-    border-right: 1px solid #EBEBEB;
+    background: #263249;
+    border-bottom: 1px solid #9B2E45;
+    border-right: 1px solid #9B2E45;
     clear: both;
-    height: 100%;
+    color: #87A5CA;
     left: -16em;
     position: absolute;
     width: 16em;
+    -webkit-border-radius: 0 0 20px 0;
+       -moz-border-radius: 0 0 20px 0;
+            border-radius: 0 0 20px 0;
 }
 
 .sidebar .content {
     padding: 1em;
+}
+
+.sidebar h2 {
+    color: #FFF;
+    text-shadow: 0px 1px .5px #1E293D;
 }
 
 .sidebar ul {
@@ -174,28 +160,27 @@ a.menu-link {
 }
 
 .sidebar li a {
-    background: #EBEBEB;
-    border: 1px solid #E3E3E3;
-    color: #1A1A1B;
+    color: #87A5CA;
     display: block;
-    margin: 1em 0;
-    padding: .75em;
+    margin: .5em 0;
+    padding: .25em .5em;
     text-decoration: none;
-    text-shadow: 0px 1px .5px #FFF;
+    text-shadow: 0px 1px .5px #1E293D;
+}
+
+.sidebar li a:hover, .sidebar li a.active {
+    background: #F33A5D;
+    border: 1px solid #902C46;
+    color: #FFF;
+    cursor: pointer;
+    text-shadow: 0px 1px .5px #902C46;
     -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
             border-radius: 5px;
 }
 
-.sidebar li a:hover, .sidebar li a.active {
-    background: #96D836;
-    border: 1px solid #85c527;
-    color: #FFF;
-    cursor: pointer;
-    text-shadow: 0px 1px .5px #71a921;
-}
-
 .sidebar li a span {
+    color: #FFF;
     float: right;
 }
 
@@ -204,6 +189,7 @@ a.menu-link {
     padding: 1em;
 }
 
+/* Bookmark/Tag Items */
 .main-content ul {
     list-style: none;
     margin: 0;
@@ -211,8 +197,8 @@ a.menu-link {
 }
 
 .main-content .item {
-    background: #F7F7F7;
-    border: 1px solid #EEE;
+    background: #F9F9FB;
+    border: 1px solid #D8DBE7;
     margin: 1em 0;
     padding: 1em;
     position: relative;
@@ -222,8 +208,7 @@ a.menu-link {
 }
 
 .main-content .item:hover {
-    background: #EEE;
-    border: 1px solid #E6E6E6;
+    background: #FFF;
 }
 
 .main-content .item .tools {
@@ -237,14 +222,139 @@ a.menu-link {
     display: inline-block;
 }
 
+/* Search */
+.search-form input {
+    background: #FFF;
+    border: 1px solid #D8DBE7;
+    color: #364C75;
+    display: inline-block;
+    padding: .75em;
+    width: 50%;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.search-form input:focus {
+    outline: 1px solid #D8DBE7;
+}
+
+.search-form button {
+    background: #263249;
+    border: 1px solid #9B2E45;
+    color: #FFF;
+    display: inline-block;
+    font-weight: 700;
+    padding: .5em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.search-form button:hover {
+    background: #F33A5D;
+    border: 1px solid #902C46;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/* Forms */
+.data-form {
+    background: #F9F9FB;
+    border: 1px solid #D8DBE7;
+    margin: 1em 0;
+    padding: 1em;
+    position: relative;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.data-form .field-wrapper {
+    margin: .5em 0;
+}
+
+.data-form .error {
+    color: #F33A5D;
+}
+
+.data-form .error input {
+    border: 1px solid #F33A5D;
+}
+
+.data-form .field-errors {
+    margin-top: 1em;
+}
+
+.data-form .field-label {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-bottom: .5em;
+}
+
+.data-form .field-widget input,
+.data-form .field-widget select,
+.data-form .field-widget textarea {
+    background: #FFF;
+    border: 1px solid #D8DBE7;
+    color: #364C75;
+    padding: .75em;
+    width: 90%;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.data-form .field-widget input:focus,
+.data-form .field-widget input:active,
+.data-form .field-widget select:focus,
+.data-form .field-widget select:active,
+.data-form .field-widget textarea:focus,
+.data-form .field-widget textarea:active {
+    outline: 1px solid #D8DBE7;
+}
+
+.data-form .error.field-help-text, .data-form .field-help-text {
+    color: #364C75;
+    font-style: italic;
+}
+
+.data-form .buttons {
+    margin-top: 1em;
+}
+
+.data-form .buttons input, .data-form .buttons a {
+    background: #263249;
+    border: 1px solid #9B2E45;
+    color: #FFF;
+    display: inline-block;
+    font-weight: 700;
+    padding: .5em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.data-form .buttons input:hover,
+.data-form .buttons input:active,
+.data-form .buttons a:hover,
+.data-form .buttons a:active {
+    background: #F33A5D;
+    border: 1px solid #902C46;
+    color: #FFF;
+    cursor: pointer;
+}
+
 /* ==========================================================================
    My classes
    ========================================================================== */
 
 .link-button {
-    color: #FFF;
-    background: #1A1A1B;
-    border: 1px solid #000;
+    background: #263249;
+    border: 1px solid #9B2E45;
+    color: #87A5CA;
     font-weight: 700;
     padding: 3px;
     text-decoration: none;
@@ -254,8 +364,8 @@ a.menu-link {
 }
 
 .link-button:hover  {
-    background: #96D836;
-    border: 1px solid #85c527;
+    background: #F33A5D;
+    border: 1px solid #902C46;
     color: #FFF;
     cursor: pointer;
 }
@@ -264,8 +374,33 @@ a.menu-link {
     color: #FFF;
 }
 
+.sidebar-button {
+    background: none;
+    border: none;
+    color: #87A5CA;
+    display: block;
+    font-weight: 700;
+    margin: .5em 0;
+    padding: .25em .25em .25em .5em;
+    text-align: left;
+    text-decoration: none;
+    text-shadow: 0px 1px .5px #1E293D;
+    width: 100%;
+}
+
+.sidebar-button:hover {
+    background: #F33A5D;
+    border: 1px solid #902C46;
+    color: #FFF;
+    cursor: pointer;
+    text-shadow: 0px 1px .5px #902C46;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
 .star {
-    color: #f7d43a;
+    color: #FFF;
 }
 
 
@@ -375,8 +510,7 @@ a.menu-link {
         float: left;
         height: 100%;
         position: static;
-        width: 30%;
-
+        width: 20%;
     }
 
     .wrap.active {
@@ -385,7 +519,7 @@ a.menu-link {
 
     .main-content {
         clear: none;
-        margin-left: 30%;
+        margin-left: 20%;
     }
 }
 

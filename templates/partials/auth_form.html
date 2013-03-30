@@ -1,0 +1,9 @@
+{% extends "partials/form.html" %}
+
+{% block extra_buttons %}
+    {% if full_path == "/login/" %}
+        <a href="{% url 'register' %}">Register</a>
+    {% elif full_path == "/register/" %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+{% endblock %}

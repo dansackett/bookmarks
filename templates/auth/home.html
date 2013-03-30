@@ -3,8 +3,7 @@
 {% block content %}
     {% if user.is_anonymous %}
     <h1>Login</h1>
-    <a href="{% url 'register' %}">Register</a>
     {% url "login" as login %}
-    {% include "partials/form.html" with url=login submit_text="Login" cancel="None" %}
+    {% include "partials/auth_form.html" with url=login submit_text="Login" cancel="None" %}
     {% endif %}
 {% endblock %}

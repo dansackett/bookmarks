@@ -3,8 +3,5 @@
 {% block content %}
     <h1>Register</h1>
     {% url "register" as register %}
-    {% include "partials/form.html" with url=register submit_text="Register" cancel="None" %}
-    {% block extra_buttons %}
-        <a href="{% url 'login' %}">Login</a>
-    {% endblock %}
+    {% include "partials/auth_form.html" with url=register submit_text="Register" cancel="None" %}
 {% endblock %}
