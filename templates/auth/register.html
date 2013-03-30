@@ -1,17 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Register</h1>
-<form method="post" action="{% url 'register' %}">
-    {% csrf_token %}
-    {% if form.errors %}
-        <ul>
-        {% for e in form.non_field_errors %}
-            <li>{{ e }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {{ form.as_p }}
-    <input type="submit" value="Register" />
-</form>
+    <h1>Register</h1>
+    {% url "register" as register %}
+    {% include "partials/form.html" with url=register submit_text="Register" cancel="None" %}
+    {% block extra_buttons %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endblock %}
 {% endblock %}

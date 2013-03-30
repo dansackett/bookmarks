@@ -4,20 +4,7 @@
     {% if user.is_anonymous %}
     <h1>Login</h1>
     <a href="{% url 'register' %}">Register</a>
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        {% if error or form.errors %}
-            <ul>
-            {% for e in form.non_field_errors %}
-                <li>{{ e }}</li>
-            {% endfor %}
-            {% if error %}
-                <li>{{ error }}</li>
-            {% endif %}
-            </ul>
-        {% endif %}
-        {{ form.as_p }}
-        <input type="submit" value="Login" />
-    </form>
+    {% url "login" as login %}
+    {% include "partials/form.html" with url=login submit_text="Login" cancel="None" %}
     {% endif %}
 {% endblock %}

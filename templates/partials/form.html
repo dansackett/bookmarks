@@ -23,6 +23,9 @@
 
     <div class="buttons">
         <input class="green_button" type="submit" name="submit" value="{{ submit_text|default:'Submit' }}" />
-        <a href="{{ referer }}">Cancel</a>
+        {% if cancel != 'None' %}
+            <a href="{{ referer }}">Cancel</a>
+        {% endif %}
+        {% block extra_buttons %}{% endblock %}
     </div>
 </form>
