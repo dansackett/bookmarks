@@ -7,19 +7,9 @@ def password_is_good(password):
     corresponding message
 
     """
-    min_length = 7
+    min_length = 8
     if len(password) < min_length:
-        return False, 'Password is not long enough.'
-    if not contains_digits(password):
-        return False, 'Password must contain digits.'
-    if not contains_letters(password):
-        return False, 'Password must contain letters.'
-    if not is_mixed_case(password):
-        return False, 'Password must contain both upper & lower case letters.'
-    if not contains_special_characters(password):
-        return False, 'Password does not contain a special character.'
-    if not is_printable(password):
-        return False, 'Password contains invalid characters.'
+        return False, 'Passwords must be {} characters long.'.format(min_length)
     return True, None
 
 

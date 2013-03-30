@@ -39,7 +39,13 @@ def register(request, template_name='auth/register.html',
     form = form_class(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        return redirect('user-home')
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = auth.authenticate(username=username, password=password)
+        if user:
+            auth.login(request, user)
+            return redirect('user-home')
+        return redirect('login')
 
     context = {
         'form': form,

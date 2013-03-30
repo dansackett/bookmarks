@@ -23,8 +23,8 @@
                 </a>
             </li>
         </ul>
+        {% if popular_tags %}
         <h2>Popular Tags</h2>
-        {% if all_tags %}
             <ul>
             {% for count, title, tag in popular_tags %}
             <li>
