@@ -74,7 +74,7 @@ def test_edit_tag_form_is_valid():
     tag.save()
     form = EditTagForm({
         'title': 'test',
-    }, user=user, tag=tag)
+    }, user=user, instance=tag)
     assert form.is_valid()
 
 
@@ -85,7 +85,7 @@ def test_edit_tag_form_is_invalid_due_to_no_title():
     tag.save()
     form = EditTagForm({
         'title': '',
-    }, user=user, tag=tag)
+    }, user=user, instance=tag)
     assert not form.is_valid()
     assert ['title'] == form.errors.keys()
 
@@ -98,7 +98,7 @@ def test_edit_tag_form_is_invalid_due_to_tag_exists():
     tag.save()
     form = EditTagForm({
         'title': 'tag1',
-    }, user=user, tag=tag)
+    }, user=user, instance=tag)
     assert not form.is_valid()
     assert ['title'] == form.errors.keys()
 
@@ -111,7 +111,7 @@ def test_edit_tag_form_allows_same_tag_name_to_save():
     tag.save()
     form = EditTagForm({
         'title': 'tag',
-    }, user=user, tag=tag)
+    }, user=user, instance=tag)
     assert form.is_valid()
     form.save()
     assert Tag.objects.get(pk=1).title == 'tag'
@@ -123,7 +123,7 @@ def test_edit_tag_form_saves_correctly():
     tag.save()
     form = EditTagForm({
         'title': 'new name',
-    }, user=user, tag=tag)
+    }, user=user, instance=tag)
     assert form.is_valid()
     form.save()
     assert Tag.objects.get(pk=1).title == 'new name'

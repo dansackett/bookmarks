@@ -107,7 +107,7 @@ def test_edit_bookmark_form_is_valid():
         'url': 'http://www.google.com',
         'tag': tag.pk,
         'favorited': True,
-    }, user=user, bookmark=bookmark)
+    }, user=user, instance=bookmark)
     assert form.is_valid()
 
 
@@ -125,7 +125,7 @@ def test_edit_bookmark_form_is_invalid_due_to_bad_url():
         'url': 'blah',
         'tag': tag.pk,
         'favorited': True,
-    }, user=user, bookmark=bookmark)
+    }, user=user, instance=bookmark)
     assert not form.is_valid()
     assert ['url'] == form.errors.keys()
 
@@ -146,7 +146,7 @@ def test_edit_bookmark_form_is_invalid_because_bookmark_exists():
         'url': 'http://www.google.com',
         'tag': tag.pk,
         'favorited': True,
-    }, user=user, bookmark=bookmark1)
+    }, user=user, instance=bookmark1)
     assert not form.is_valid()
     assert ['title'] == form.errors.keys()
 
@@ -165,7 +165,7 @@ def test_edit_bookmark_form_saves_correctly():
         'url': 'http://www.google.com',
         'tag': tag.pk,
         'favorited': True,
-    }, user=user, bookmark=bookmark)
+    }, user=user, instance=bookmark)
     assert form.is_valid()
     form.save()
     bookmark = Bookmark.objects.get(pk=1)
