@@ -14,7 +14,7 @@ MANAGERS = ADMINS
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = '*'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -108,7 +108,7 @@ TEMPLATE_DIRS = (
     rel('templates'),
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = {
+TEMPLATE_CONTEXT_PROCESSORS = (
     # defaults
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
@@ -117,7 +117,7 @@ TEMPLATE_CONTEXT_PROCESSORS = {
     'django.contrib.messages.context_processors.messages',
     # custom
     'bookshelf.context_processors.global_values',
-}
+)
 
 INSTALLED_APPS = (
     # Django
@@ -170,4 +170,4 @@ LOGGING = {
 try:
     from local_settings import *
 except ImportError:
-    pass
+    print "Local settings cannot be imported"
