@@ -13,7 +13,7 @@ def global_values(request):
             'tags_count': total_tags(request.user),
             'favorited_count': total_favorited(request.user),
             'all_tags': Tag.objects.filter(user=request.user),
-            'popular_tags': most_popular(request.user)[:3],
+            'popular_tags': most_popular(request.user)[:5],
             'referer': request.META.get('HTTP_REFERER', reverse('user-home')),
             'full_path': request.get_full_path(),
         }
