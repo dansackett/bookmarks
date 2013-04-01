@@ -32,7 +32,7 @@ class RegistrationForm(forms.Form):
         username = self.cleaned_data.get('username')
 
         if not valid_username(username):
-            raise forms.ValidationError(self.username_help_text)
+            raise forms.ValidationError('That username is not valid.')
 
         if User.objects.filter(username=username):
             raise forms.ValidationError('That username already exists.')

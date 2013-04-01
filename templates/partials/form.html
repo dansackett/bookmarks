@@ -1,7 +1,3 @@
-{% comment %}
-    {% include "partials/form.html" with action=url submit_text='Text' %}
-{% endcomment %}
-
 <form action="{{ action }}" method="{{ method|default:'post' }}" class="data-form">
     {% csrf_token %}
     <div class="non-field-errors">
