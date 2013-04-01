@@ -15,7 +15,7 @@ class LoginForm(forms.Form):
 
 class RegistrationForm(forms.Form):
     help_text = {
-        'username': 'Usernames can be 30 characters or fewer contaning \
+        'username': 'Usernames can be 30 characters or fewer containing \
                      letters, numbers and \'@/./+/-/_\' characters.',
         'password': 'Passwords must be at least 8 characters in length.'
     }
