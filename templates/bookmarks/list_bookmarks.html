@@ -8,7 +8,7 @@
     {% for bookmark in bookmarks %}
         {% include "partials/bookmark_item.html" %}
     {% empty %}
-        No bookmarks found.
+        <li class="none-found">No bookmarks found.</li>
     {% endfor %}
     </ul>
 {% endblock %}

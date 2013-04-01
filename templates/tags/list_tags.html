@@ -8,7 +8,7 @@
     {% for tag in tags %}
         {% include "partials/tag_item.html" %}
     {% empty %}
-        No tags found.
+        <li class="none-found">No bookmarks found.</li>
     {% endfor %}
     </ul>
 {% endblock %}

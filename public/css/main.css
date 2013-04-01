@@ -122,26 +122,47 @@ a:hover {
     left: 16em;
 }
 
-a.menu-link {
+.menu {
+    background: #263249;
     display: block;
     float: left;
     padding: 1em;
+    text-decoration: none;
+    width: 100%;
+}
+
+a.menu-link {
+    background: #0f131c;
+    border: 1px solid #030406;
+    color: #87A5CA;
+    font-weight: 700;
+    padding: .5em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+a.menu-link:hover  {
+    background: #F33A5D;
+    border: 1px solid #902C46;
+    color: #FFF;
+    cursor: pointer;
+}
+
+a.menu-link:hover i {
+    color: #FFF;
 }
 
 
 /* Sidebar */
 .sidebar {
     background: #263249;
-    border-bottom: 1px solid #9B2E45;
-    border-right: 1px solid #9B2E45;
     clear: both;
     color: #87A5CA;
     left: -16em;
     position: absolute;
     width: 16em;
-    -webkit-border-radius: 0 0 20px 0;
-       -moz-border-radius: 0 0 20px 0;
-            border-radius: 0 0 20px 0;
 }
 
 .sidebar .content {
@@ -259,6 +280,10 @@ a.menu-link {
     cursor: pointer;
 }
 
+.none-found {
+    margin: 1em 0;
+}
+
 /* Forms */
 .data-form {
     background: #F9F9FB;
@@ -275,7 +300,7 @@ a.menu-link {
     margin: .5em 0;
 }
 
-.data-form .error {
+.data-form .error, .data-form .non-field-errors {
     color: #F33A5D;
 }
 
@@ -300,10 +325,13 @@ a.menu-link {
     border: 1px solid #D8DBE7;
     color: #364C75;
     padding: .75em;
-    width: 90%;
+    width: 100%;
     -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
             border-radius: 5px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 .data-form .field-widget input:focus,
@@ -502,7 +530,7 @@ a.menu-link {
    ========================================================================== */
 
 @media screen and (min-width: 48.25em) {
-    a.menu-link {
+    a.menu-link, .menu {
         display: none;
     }
 
@@ -519,7 +547,7 @@ a.menu-link {
 
     .main-content {
         clear: none;
-        margin-left: 20%;
+        margin: 0 20%;
     }
 }
 

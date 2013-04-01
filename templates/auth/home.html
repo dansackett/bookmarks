@@ -2,8 +2,8 @@
 
 {% block content %}
     {% if user.is_anonymous %}
-    <h1>Login</h1>
-    {% url "login" as login %}
-    {% include "partials/auth_form.html" with url=login submit_text="Login" cancel="None" %}
+        <h1>Login</h1>
+        {% url "login" as login %}
+        {% include "partials/login_form.html" with url=login submit_text="Login" cancel="None" %}
     {% endif %}
 {% endblock %}

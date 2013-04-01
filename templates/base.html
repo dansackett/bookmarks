@@ -20,7 +20,9 @@
         <![endif]-->
         <div class="wrap" id="wrap">
             {% if user.is_authenticated %}
-                <a href="#menu" class="menu-link">Menu</a>
+                <div class="menu">
+                    <a href="#menu" class="menu-link"><i class="icon-reorder"></i></a>
+                </div>
                 {% include "partials/sidebar.html" %}
             {% endif %}
             <div class="main-content">

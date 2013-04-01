@@ -4,7 +4,14 @@
 
 <form action="{{ action }}" method="{{ method|default:'post' }}" class="data-form">
     {% csrf_token %}
-    <div class="non-field-errors">{{ form.non_field_errors }}</div>
+    <div class="non-field-errors">
+        {{ form.non_field_errors }}
+        {% if error %}
+            <ul>
+                <li><i class="icon-warning-sign"></i> {{ error }}</li>
+            </ul>
+        {% endif %}
+    </div>
 
     {% for hidden in form.hidden_fields %}
         {% block hidden_field %}{{ hidden }}{% endblock %}
