@@ -2,6 +2,7 @@ from django import forms
 from django.template.defaultfilters import slugify
 
 from bookmarks.models import Bookmark
+from tags.models import Tag
 
 
 class BaseBookmarkForm(forms.ModelForm):
@@ -19,6 +20,8 @@ class NewBookmarkForm(BaseBookmarkForm):
 
         self.tags_error = {'required': 'You have to choose a tag first!'}
         self.fields['tag'].error_messages = self.tags_error
+        tags = Tag.objects.filter(user=self.user)
+        self.fields['tag'].choices = [(tag.pk, tag.title) for tag in tags]
         self.fields['url'].label = 'URL'
 
     def clean_title(self):
@@ -44,6 +47,8 @@ class EditBookmarkForm(BaseBookmarkForm):
         self.user = kwargs.pop('user', None)
         self.bookmark = kwargs.pop('bookmark', None)
         super(EditBookmarkForm, self).__init__(*args, **kwargs)
+        tags = Tag.objects.filter(user=self.user)
+        self.fields['tag'].choices = [(tag.pk, tag.title) for tag in tags]
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
