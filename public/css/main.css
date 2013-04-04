@@ -189,9 +189,9 @@ a.menu-link:hover i {
     text-shadow: 0px 1px .5px #1E293D;
 }
 
-.sidebar li a:hover, .sidebar li a.active {
+.sidebar li a:hover,
+.sidebar li a.active {
     background: #F33A5D;
-    border: 1px solid #902C46;
     color: #FFF;
     cursor: pointer;
     text-shadow: 0px 1px .5px #902C46;
@@ -300,7 +300,8 @@ a.menu-link:hover i {
     margin: .5em 0;
 }
 
-.data-form .error, .data-form .non-field-errors {
+.data-form .error,
+.data-form .non-field-errors {
     color: #F33A5D;
 }
 
@@ -343,7 +344,8 @@ a.menu-link:hover i {
     outline: 1px solid #D8DBE7;
 }
 
-.data-form .error.field-help-text, .data-form .field-help-text {
+.data-form .error.field-help-text,
+.data-form .field-help-text {
     color: #364C75;
     font-style: italic;
 }
@@ -352,17 +354,23 @@ a.menu-link:hover i {
     margin-top: 1em;
 }
 
-.data-form .buttons input, .data-form .buttons a {
+.data-form .buttons input,
+.data-form .buttons a {
     background: #263249;
-    border: 1px solid #9B2E45;
+    border: 1px solid #090c11;
     color: #FFF;
     display: inline-block;
     font-weight: 700;
-    padding: .5em;
+    line-height: 40px;
+    padding: 0 .5em;
     text-decoration: none;
     -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
             border-radius: 5px;
+}
+
+.data-form .buttons input {
+    height: 40px;
 }
 
 .data-form .buttons input:hover,
@@ -370,7 +378,7 @@ a.menu-link:hover i {
 .data-form .buttons a:hover,
 .data-form .buttons a:active {
     background: #F33A5D;
-    border: 1px solid #902C46;
+    border: 1px solid #ec0e38;
     color: #FFF;
     cursor: pointer;
 }
@@ -381,7 +389,7 @@ a.menu-link:hover i {
 
 .link-button {
     background: #263249;
-    border: 1px solid #9B2E45;
+    border: 1px solid #090c11;
     color: #87A5CA;
     font-weight: 700;
     padding: 3px;
@@ -393,7 +401,7 @@ a.menu-link:hover i {
 
 .link-button:hover  {
     background: #F33A5D;
-    border: 1px solid #902C46;
+    border: 1px solid #ec0e38;
     color: #FFF;
     cursor: pointer;
 }
@@ -418,7 +426,6 @@ a.menu-link:hover i {
 
 .sidebar-button:hover {
     background: #F33A5D;
-    border: 1px solid #902C46;
     color: #FFF;
     cursor: pointer;
     text-shadow: 0px 1px .5px #902C46;

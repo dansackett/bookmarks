@@ -34,11 +34,11 @@
         </ul>
         {% if popular_tags %}
         <h2>Popular Tags</h2>
-            <ul>
+            <ul class="popular">
             {% for count, title, tag in popular_tags %}
             <li>
                 <a href="{{ tag.get_absolute_url }}" {% if full_path == tag.get_absolute_url %}class='active'{% endif %}>
-                    <i class="icon-tag"></i> {{ title|truncatechars:12 }}<span>{{ count }}</span>
+                    <i class="icon-tag"></i> {{ title }}<span>{{ count }}</span>
                 </a>
             </li>
             {% endfor %}
