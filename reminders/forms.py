@@ -8,7 +8,7 @@ class BaseReminderForm(forms.ModelForm):
 
     class Meta:
         model = Reminder
-        exclude = ('slug', 'user', 'dismissed',)
+        exclude = ('slug', 'user', 'dismissed', 'sent',)
 
 
 class NewReminderForm(BaseReminderForm):

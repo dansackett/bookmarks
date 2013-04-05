@@ -11,6 +11,7 @@ class Reminder(models.Model):
     description = models.TextField(blank=True, null=True)
     date = models.DateTimeField()
     dismissed = models.BooleanField(default=False)
+    sent = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
 
