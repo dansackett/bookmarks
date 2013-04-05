@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 
 from bookmarks.utils import total_bookmarks, total_favorited
 from tags.models import Tag
+from reminders.utils import total_reminders
 from tags.utils import total_tags, most_popular
 
 
@@ -12,6 +13,7 @@ def global_values(request):
             'bookmarks_count': total_bookmarks(request.user),
             'tags_count': total_tags(request.user),
             'favorited_count': total_favorited(request.user),
+            'reminders_count': total_reminders(request.user),
             'all_tags': Tag.objects.filter(user=request.user),
             'popular_tags': most_popular(request.user)[:5],
             'referer': request.META.get('HTTP_REFERER', reverse('user-home')),

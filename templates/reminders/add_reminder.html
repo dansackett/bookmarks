@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Add Reminder</h1>
+    {% url 'add-reminder' as add_reminder %}
+    {% include "partials/form.html" with action=add_reminder submit_text="Submit" %}
+{% endblock %}

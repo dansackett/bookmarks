@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     (r'^account/', include('account.urls')),
     (r'^tags/', include('tags.urls')),
     (r'^bookmarks/', include('bookmarks.urls')),
+    (r'^reminders/', include('reminders.urls')),
 )
 
 if settings.DEBUG:

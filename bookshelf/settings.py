@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'auth',
     'bookmarks',
     'tags',
+    'reminders',
 )
 
 # A sample logging configuration. The only tangible logging

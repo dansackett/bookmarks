@@ -3,10 +3,31 @@
         <!-- <strong>Hello, {{ user.get_full_name }}!</strong> -->
         <h2>Links</h2>
         <ul>
-            <li><a href="{% url 'user-home' %}"><i class="icon-home"></i> Home</a></li>
-            <li><a href="{% url 'edit-profile' %}"><i class="icon-user"></i> Edit Profile</a></li>
-            <li><a href="{% url 'add-tag' %}"><i class="icon-tag"></i> New Tag</a></li>
-            <li><a href="{% url 'add-bookmark' %}"><i class="icon-bookmark"></i> New Bookmark</a></li>
+            <li>
+                <a href="{% url 'user-home' %}" {% if full_path == '/' %}class='active'{% endif %}>
+                    <i class="icon-home"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'edit-profile' %}" {% if full_path == '/account/profile/edit/' %}class='active'{% endif %}>
+                    <i class="icon-user"></i> Edit Profile
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'add-tag' %}" {% if full_path == '/tags/add/' %}class='active'{% endif %}>
+                    <i class="icon-tag"></i> New Tag
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'add-bookmark' %}" {% if full_path == '/bookmarks/add/' %}class='active'{% endif %}>
+                    <i class="icon-bookmark"></i> New Bookmark
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'add-reminder' %}" {% if full_path == '/reminders/add/' %}class='active'{% endif %}>
+                    <i class="icon-bolt"></i> New Reminder
+                </a>
+            </li>
             <li>
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
@@ -29,6 +50,11 @@
             <li>
                 <a href="{% url 'favorited-bookmarks' %}" {% if full_path == '/bookmarks/favorited/' %}class='active'{% endif %}>
                     <i class="icon-star"></i> Favorited<span class="update-favorite">{{ favorited_count }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'list-reminders' %}" {% if full_path == '/reminders/' %}class='active'{% endif %}>
+                    <i class="icon-bolt"></i> Reminders<span>{{ reminders_count }}</span>
                 </a>
             </li>
         </ul>
