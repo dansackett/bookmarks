@@ -168,6 +168,14 @@ LOGGING = {
     }
 }
 
+# Email handling
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_HOST_USER = 'bookmarks_sackettsolutions'
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'noreply@sackettsolutions.com'
+SERVER_EMAIL = 'noreply@sackettsolutions.com'
+
+
 # Load local settings stuff if it's available
 try:
     from local_settings import *
