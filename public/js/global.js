@@ -50,5 +50,7 @@ $(document).ready(function() {
         checkboxClass: 'icheckbox_square-grey',
         radioClass: 'iradio_square-grey',
     });
-});
 
+    // jquery UI datepicker
+    $('#id_date').datetimepicker();
+});
