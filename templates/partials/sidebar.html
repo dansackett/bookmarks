@@ -25,7 +25,7 @@
             </li>
             <li>
                 <a href="{% url 'add-reminder' %}" {% if full_path == '/reminders/add/' %}class='active'{% endif %}>
-                    <i class="icon-bolt"></i> New Reminder
+                    <i class="icon-bell-alt"></i> New Reminder
                 </a>
             </li>
             <li>
@@ -54,7 +54,7 @@
             </li>
             <li>
                 <a href="{% url 'list-reminders' %}" {% if full_path == '/reminders/' %}class='active'{% endif %}>
-                    <i class="icon-bolt"></i> Reminders<span>{{ reminders_count }}</span>
+                    <i class="icon-bell-alt"></i> Reminders<span>{{ reminders_count }}</span>
                 </a>
             </li>
         </ul>
