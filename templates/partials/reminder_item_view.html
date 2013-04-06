@@ -3,12 +3,12 @@
     <strong>Scheduled For:</strong> {{ reminder.date }}
     <div class="tools">
         <!-- Dismiss link -->
-        <form method="post" action="{{ reminder.get_dismiss_url }}" class="dismiss-reminder {{ reminder.pk }}">
-            {% csrf_token %}
-            <button class="link-button" type="submit" />
-                {% if reminder.dismissed %}<i class="icon-check"></i>{% else %}<i class="icon-check-empty"></i>{% endif %}
-            </button>
-        </form>
+        <!-- <form method="post" action="{{ reminder.get_dismiss_url }}" class="dismiss-reminder {{ reminder.pk }}"> -->
+        <!--     {% csrf_token %} -->
+        <!--     <button class="link-button" type="submit" /> -->
+        <!--         {% if reminder.dismissed %}<i class="icon-check"></i>{% else %}<i class="icon-check-empty"></i>{% endif %} -->
+        <!--     </button> -->
+        <!-- </form> -->
         <!-- Edit link -->
         <a href="{{ reminder.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i></span></a>
         <!-- Delete link -->
