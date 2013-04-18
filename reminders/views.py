@@ -37,7 +37,7 @@ def add_reminder(request, form_class=NewReminderForm,
     form = form_class(request.POST or None, user=request.user)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        return redirect('user-home')
+        return redirect('list-reminders')
 
     context = {
         'form': form,
@@ -79,4 +79,4 @@ def delete_reminder(request, slug):
     """Delete a reminder"""
     reminder = Reminder.objects.get(user=request.user, slug=slug)
     reminder.delete()
-    return redirect('user-home')
+    return redirect('list-reminders')
