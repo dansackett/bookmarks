@@ -23,11 +23,11 @@
                     <i class="icon-bookmark"></i> New Bookmark
                 </a>
             </li>
-            <!-- <li> -->
-            <!--     <a href="{% url 'add-reminder' %}" {% if full_path == '/reminders/add/' %}class='active'{% endif %}> -->
-            <!--         <i class="icon-bell-alt"></i> New Reminder -->
-            <!--     </a> -->
-            <!-- </li> -->
+            <li>
+                <a href="{% url 'add-reminder' %}" {% if full_path == '/reminders/add/' %}class='active'{% endif %}>
+                    <i class="icon-bell-alt"></i> New Reminder
+                </a>
+            </li>
             <li>
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
@@ -52,11 +52,11 @@
                     <i class="icon-star"></i> Favorited<span class="update-favorite">{{ favorited_count }}</span>
                 </a>
             </li>
-            <!-- <li> -->
-            <!--     <a href="{% url 'list-reminders' %}" {% if full_path == '/reminders/' %}class='active'{% endif %}> -->
-            <!--         <i class="icon-bell-alt"></i> Reminders<span>{{ reminders_count }}</span> -->
-            <!--     </a> -->
-            <!-- </li> -->
+            <li>
+                <a href="{% url 'list-reminders' %}" {% if full_path == '/reminders/' %}class='active'{% endif %}>
+                    <i class="icon-bell-alt"></i> Reminders<span>{{ reminders_count }}</span>
+                </a>
+            </li>
         </ul>
         {% if popular_tags %}
         <h2>Popular Tags</h2>
