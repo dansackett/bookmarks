@@ -1,5 +1,5 @@
 <li class="item">
-    <i class="icon-bell-alt"></i> <a href="{{ reminder.get_absolute_url }}">{{ reminder.title|truncatechars:20 }}</a><br />
+    <i class="icon-bell-alt"></i> <a href="{{ reminder.get_absolute_url }}">{{ reminder.title }}</a><br />
     <em>{{ reminder.description }}</em><br />
     <strong>Scheduled For:</strong> {{ reminder.date }}
     <div class="tools">

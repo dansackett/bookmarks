@@ -1,5 +1,5 @@
 <li class="item">
-    <i class="icon-bookmark"></i> <a href="{{ bookmark.url }}">{{ bookmark.title|truncatechars:20 }}</a><br />
+    <i class="icon-bookmark"></i> <a href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
     <em>{{ bookmark.description }}</em><br />
     <strong>Filed Under:</strong> <a href="{{ bookmark.tag.get_absolute_url }}">{{ bookmark.tag }}</a>
     <div class="tools">
