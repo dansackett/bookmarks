@@ -52,6 +52,7 @@ class EditReminderForm(BaseReminderForm):
     def save(self, commit=True):
         reminder = super(EditReminderForm, self).save(commit=False)
         title = self.cleaned_data.get('title')
+        date = self.cleaned_data.get('date')
         reminder.slug = slugify(title)
         reminder.user = self.user
         reminder.save()
