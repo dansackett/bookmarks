@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-star"></i> {{ user.first_name|capfirst }}'s Favorited Bookmarks{% endblock %}
+
 {% block content %}
-    <h2>Favorited Bookmarks</h2>
     {% url "favorited-bookmarks" as favorited_bookmarks %}
-    {% include "partials/search.html" with url=favorited_bookmarks %}
+    <div class="toolbar">
+        <div class="add-item">
+            <a href="{% url 'add-bookmark' %}"><i class="icon-plus-sign"></i> Add a Bookmark</a>
+        </div>
+        {% if bookmarks %}
+            {% include "partials/search.html" with url=favorited_bookmarks %}
+        {% endif %}
+    </div>
     <ul>
     {% for bookmark in bookmarks %}
         {% include "partials/bookmark_item.html" %}
     {% empty %}
-        <li class="none-found">No bookmarks found.</li>
+        <li class="none-found">
+            No favorited bookmarks found :(<br />
+            <span class="description">Go ahead and add one!</span>
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}

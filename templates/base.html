@@ -12,31 +12,46 @@
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/normalize.css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/grey.css">
-        <link rel="stylesheet" href="{{ MEDIA_URL }}css/custom-theme/jquery-ui-1.10.2.custom.min.css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/custom-theme/jquery-ui-1.10.3.custom.min.css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/colorpicker.css" />
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/main.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        <div class="wrap" id="wrap">
-            {% if user.is_authenticated %}
-                <div class="menu">
-                    <a href="#menu" class="menu-link"><i class="icon-reorder"></i></a>
-                </div>
-                {% include "partials/sidebar.html" %}
-            {% endif %}
-            <div class="main-content">
-                {% block content%}
-                    <p>Sorry, no content!</p>
-                {% endblock %}
+        {% if user.is_authenticated %}
+        <div class="fixed-header clearfix">
+            <div class="left">
+                <a class="page-title" href="{% url 'user-home' %}">
+                    <span class="current-title">{% block title %}{% endblock %}</span>
+                    <span class="home-title"><i class="icon-home"></i> Return Home</span>
+                </a>
             </div>
+            <div class="right">
+                <ul>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class='form-link' /><i class="icon-signout"></i> Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        {% block home %}{% endblock %}
+        <div class="content">
+            {% block content%}
+                <p>Sorry, no content!</p>
+            {% endblock %}
         </div>
 
         <script>window.jQuery || document.write('<script src="{{ MEDIA_URL }}/js/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
         <script src="{{ MEDIA_URL }}js/jquery.icheck.min.js"></script>
         <script src="{{ MEDIA_URL }}js/jquery-ui-timepicker.min.js"></script>
+        <script src="{{ MEDIA_URL }}js/colorpicker.js"></script>
         <script src="{{ MEDIA_URL }}js/global.js"></script>
 
         <script type="text/javascript">

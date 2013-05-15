@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-bookmark"></i> Add a Bookmark{% endblock %}
+
 {% block content %}
-    <h1>Add Bookmark</h1>
     {% url 'add-bookmark' as add_bookmark %}
-    {% include "partials/form.html" with action=add_bookmark submit_text="Submit" %}
+    {% url 'list-bookmarks' as list_bookmarks %}
+    {% include "partials/form.html" with action=add_bookmark submit_text="Submit" cancel_link=list_bookmarks %}
 {% endblock %}

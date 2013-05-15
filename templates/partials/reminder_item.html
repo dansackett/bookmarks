@@ -1,8 +1,12 @@
-<li class="item">
-    <i class="icon-bell-alt"></i> <a href="{{ reminder.get_absolute_url }}">{{ reminder.title }}</a><br />
-    <em>{{ reminder.description }}</em><br />
-    <strong>Scheduled For:</strong> {{ reminder.date }}
-    <div class="tools">
+<li class="item closed" data-color="#FB642B;" data-link-color="#444;">
+    <div class="item-content">
+        <a class="title" href="{{ reminder.get_absolute_url }}">{{ reminder.title }}</a> (<a class="manage" href="#">Manage</a>)<br />
+        <em>{{ reminder.description }}</em><br />
+        <strong>Scheduled For:</strong> {{ reminder.date }}
+    </div>
+</li>
+<li class="tag-tools closed clearfix">
+    <ul>
         <!-- Dismiss link -->
         <!-- <form method="post" action="{{ reminder.get_dismiss_url }}" class="dismiss-reminder {{ reminder.pk }}"> -->
         <!--     {% csrf_token %} -->
@@ -11,13 +15,17 @@
         <!--     </button> -->
         <!-- </form> -->
         <!-- Edit link -->
-        <a href="{{ reminder.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i></span></a>
+        <li>
+            <a href="{{ reminder.get_edit_url }}"><span class="link-button tool"><i class="icon-pencil"></i> Edit</span></a>
+        </li>
         <!-- Delete link -->
-        <form method="post" action="{{ reminder.get_delete_url }}">
-            {% csrf_token %}
-            <button class="link-button" type="submit" onclick="return confirm('Are you sure you\'d like to delete this reminder?')" />
-                <i class="icon-remove"></i>
-            </button>
-        </form>
-    </div>
+        <li>
+            <form method="post" action="{{ reminder.get_delete_url }}">
+                {% csrf_token %}
+                <button class="link-button tool" type="submit" onclick="return confirm('Are you sure you\'d like to delete this reminder?')" />
+                    <i class="icon-remove"></i> Delete
+                </button>
+            </form>
+        </li>
+    </ul>
 </li>

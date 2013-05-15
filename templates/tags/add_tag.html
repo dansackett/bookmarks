@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-tag"></i> Add a Tag{% endblock %}
+
 {% block content %}
-    <h1>Add Tag</h1>
     {% url 'add-tag' as add_tag %}
-    {% include "partials/form.html" with action=add_tag submit_text="Submit" %}
+    {% url 'list-tags' as list_tags %}
+    {% include "partials/form.html" with action=add_tag submit_text="Submit" cancel_link=list_tags %}
 {% endblock %}

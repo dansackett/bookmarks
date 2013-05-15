@@ -1,0 +1,24 @@
+<li class="item closed clearfix" data-color="{{ category.2 }}" data-link-color="{{ category.2 }}">
+    <div class="item-content">
+        <a class="title" style="color: {{ category.2 }};" href="{{ note.get_absolute_url }}">{{ note.title }}</a> (<a style="color: {{ category.2 }};" href="#" class="manage">Manage</a>)<br />
+        <em>{{ note.description|truncatechars:30 }}</em><br />
+        <strong>Filed As:</strong> {{ category.0 }}
+    </div>
+</li>
+<li class="tag-tools closed clearfix">
+    <ul>
+        <!-- Edit Button -->
+        <li>
+            <a class="tool" href="{{ note.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i> Edit</span></a>
+        </li>
+        <!-- Delete Button -->
+        <li>
+            <form method="post" action="{{ note.get_delete_url }}">
+                {% csrf_token %}
+                <button class="link-button tool" type="submit" onclick="return confirm('Are you sure you\'d like to delete this note?')" />
+                    <i class="icon-remove"></i> Delete
+                </button>
+            </form>
+        </li>
+    </ul>
+</li>

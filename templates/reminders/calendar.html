@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}<i class="icon-bell-alt"></i> {{ user.first_name|capfirst }}'s Reminders{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <div class="add-item">
+            <a href="{% url 'add-reminder' %}"><i class="icon-plus-sign"></i> Add a Reminder</a>
+        </div>
+        <div class="reminder-choice clearfix">
+            <ul>
+                <li><a href="{% url 'list-reminders' %}"><i class="icon-list"></i> List View</a></li>
+                <li><a href="{% url 'calendar' %}"><i class="icon-calendar"></i> Calendar View</a></li>
+            </ul>
+        </div>
+        <h1>{{ m }} {{ year }}</h1>
+    </div>
+    <div class="calendar">
+        <table>
+            <thead>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </thead>
+            <tbody>
+                {% for week in weeks %}
+                <tr>
+                    {% for day in week %}
+                    <td class="{% spaceless %}{% if day == today %}today{% endif %}
+                        {% if day in reminder_dates %} reminder{% endif %}{% endspaceless %}">
+                        <a href="{% url 'add-reminder' %}">{{ day.day }}</a>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="toolbar">
+        <form class="reminder-date-form" action="" method="post">
+            {% csrf_token %}
+            <select name="month" class="month-select">
+                {% for month, word in months.items %}
+                <option value="{{ month }}" {% if word == m %}selected{% endif %}>{{ word }}</option>
+                {% endfor %}
+            </select>
+            <select name="year" class="year-select">
+                {% for year in years %}
+                <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="reminder-choice clearfix next-previous">
+            <ul>
+                <li><a class="previous" href="{{ previous_month }}"><i class="icon-arrow-left"></i> Previous</a></li>
+                <li><a class="next" href="{{ next_month }}">Next <i class="icon-arrow-right"></i></a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

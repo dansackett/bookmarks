@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-bell-alt"></i> Add a Reminder{% endblock %}
+
 {% block content %}
-    <h1>Add Reminder</h1>
     {% url 'add-reminder' as add_reminder %}
-    {% include "partials/form.html" with action=add_reminder submit_text="Submit" %}
+    {% url 'list-reminders' as list_reminders %}
+    {% include "partials/form.html" with action=add_reminder submit_text="Submit" cancel_link=list_reminders %}
 {% endblock %}

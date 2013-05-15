@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-bell-alt"></i> {{ user.first_name|capfirst }}'s Reminders{% endblock %}
+
 {% block content %}
-    <h2>All Reminders</h2>
     {% url "list-reminders" as list_reminders %}
-    {% include "partials/search.html" with url=list_reminders %}
+    <div class="toolbar">
+        <div class="add-item">
+            <a href="{% url 'add-reminder' %}"><i class="icon-plus-sign"></i> Add a Reminder</a>
+        </div>
+        {% if reminders %}
+            {% include "partials/search.html" with url=list_reminders %}
+        {% endif %}
+        <div class="reminder-choice clearfix">
+            <ul>
+                <li><a href="{% url 'list-reminders' %}"><i class="icon-list"></i> List View</a></li>
+                <li><a href="{% url 'calendar' %}"><i class="icon-calendar"></i> Calendar View</a></li>
+            </ul>
+        </div>
+    </div>
     <ul>
     {% for reminder in reminders %}
         {% include "partials/reminder_item.html" %}
     {% empty %}
-        <li class="none-found">No reminders found.</li>
+        <li class="none-found">
+            No reminders found :(<br />
+            <span class="description">Go ahead and add one!</span>
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}

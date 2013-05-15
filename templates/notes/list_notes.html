@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}<i class="icon-list-ul"></i> {{ user.first_name|capfirst }}'s Notes Marked as "{{ category.0 }}"{% endblock %}
+
+{% block content %}
+    {% url "list-notes" as list_notes %}
+    <div class="toolbar">
+        <div class="add-item">
+            <a href="{% url 'add-note' %}"><i class="icon-plus-sign"></i> Add a Note</a>
+        </div>
+        {% if notes %}
+            {% include "partials/search.html" with url=list_notes %}
+        {% endif %}
+    </div>
+    <ul class="notes">
+    {% for note in notes %}
+        {% include "partials/note_item.html" %}
+    {% empty %}
+        <li class="none-found">
+            No notes found :(<br />
+            <span class="description">Go ahead and add one!</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

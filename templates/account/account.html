@@ -1,27 +1,38 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-home"></i> Welcome, {{ user.first_name|capfirst }}!{% endblock %}
+
 {% block content %}
-
-    <h2>Freshly Added Bookmarks</h2>
-    {% if new_bookmarks %}
-        <ul>
-            {% for bookmark in new_bookmarks %}
-                {% include "partials/bookmark_item.html" %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        You have not created any bookmarks yet.
-    {% endif %}
-
-    <h2>Your Popular Tags</h2>
-    {% if popular_tags %}
-        <ul>
-        {% for count, title, tag in popular_tags %}
-            {% include "partials/tag_item.html" %}
-        {% endfor %}
-        </ul>
-    {% else %}
-        You have not created any tags yet.
-    {% endif %}
-
+    <ul>
+        <li class="item" data-color="#FB642B;" data-link-color="#444;">
+            <span class="item-content">
+                <a href="{% url 'edit-profile' %}"><i class="icon-user"></i> Edit Profile</a>
+            </span>
+        </li>
+        <li class="item" data-color="#FB642B;" data-link-color="#444;">
+            <span class="item-content">
+                <a href="{% url 'list-tags' %}"><i class="icon-tags"></i> View Tags ({{ tags_count }})</a>
+            </span>
+        </li>
+        <li class="item" data-color="#FB642B;" data-link-color="#444;">
+            <span class="item-content">
+                <a href="{% url 'list-bookmarks' %}"><i class="icon-bookmark"></i> View Bookmarks ({{ bookmarks_count }})</a>
+            </span>
+        </li>
+        <li class="item" data-color="#FB642B;" data-link-color="#444;">
+            <span class="item-content">
+                <a href="{% url 'favorited-bookmarks' %}"><i class="icon-star"></i> View Favorited Bookmarks ({{ favorited_count }})</a>
+            </span>
+        </li>
+        <li class="item" data-color="#FB642B;" data-link-color="#444;">
+            <span class="item-content">
+                <a href="{% url 'list-reminders' %}"><i class="icon-bell-alt"></i> View Reminders ({{ reminders_count }})</a>
+            </span>
+        </li>
+        <li class="item" data-color="#FB642B;" data-link-color="#444;">
+            <span class="item-content">
+                <a href="{% url 'list-categories' %}"><i class="icon-list-ul"></i> View Notes ({{ notes_count }})</a>
+            </span>
+        </li>
+    </ul>
 {% endblock %}

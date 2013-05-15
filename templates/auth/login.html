@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block home %}
+<div class="home">
+    <div class="center-text">
+        <a href="{% url 'home' %}">
+            <h1><i class="icon-pushpin"></i><br />MyDash</h1>
+            <h2>All Your Tools in One Place</h2>
+        </a>
+    </div>
+    {% url "login" as login %}
+    {% include "partials/login_form.html" with url=login submit_text="Login" cancel="None" %}
+</div>
+{% endblock %}
+
+{% block content %}{% endblock %}

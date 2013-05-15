@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-user"></i> Edit Your Profile{% endblock %}
+
 {% block content %}
-    <h1>Edit Profile</h1>
     {% url 'edit-profile' as edit_profile %}
-    {% include "partials/form.html" with action=edit_profile submit_text="Submit" %}
+    {% url 'user-home' as home %}
+    {% include "partials/form.html" with action=edit_profile submit_text="Submit" cancel_link=home %}
 {% endblock %}

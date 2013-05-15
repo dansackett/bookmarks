@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-bookmark"></i> {{ user.first_name|capfirst }}'s Bookmarks{% endblock %}
+
 {% block content %}
-    <h2>All Bookmarks</h2>
     {% url "list-bookmarks" as list_bookmarks %}
-    {% include "partials/search.html" with url=list_bookmarks %}
+    <div class="toolbar">
+        <div class="add-item">
+            <a href="{% url 'add-bookmark' %}"><i class="icon-plus-sign"></i> Add a Bookmark</a>
+        </div>
+        {% if bookmarks %}
+            {% include "partials/search.html" with url=list_bookmarks %}
+        {% endif %}
+    </div>
     <ul>
     {% for bookmark in bookmarks %}
         {% include "partials/bookmark_item.html" %}
     {% empty %}
-        <li class="none-found">No bookmarks found.</li>
+        <li class="none-found">
+            No bookmarks found :(<br />
+            <span class="description">Go ahead and add one!</span>
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}

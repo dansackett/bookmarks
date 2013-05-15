@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block home %}
+<div class="home">
+    <div class="header">
+        <div class="header-content">
+            <h1><i class="icon-pushpin"></i><br />MyDash</h1>
+            <h2>All Your Tools In One Place</h2>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+    </div>
+    <div class="description">
+        <p><strong>MyDash</strong> is your one stop management dashboard on the
+        web. Its aim is to take various mundane services and place them in one
+        easy to understand interface. With MyDash you can easily store your
+        bookmarks, ideas, and notes all in one place. With MyDash, convenience is
+        the top priority.</p>
+    </div>
+    <div class="information clearfix">
+        <div class="info-item">
+            <h3><i class="icon-bookmark"></i><br />Manage Bookmarks</h3>
+            <p>Store your bookmarks and manage them anywhere. Group your
+            links with color-coded categories and search for them when your
+            lists start to fill up.</p>
+        </div>
+        <div class="info-item">
+            <h3><i class="icon-bell-alt"></i><br />Set Reminders</h3>
+            <p>Stop forgetting things and set reminders in MyDash. Set the
+            time, leave yourself notes and when it's time to remember,
+            we'll email you all you need to know.</p>
+        </div>
+        <div class="info-item">
+            <h3><i class="icon-list-ul"></i><br />Create Notes</h3>
+            <p>Easily create notes about that new restaurant a friend
+            recommended or jot down your idea for the next big application.
+            We'll remember it so you don't have to.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}{% endblock %}

@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 
+{% block title %}<i class="icon-tags"></i> {{ user.first_name|capfirst }}'s Tags{% endblock %}
+
 {% block content %}
-    <h2>All Tags</h2>
     {% url "list-tags" as list_tags %}
-    {% include "partials/search.html" with url=list_tags %}
-    <ul>
+    <div class="toolbar">
+        <div class="add-item">
+            <a href="{% url 'add-tag' %}"><i class="icon-plus-sign"></i> Add a Tag</a>
+        </div>
+        {% if tags %}
+            {% include "partials/search.html" with url=list_tags %}
+        {% endif %}
+    </div>
+    <ul class="tags">
     {% for tag in tags %}
         {% include "partials/tag_item.html" %}
     {% empty %}
-        <li class="none-found">No bookmarks found.</li>
+        <li class="none-found">
+            No tags found :(<br />
+            <span class="description">Go ahead and add one!</span>
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}
