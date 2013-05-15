@@ -7,7 +7,7 @@ from reminders.models import Reminder
 
 
 def total_reminders(user):
-    return Reminder.objects.filter(user=user).count()
+    return Reminder.objects.filter(user=user, sent=False).count()
 
 
 def get_months():
