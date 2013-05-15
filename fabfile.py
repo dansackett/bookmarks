@@ -14,9 +14,9 @@ def deploy():
     with cd(APP_PATH):
         run('git pull origin master')
         run('python2.7 manage.py collectstatic')
-        run('pip install -r reqs/base.txt')
-        run('python2.7 manage.py syncdb')
-        run('python2.7 manage.py migrate')
+        # run('pip install -r reqs/base.txt')
+        # run('python2.7 manage.py syncdb')
+        # run('python2.7 manage.py migrate')
     restart()
 
 
