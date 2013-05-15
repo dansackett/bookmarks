@@ -8,9 +8,7 @@
         <div class="add-item">
             <a href="{% url 'add-bookmark' %}"><i class="icon-plus-sign"></i> Add a Bookmark</a>
         </div>
-        {% if bookmarks %}
-            {% include "partials/search.html" with url=favorited_bookmarks %}
-        {% endif %}
+        {% include "partials/search.html" with url=favorited_bookmarks %}
     </div>
     <ul>
     {% for bookmark in bookmarks %}

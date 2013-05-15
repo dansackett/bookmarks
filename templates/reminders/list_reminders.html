@@ -8,9 +8,7 @@
         <div class="add-item">
             <a href="{% url 'add-reminder' %}"><i class="icon-plus-sign"></i> Add a Reminder</a>
         </div>
-        {% if reminders %}
-            {% include "partials/search.html" with url=list_reminders %}
-        {% endif %}
+        {% include "partials/search.html" with url=list_reminders %}
         <div class="reminder-choice clearfix">
             <ul>
                 <li><a href="{% url 'list-reminders' %}"><i class="icon-list"></i> List View</a></li>

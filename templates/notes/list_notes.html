@@ -8,9 +8,7 @@
         <div class="add-item">
             <a href="{% url 'add-note' %}"><i class="icon-plus-sign"></i> Add a Note</a>
         </div>
-        {% if notes %}
-            {% include "partials/search.html" with url=list_notes %}
-        {% endif %}
+        {% include "partials/search.html" with url=list_notes %}
     </div>
     <ul class="notes">
     {% for note in notes %}

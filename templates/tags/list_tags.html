@@ -8,9 +8,7 @@
         <div class="add-item">
             <a href="{% url 'add-tag' %}"><i class="icon-plus-sign"></i> Add a Tag</a>
         </div>
-        {% if tags %}
-            {% include "partials/search.html" with url=list_tags %}
-        {% endif %}
+        {% include "partials/search.html" with url=list_tags %}
     </div>
     <ul class="tags">
     {% for tag in tags %}
