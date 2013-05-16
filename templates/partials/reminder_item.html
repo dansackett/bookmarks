@@ -7,14 +7,6 @@
 </li>
 <li class="tag-tools closed clearfix">
     <ul>
-        <!-- Dismiss link -->
-        <!-- <form method="post" action="{{ reminder.get_dismiss_url }}" class="dismiss-reminder {{ reminder.pk }}"> -->
-        <!--     {% csrf_token %} -->
-        <!--     <button class="link-button" type="submit" /> -->
-        <!--         {% if reminder.dismissed %}<i class="icon-check"></i>{% else %}<i class="icon-check-empty"></i>{% endif %} -->
-        <!--     </button> -->
-        <!-- </form> -->
-        <!-- Edit link -->
         <li>
             <a href="{{ reminder.get_edit_url }}"><span class="link-button tool"><i class="icon-pencil"></i> Edit</span></a>
         </li>

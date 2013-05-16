@@ -3,20 +3,23 @@
 {% block title %}<i class="icon-bookmark"></i> Bookmarks Tagged as "{{ tag.title }}"{% endblock %}
 
 {% block content %}
-{% url "view-tag" tag.slug as view_tag %}
-<!-- {% include "partials/search.html" with url=view_tag %} -->
 <div class="toolbar">
+    <div class="add-item">
+        <a href="{% url 'add-bookmark' %}"><i class="icon-plus-sign"></i> Add a Bookmark</a>
+    </div>
     <div class="back-button">
         <a href="{% url 'list-tags' %}"><i class="icon-arrow-left"></i> Back to Tags</a>
     </div>
 </div>
+{% url "view-tag" tag.slug as view_tag %}
+{% include "partials/search.html" with url=view_tag %}
 <ul>
 {% for bookmark in bookmarks %}
     {% include "partials/bookmark_item.html" %}
 {% empty %}
     <li class="none-found">
         No bookmarks found for that tag :(<br />
-        <span class="description">Go ahead and <a href="{% url 'add-bookmark' %}">add one</a>!</span>
+        <span class="description">Go ahead and add one!</span>
     </li>
 {% endfor %}
 </ul>
