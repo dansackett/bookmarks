@@ -114,12 +114,12 @@ select {
 }
 
 .home .header {
-    background: #FB642B url('../images/mountains.jpg') center center;
-    border-top: 10px solid #FA4C0A;
+    background: #FB642B url('../images/mountains.jpg') 50% 20%;
+    border-top: 10px solid #1A1B1A;
     color: #FFF;
-    height: 400px;
+    height: 500px;
     text-align: center;
-    text-shadow: 1px 1px 1px #CD3B04;
+    text-shadow: 1px 1px 1px #000;
 }
 
 .home a {
@@ -128,7 +128,8 @@ select {
 }
 
 .home .header-content {
-    padding: 100px 0 0;
+    margin: 100px auto 0 auto;
+    width: 300px;
 }
 
 .home .header-content a {
@@ -175,8 +176,8 @@ select {
     text-align: center;
 }
 
-.header h3 i {
-    font-size: 36px;
+.home h3 i {
+    font-size: 50px;
 }
 
 .home .description {
@@ -190,21 +191,33 @@ select {
     margin: 0 auto;
     padding: 0 0 30px 0;
     max-width: 540px;
+    text-align: center;
 }
 
 .home .information {
     background: #FFF;
+    width: 100%;
 }
 
 .home .information .info-item {
     float: left;
     margin: 20px 0;
-    width: 450px;
+    text-align: center;
+    width: 33.33333%;
 }
 
 .home .information .info-item h3,
 .home .information .info-item p {
     margin: 10px 30px;
+}
+
+.footer {
+    background: #1A1B1A;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
 }
 
 /**** Header Stuff ****/
@@ -717,8 +730,19 @@ a.manage:hover {
    Media Queries
    ========================================================================== */
 
+
+@media screen and (max-width: 54em) {
+    .home .information .info-item {
+        width: 100%;
+    }
+
+    .home .information .info-item p {
+        padding: 0 60px;
+    }
+}
+
 @media screen and (max-width: 38em) {
-    .content {
+    .content, .home .information .info-item {
         width: 100%;
     }
 
