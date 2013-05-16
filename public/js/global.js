@@ -34,7 +34,9 @@ $(document).ready(function() {
     });
 
     // jquery UI datepicker
-    $('#id_date').datetimepicker();
+    $('#id_date').datetimepicker({
+        dateFormat: "yy-mm-dd"
+    });
 
     // Set initial color picked color to color already selected
     var initial_color = $('#id_hex_code').val();

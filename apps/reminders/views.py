@@ -65,6 +65,25 @@ def reminders_calendar(request, year=datetime.now().year, month=datetime.now().m
     return render(request, template_name, context)
 
 
+def view_day_calendar(request, year, month, day,
+                      template_name='reminders/view_reminders_for_day.html'):
+    """Show a specific day from the calendar"""
+    try:
+        date = datetime(int(year), int(month), int(day)).date()
+    except ValueError:
+        raise Http404
+
+    reminders = Reminder.objects.filter(user=request.user, sent=False)
+    reminders_today = [reminder for reminder in reminders
+                       if reminder.date.date() == date]
+
+    context = {
+        'reminders': reminders_today,
+        'date': date,
+    }
+    return render(request, template_name, context)
+
+
 def view_reminder(request, slug, template_name='reminders/view_reminder.html'):
     """Show a reminder"""
     reminder = Reminder.objects.get(user=request.user, slug=slug)
@@ -79,6 +98,25 @@ def add_reminder(request, form_class=NewReminderForm,
                  template_name='reminders/add_reminder.html'):
     """Add a new reminder"""
     form = form_class(request.POST or None, user=request.user)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('list-reminders')
+
+    context = {
+        'form': form,
+    }
+    return render(request, template_name, context)
+
+
+def add_reminder_for_day(request, year, month, day, form_class=NewReminderForm,
+                         template_name='reminders/add_reminder.html'):
+    """Add a new reminder for a specific day"""
+    try:
+        date = datetime(int(year), int(month), int(day)).date()
+    except ValueError:
+        raise Http404
+
+    form = form_class(request.POST or None, user=request.user, date=date)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('list-reminders')

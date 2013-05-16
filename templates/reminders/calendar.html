@@ -32,7 +32,7 @@
                     {% for day in week %}
                     <td class="{% spaceless %}{% if day == today %}today{% endif %}
                         {% if day in reminder_dates %} reminder{% endif %}{% endspaceless %}">
-                        <a href="{% url 'add-reminder' %}">{{ day.day }}</a>
+                        <a href="{% url 'calendar-view-day' year=day.year month=day.month day=day.day %}">{{ day.day }}</a>
                     </td>
                     {% endfor %}
                 </tr>

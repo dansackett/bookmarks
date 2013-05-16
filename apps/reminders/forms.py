@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django import forms
 from django.template.defaultfilters import slugify
 
@@ -15,7 +17,9 @@ class NewReminderForm(BaseReminderForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        self.date = kwargs.pop('date', datetime.now().date())
         super(NewReminderForm, self).__init__(*args, **kwargs)
+        self.fields['date'].initial = self.date
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

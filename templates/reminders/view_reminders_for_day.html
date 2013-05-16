@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}<i class="icon-bell-alt"></i> Reminders Scheduled On {{ date }}{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+    <div class="add-item">
+        <a href="{% url 'add-reminder-for-day' year=date.year month=date.month day=date.day %}"><i class="icon-plus-sign"></i> Add a Reminder</a>
+    </div>
+    <div class="back-button">
+        <a href="{% url 'calendar' %}"><i class="icon-arrow-left"></i> Back to Calendar</a>
+    </div>
+</div>
+<ul>
+{% for reminder in reminders %}
+    {% include "partials/reminder_item.html" %}
+{% empty %}
+    <li class="none-found">
+        No reminders found on {{ date }} :(<br />
+        <span class="description">Go ahead and add one!</span>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
