@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-list-ul"></i> Notes Marked as "{{ category.0 }}"{% endblock %}
+{% block title %}<i class="icon-list-ul"></i> <span class="mobile-hide">Notes Marked as</span> "{{ category.0 }}"{% endblock %}
 
 {% block content %}
     {% url "list-notes" as list_notes %}
