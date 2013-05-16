@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 message += " Here's what you have to know:"
                 message += "\n\n {} \n\n"
                 message += "Setup another reminder with MyDash at"
-                message += "http://www.mydashapp.com/reminders/add/"
+                message += " http://www.mydashapp.com/reminders/add/"
                 subject = 'MyDash Reminder: {}'.format(reminder.title)
                 from_email = 'noreply@sackettsolutions.com'
                 to_email = reminder.user.email
