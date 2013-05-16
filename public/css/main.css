@@ -742,7 +742,9 @@ a.manage:hover {
 }
 
 @media screen and (max-width: 38em) {
-    .content, .home .information .info-item {
+    .content,
+    .home .information .info-item,
+    .home .form {
         width: 100%;
     }
 
