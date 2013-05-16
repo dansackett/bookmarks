@@ -111,7 +111,7 @@ $(document).ready(function() {
     });
 
     // Manage links will open tools for tag-item
-    $('.tag-item .manage').click(function(){
+    $('.tag-item .manage, .reminder-item .manage').click(function(){
         var tools = $($(this).parent().parent().nextAll()[0]);
         var item = $(this).parent().parent();
         // If it's open

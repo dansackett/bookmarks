@@ -279,7 +279,9 @@ select {
 
 /**** Bookmark/Tag/Reminder Item Stuff ****/
 
-.item, .tag-item {
+.item,
+.tag-item,
+.reminder-item {
     border-bottom: 1px solid #BBB;
 }
 
@@ -287,11 +289,16 @@ select {
     cursor: pointer;
 }
 
-.item .title, .tag-item .title {
+.item .title,
+.tag-item .title,
+.reminder-item .title {
     font-size: 24px;
+    font-weight: bold;
 }
 
-.item a, .tag-item a {
+.item a,
+.tag-item a,
+.reminder-item a {
     color: #444;
     font-weight: bold;
     text-decoration: none;
@@ -301,9 +308,15 @@ select {
     color: #FFF;
 }
 
-.item .item-content, .tag-item .item-content {
+.item .item-content,
+.tag-item .item-content,
+.reminder-item .item-content {
     display: inline-block;
     margin: 21px 30px;
+}
+
+.reminder-item {
+    color: #444;
 }
 
 /**** Manage Link Stuff ****/
