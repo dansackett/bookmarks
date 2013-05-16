@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-bell-alt"></i> {{ user.first_name|capfirst }}'s Reminders{% endblock %}
+{% block title %}<i class="icon-bell-alt"></i> Reminders{% endblock %}
 
 {% block content %}
     <div class="toolbar">
@@ -18,13 +18,13 @@
     <div class="calendar">
         <table>
             <thead>
-                <th>Sunday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
+                <th>Sun<span class="mobile-hide">day</span></th>
+                <th>Mon<span class="mobile-hide">day</span></th>
+                <th>Tues<span class="mobile-hide">day</span></th>
+                <th>Wed<span class="mobile-hide">nesday</span></th>
+                <th>Thurs<span class="mobile-hide">day</span></th>
+                <th>Fri<span class="mobile-hide">day</span></th>
+                <th>Sat<span class="mobile-hide">urday</span></th>
             </thead>
             <tbody>
                 {% for week in weeks %}

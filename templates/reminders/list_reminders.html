@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-bell-alt"></i> {{ user.first_name|capfirst }}'s Reminders{% endblock %}
+{% block title %}<i class="icon-bell-alt"></i> Reminders{% endblock %}
 
 {% block content %}
     {% url "list-reminders" as list_reminders %}

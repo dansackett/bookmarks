@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-star"></i> {{ user.first_name|capfirst }}'s Favorited Bookmarks{% endblock %}
+{% block title %}<i class="icon-star"></i> Favorited Bookmarks{% endblock %}
 
 {% block content %}
     {% url "favorited-bookmarks" as favorited_bookmarks %}

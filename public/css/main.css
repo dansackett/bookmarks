@@ -717,11 +717,22 @@ a.manage:hover {
    Media Queries
    ========================================================================== */
 
-@media screen and (min-width: 38em) {
-}
+@media screen and (max-width: 38em) {
+    .content {
+        width: 100%;
+    }
 
+    .page-title {
+        padding-right: 0;
+    }
 
-@media screen and (min-width: 46em) {
+    .mobile-hide {
+        display: none;
+    }
+
+    .search-form input[type="text"] {
+        width: 50%;
+    }
 }
 
 
