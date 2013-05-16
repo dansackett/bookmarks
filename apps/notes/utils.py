@@ -20,7 +20,7 @@ def get_category_data(user):
         'bar': ('Bar', 'icon-beer', '#E88B3B', category_notes_count(user, 'bar'), 'bar'),
         'book': ('Book', 'icon-book', '#A7D4F1', category_notes_count(user, 'book'), 'book'),
         'food': ('Food', 'icon-food', '#2581D4', category_notes_count(user, 'food'), 'food'),
-        'idea': ('Idea', 'icon-lightbulb', '#EAC050', category_notes_count(user, 'idea'), 'idea'),
+        'idea': ('Idea', 'icon-lightbulb', '#223334', category_notes_count(user, 'idea'), 'idea'),
         'movie': ('Movie', 'icon-film', '#1A48A8', category_notes_count(user, 'movie'), 'movie'),
         'music': ('Music', 'icon-music', '#A5249B', category_notes_count(user, 'music'), 'music'),
         'person': ('Person', 'icon-smile', '#0AA8EF', category_notes_count(user, 'person'), 'person'),
