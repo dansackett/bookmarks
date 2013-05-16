@@ -21,11 +21,15 @@ class Command(BaseCommand):
             now = timezone.make_aware(datetime.now(),
                                       timezone.get_default_timezone())
             if reminder.date < now:
-                subject = 'Reminder: {}'.format(reminder.title)
+                message = """You wanted to be reminded so we're telling you!
+                            Here's what you have to know:<br /><br /> {}
+                            <br /><br />
+                            Setup another reminder with MyDash at
+                            http://www.mydashapp.com/reminders/add/"""
+                subject = 'MyDash Reminder: {}'.format(reminder.title)
                 from_email = 'noreply@sackettsolutions.com'
                 to_email = reminder.user.email
-                message = reminder.description
+                message = message.format(reminder.description)
                 send_mail(subject, message, from_email, [to_email],
                           fail_silently=True)
-                reminder.sent = True
-                reminder.save()
+                reminder.delete()
