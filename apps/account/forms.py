@@ -13,8 +13,8 @@ class ProfileForm(forms.Form):
                           letters, numbers and \'@/./+/-/_\' characters.'
 
     email = forms.EmailField()
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
+    first_name = forms.CharField(max_length=30, required=False)
+    last_name = forms.CharField(max_length=30, required=False)
     username = forms.CharField(max_length=30)
     password = forms.CharField(widget=forms.PasswordInput, required=False)
     confirm_password = forms.CharField(widget=forms.PasswordInput, required=False)

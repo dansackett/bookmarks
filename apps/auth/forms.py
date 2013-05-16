@@ -15,15 +15,13 @@ class LoginForm(forms.Form):
 
 class RegistrationForm(forms.Form):
     help_text = {
-        'username': 'Usernames can be 30 characters or fewer containing \
-                     letters, numbers and \'@/./+/-/_\' characters.',
+        'username': 'Can only contain letters, numbers and \'@/./+/-/_\' \
+                     characters.',
         'password': 'Passwords must be at least 8 characters in length.'
     }
 
     email = forms.EmailField()
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    username = forms.CharField(max_length=30, help_text=help_text['username'])
+    username = forms.CharField(max_length=30)
     password = forms.CharField(widget=forms.PasswordInput,
                                help_text=help_text['password'])
     confirm_password = forms.CharField(widget=forms.PasswordInput)
@@ -32,7 +30,7 @@ class RegistrationForm(forms.Form):
         username = self.cleaned_data.get('username')
 
         if not valid_username(username):
-            raise forms.ValidationError('That username is not valid.')
+            raise forms.ValidationError(self.help_text['username'])
 
         if User.objects.filter(username=username):
             raise forms.ValidationError('That username already exists.')
@@ -62,8 +60,6 @@ class RegistrationForm(forms.Form):
     def save(self):
         user = User(
             username=self.cleaned_data.get('username'),
-            first_name=self.cleaned_data.get('first_name'),
-            last_name=self.cleaned_data.get('last_name'),
             email=self.cleaned_data.get('email'),
             is_active=True,
             is_staff=False,
