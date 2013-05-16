@@ -768,6 +768,11 @@ a.manage:hover {
     .search-form input[type="text"] {
         width: 50%;
     }
+
+    .content {
+        border-left: none;
+        border-right: none;
+    }
 }
 
 
