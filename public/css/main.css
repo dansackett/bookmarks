@@ -735,10 +735,6 @@ a.manage:hover {
     .home .information .info-item {
         width: 100%;
     }
-
-    .home .information .info-item p {
-        padding: 0 60px;
-    }
 }
 
 @media screen and (max-width: 38em) {
