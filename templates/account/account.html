@@ -13,32 +13,38 @@
     <ul>
         <li class="item" data-color="#FB642B;" data-link-color="#444;">
             <span class="item-content">
-                <a href="{% url 'edit-profile' %}"><i class="icon-user"></i> Edit Profile</a>
+                <a href="{% url 'edit-profile' %}"><i class="icon-user"></i> Edit Profile</a><br />
+                Manage your information, change your password, etc.
             </span>
         </li>
         <li class="item" data-color="#FB642B;" data-link-color="#444;">
             <span class="item-content">
-                <a href="{% url 'list-tags' %}"><i class="icon-tags"></i> View Tags ({{ tags_count }})</a>
+                <a href="{% url 'list-tags' %}"><i class="icon-tags"></i> View Tags ({{ tags_count }})</a><br />
+                Create tags to group your bookmarks.
             </span>
         </li>
         <li class="item" data-color="#FB642B;" data-link-color="#444;">
             <span class="item-content">
-                <a href="{% url 'list-bookmarks' %}"><i class="icon-bookmark"></i> View Bookmarks ({{ bookmarks_count }})</a>
+                <a href="{% url 'list-bookmarks' %}"><i class="icon-bookmark"></i> View Bookmarks ({{ bookmarks_count }})</a><br />
+                Store your favorite links in one location.
             </span>
         </li>
         <li class="item" data-color="#FB642B;" data-link-color="#444;">
             <span class="item-content">
-                <a href="{% url 'favorited-bookmarks' %}"><i class="icon-star"></i> View Favorited Bookmarks ({{ favorited_count }})</a>
+                <a href="{% url 'favorited-bookmarks' %}"><i class="icon-star"></i> View Favorited Bookmarks ({{ favorited_count }})</a><br />
+                Checkout some bookmarks that you've favorited.
             </span>
         </li>
         <li class="item" data-color="#FB642B;" data-link-color="#444;">
             <span class="item-content">
-                <a href="{% url 'calendar' %}"><i class="icon-bell-alt"></i> View Reminders ({{ reminders_count }})</a>
+                <a href="{% url 'calendar' %}"><i class="icon-bell-alt"></i> View Reminders ({{ reminders_count }})</a><br />
+                View and schedule reminders which will be emailed to you when specified.
             </span>
         </li>
         <li class="item" data-color="#FB642B;" data-link-color="#444;">
             <span class="item-content">
-                <a href="{% url 'list-categories' %}"><i class="icon-list-ul"></i> View Notes ({{ notes_count }})</a>
+                <a href="{% url 'list-categories' %}"><i class="icon-list-ul"></i> View Notes ({{ notes_count }})</a><br />
+                View and create notes for the little things you don't want to remember.
             </span>
         </li>
     </ul>
