@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    // AJAX submission of form
+    // AJAX submission of favoriting bookmark
     $('.favorite-bookmark').submit(function() {
         $.ajax({
             data: $(this).serialize(),
@@ -20,6 +20,37 @@ $(document).ready(function() {
                     else {
                         icon.removeClass('icon-star-empty');
                         icon.addClass('icon-star');
+                    }
+                }
+            }
+        });
+        return false;
+    });
+
+    // AJAX submission of completing task
+    $('.complete-task').submit(function() {
+        $.ajax({
+            data: $(this).serialize(),
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            success: function(response) {
+                if(response) {
+                    // Gather elements to manipulate
+                    icon = $('.' + response + ' .link-button i');
+                    current_class = icon.attr('class');
+                    item = $('.item-content.' + response + ' span');
+
+                    // If task is currently completed, change to incomplete
+                    if (current_class == 'star icon-circle'){
+                        icon.removeClass('icon-circle');
+                        icon.addClass('icon-circle-blank');
+                        item.css('text-decoration', 'none');
+                    }
+                    // If task is not currently completely, change
+                    else {
+                        icon.removeClass('icon-circle-blank');
+                        icon.addClass('icon-circle');
+                        item.css('text-decoration', 'line-through');
                     }
                 }
             }

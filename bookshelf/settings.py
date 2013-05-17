@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'tags',
     'reminders',
     'notes',
+    'todolists',
 )
 
 # A sample logging configuration. The only tangible logging

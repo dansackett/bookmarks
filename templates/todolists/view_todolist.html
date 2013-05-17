@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}<i class="icon-tasks"></i> {{ todolist.title }}{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+    <div class="add-item">
+        <a href="{% url 'add-task' todolist.slug %}"><i class="icon-plus-sign"></i> Add a Task</a>
+    </div>
+    <div class="back-button">
+        <a href="{% url 'list-todolists' %}"><i class="icon-arrow-left"></i> Back to Todo Lists</a>
+    </div>
+</div>
+<ul>
+{% for task in tasks %}
+    {% include "partials/task_item.html" %}
+{% empty %}
+    <li class="none-found">
+        No tasks found :(<br />
+        <span class="description">Go ahead and add one!</span>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}<i class="icon-tasks"></i> Add a Task{% endblock %}
+
+{% block content %}
+    {% url 'add-task' todlist.slug as add_task %}
+    {% url 'view-todolist' todolist.slug as view_todolist %}
+    {% include "partials/form.html" with action=add_task submit_text="Submit" cancel_link=view_todolist %}
+{% endblock %}

@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     (r'^bookmarks/', include('bookmarks.urls')),
     (r'^reminders/', include('reminders.urls')),
     (r'^notes/', include('notes.urls')),
+    (r'^todolists/', include('todolists.urls')),
 )
 
 if settings.DEBUG:

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}<i class="icon-tasks"></i> Todo Lists{% endblock %}
+
+{% block content %}
+    {% url "list-todolists" as list_todolists %}
+    <div class="toolbar">
+        <div class="add-item">
+            <a href="{% url 'add-todolist' %}"><i class="icon-plus-sign"></i> Add a Todo List</a>
+        </div>
+        {% include "partials/search.html" with url=list_todolists %}
+    </div>
+    <ul class="todolists">
+    {% for todolist in todolists %}
+        {% include "partials/todolist_item.html" %}
+    {% empty %}
+        <li class="none-found">
+            No todo lists found :(<br />
+            <span class="description">Go ahead and add one!</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

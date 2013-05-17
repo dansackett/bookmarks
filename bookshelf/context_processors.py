@@ -4,6 +4,7 @@ from bookmarks.utils import total_bookmarks, total_favorited
 from tags.models import Tag
 from reminders.utils import total_reminders
 from notes.utils import total_notes
+from todolists.utils import total_todolists
 from tags.utils import total_tags, most_popular
 
 
@@ -16,6 +17,7 @@ def global_values(request):
             'favorited_count': total_favorited(request.user),
             'reminders_count': total_reminders(request.user),
             'notes_count': total_notes(request.user),
+            'todolists_count': total_todolists(request.user),
             'all_tags': Tag.objects.filter(user=request.user),
             'popular_tags': most_popular(request.user)[:5],
             'referer': request.META.get('HTTP_REFERER', reverse('user-home')),
