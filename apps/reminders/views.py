@@ -14,6 +14,7 @@ from reminders.utils import search_reminders, get_next_and_previous, get_months
 def list_reminders(request, template_name='reminders/list_reminders.html'):
     """Show a list of all reminders for a user"""
     reminders = Reminder.objects.filter(user=request.user, sent=False)
+    reminders = reminders.order_by('date')
 
     if request.POST:
         reminders = search_reminders(request.POST.get('query', None), reminders)
