@@ -14,7 +14,7 @@ from todolists.utils import search_todolists
 
 def list_todolists(request, template_name='todolists/list_todolists.html'):
     """Show a list of todolists"""
-    todolists = TodoList.objects.filter(user=request.user).order_by('-modified')
+    todolists = TodoList.objects.filter(user=request.user).order_by('-modified_on')
 
     if request.POST:
         todolists = search_todolists(request.POST.get('query', None), todolists)
@@ -33,7 +33,7 @@ def view_todolist(request, slug, template_name='todolists/view_todolist.html'):
         raise Http404
 
     tasks = Task.objects.filter(user=request.user, todolist=todolist)
-    tasks = tasks.order_by('-modified')
+    tasks = tasks.order_by('-modified_on')
 
     context = {
         'tasks': tasks,
