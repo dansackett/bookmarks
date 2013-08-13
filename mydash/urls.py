@@ -1,6 +1,4 @@
-from django.conf import settings
 from django.conf.urls import patterns, include
-from django.shortcuts import redirect
 
 
 urlpatterns = patterns('',
@@ -13,11 +11,3 @@ urlpatterns = patterns('',
     (r'^notes/', include('notes.urls')),
     (r'^todolists/', include('todolists.urls')),
 )
-
-if settings.DEBUG:
-    # handle media urls through django
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
-    )

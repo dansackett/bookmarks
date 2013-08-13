@@ -11,4 +11,4 @@ else
     PYTHONPATH_OLD=$PYTHONPATH
     export PYTHONPATH=$REPO_PATH:$REPO_PATH/apps:$PYTHONPATH
 fi
-export DJANGO_SETTINGS_MODULE=bookshelf.settings
+export DJANGO_SETTINGS_MODULE=mydash.settings

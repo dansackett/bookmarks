@@ -13,4 +13,4 @@
 htmlcov
 
 # settings
-/bookshelf/local_settings.py
+/mydash/settings/local.py

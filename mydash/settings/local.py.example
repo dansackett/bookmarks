@@ -1,0 +1,54 @@
+### Local Settings
+
+from .dev import *
+
+
+##############
+### Path Stuff
+##############
+
+
+####################
+### General Settings
+####################
+
+SECRET_KEY = ''
+
+
+########
+### Apps
+########
+
+
+##############
+### Middleware
+##############
+
+
+#############
+### Databases
+#############
+
+DATABASES['default']['PASSWORD'] = ''
+
+
+###########
+### Logging
+###########
+
+
+#############
+### Templates
+#############
+
+
+##################
+### Media / Static
+##################
+
+
+#####################
+### Email Information
+#####################
+
+EMAIL_HOST_PASSWORD = ''
