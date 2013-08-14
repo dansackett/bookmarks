@@ -10,10 +10,3 @@ urlpatterns += patterns('',
         'document_root': settings.MEDIA_ROOT,
     }),
 )
-
-# redirect for favicon
-urlpatterns += patterns('',
-    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {
-        'url': '/media/images/favicon.ico',
-    }),
-)
