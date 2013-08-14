@@ -5,6 +5,9 @@ py.test --cov-config .coveragerc \
         --cov bookmarks \
         --cov account \
         --cov auth \
+        --cov reminders \
+        --cov todolists \
+        --cov notes \
         --cov tags && \
 python -c "import webbrowser, os; \
            webbrowser.open('file://' + os.getcwd() + \

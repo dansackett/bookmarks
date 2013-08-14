@@ -70,7 +70,7 @@ def test_user_can_logout(client):
     username, password = create_user()
     client.login(username=username, password=password)
     post_response = client.post('/logout/')
-    assert post_response['location'].endswith('/login/')
+    assert post_response['location'].endswith('/')
 
 
 @pytest.mark.django_db

@@ -9,6 +9,9 @@ source =
     account
     bookmarks
     tags
+    notes
+    reminders
+    todolists
 
 [report]
 # Regexes for lines to exclude from consideration
