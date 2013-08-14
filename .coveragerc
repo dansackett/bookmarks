@@ -4,7 +4,7 @@ branch = True
 
 [paths]
 source =
-    bookshelf
+    mydash
     auth
     account
     bookmarks
