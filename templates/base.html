@@ -14,34 +14,12 @@
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/grey.css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/custom-theme/jquery-ui-1.10.3.custom.min.css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/colorpicker.css" />
-        <link rel="stylesheet" href="{{ MEDIA_URL }}css/main.css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/main2.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        {% if user.is_authenticated %}
-        <div class="fixed-header clearfix">
-            <div class="left">
-                <a class="page-title" href="{% url 'user-home' %}">
-                    <span class="current-title">{% block title %}{% endblock %}</span>
-                    <span class="home-title"><i class="icon-home"></i> Return Home</span>
-                </a>
-            </div>
-            <div class="right">
-                <ul>
-                    <li>
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class='form-link' />
-                                <i class="icon-signout"></i> <span class="mobile-hide">Logout</span>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        {% endif %}
         {% block home %}{% endblock %}
         <div class="content">
             {% block content%}
