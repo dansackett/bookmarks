@@ -66,6 +66,8 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+
+/* General */
 a {
     color: #F1F1F1;
     font-weight: bold;
@@ -84,21 +86,52 @@ select {
     padding: 9px 10px;
 }
 
+
+i {
+    margin-right: 10px;
+}
+
+
+/* Main Items */
 .content {
-    margin: 200px
+    margin: 100px 200px;
 }
 
 .logo {
     font-size: 35px;
     font-weight: bold;
+    text-shadow: 1px 1px 1px #1860A8;
 }
 
-.content ul li {
-    margin: 20px 0;
+.logo .welcome {
+    font-size: 26px;
+    font-weight: normal;
 }
 
-.content ul li a {
+.dashboard ul li {
+    line-height: 0;
+    margin: 15px 0;
+}
+
+.dashboard ul li a,
+.dashboard ul li .form-link button {
+    display: block;
     font-size: 19px;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #1860A8;
+    width: 100%;
+    -webkit-transition: background 0.2s linear;
+       -moz-transition: background 0.2s linear;
+        -ms-transition: background 0.2s linear;
+         -o-transition: background 0.2s linear;
+            transition: background 0.2s linear;
+}
+
+
+.dashboard ul li a:hover,
+.dashboard ul li .form-link button:hover {
+    background: #3792ED;
 }
 
 
@@ -120,6 +153,15 @@ select {
 
 .center-text {
     text-align: center;
+}
+
+.form-link button {
+    background: none;
+    border: none;
+    color: #F1F1F1;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 0;
 }
 
 

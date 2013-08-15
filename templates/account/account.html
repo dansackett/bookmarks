@@ -1,33 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="logo">
-        <i class="icon-pushpin"></i> MyDash
+    <div class="dashboard">
+        <div class="logo">
+            <i class="icon-pushpin"></i>MyDash: <span class="welcome">{% if user.first_name %}{{ user.first_name }}{% if user.last_name %} {{ user.last_name }}{% endif %}{% else %}{{ user.username }}{% endif %}</span>
+        </div>
+        <ul>
+            <li class="item">
+                <a href="{% url 'edit-profile' %}"><i class="icon-user"></i>Profile</a><br />
+            </li>
+            <li class="item">
+                <a href="{% url 'list-bookmarks' %}"><i class="icon-bookmark"></i>Bookmarks</a><br />
+            </li>
+            <li class="item">
+                <a href="{% url 'calendar' %}"><i class="icon-bell-alt"></i>Reminders</a><br />
+            </li>
+            <li class="item">
+                <a href="{% url 'list-categories' %}"><i class="icon-list-ul"></i>Notes</a><br />
+            </li>
+            <li class="item">
+                <a href="{% url 'list-todolists' %}"><i class="icon-tasks"></i>Todo Lists</a><br />
+            </li>
+            <li class="item">
+                <form action="{% url 'logout' %}" class="form-link" method="post">
+                    {% csrf_token %}
+                    <button type="submit"><i class="icon-remove-sign"></i>Logout</button>
+                </form>
+            </li>
+        </ul>
     </div>
-    <ul>
-        <li class="item">
-            <a href="{% url 'edit-profile' %}"><i class="icon-user"></i> Edit Profile</a><br />
-        </li>
-        <li class="item">
-            <a href="{% url 'list-bookmarks' %}"><i class="icon-bookmark"></i> View Bookmarks ({{ bookmarks_count }})</a><br />
-        </li>
-        <li class="item">
-            <a href="{% url 'favorited-bookmarks' %}"><i class="icon-star"></i> View Favorited Bookmarks ({{ favorited_count }})</a><br />
-        </li>
-        <li class="item">
-            <a href="{% url 'calendar' %}"><i class="icon-bell-alt"></i> View Reminders ({{ reminders_count }})</a><br />
-        </li>
-        <li class="item">
-            <a href="{% url 'list-categories' %}"><i class="icon-list-ul"></i> View Notes ({{ notes_count }})</a><br />
-        </li>
-        <li class="item">
-            <a href="{% url 'list-todolists' %}"><i class="icon-tasks"></i> View Todo Lists ({{ todolists_count }})</a><br />
-        </li>
-        <li class="item">
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="Logout" />
-            </form>
-        </li>
-    </ul>
 {% endblock %}
