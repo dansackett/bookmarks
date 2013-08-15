@@ -15,7 +15,6 @@ class ProfileForm(forms.Form):
     email = forms.EmailField()
     first_name = forms.CharField(max_length=30, required=False)
     last_name = forms.CharField(max_length=30, required=False)
-    username = forms.CharField(max_length=30)
     password = forms.CharField(widget=forms.PasswordInput, required=False)
     confirm_password = forms.CharField(widget=forms.PasswordInput, required=False)
 
@@ -34,18 +33,6 @@ class ProfileForm(forms.Form):
         }
 
         return initial
-
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-
-        if self.user.username != username:
-            if not valid_username(username):
-                raise forms.ValidationError(self.username_help_text)
-
-            elif User.objects.filter(username=username):
-                raise forms.ValidationError('That username already exists.')
-
-        return username
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
@@ -70,7 +57,6 @@ class ProfileForm(forms.Form):
 
     def save(self):
         user = self.user
-        user.username = self.cleaned_data.get('username')
         user.first_name = self.cleaned_data.get('first_name')
         user.last_name = self.cleaned_data.get('last_name')
         user.email = self.cleaned_data.get('email')
