@@ -2,9 +2,6 @@
 
 {% block content %}
     <div class="dashboard">
-        <div class="logo">
-            <i class="icon-pushpin"></i>MyDash: <span class="welcome">{% if user.first_name %}{{ user.first_name }}{% if user.last_name %} {{ user.last_name }}{% endif %}{% else %}{{ user.username }}{% endif %}</span>
-        </div>
         <ul>
             <li class="item">
                 <a href="{% url 'edit-profile' %}"><i class="icon-user"></i>Profile</a><br />

@@ -3,6 +3,5 @@
 {% block content %}
     {% url 'edit-profile' as edit_profile %}
     {% url 'user-home' as home %}
-    Your useername is {{ user.username }}
     {% include "partials/form.html" with action=edit_profile submit_text="Submit" cancel_link=home %}
 {% endblock %}

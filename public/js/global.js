@@ -91,4 +91,19 @@ $(document).ready(function() {
         window.open(url, "_self");
     });
 
+    // Show placeholder if there is no value
+    $('.field-widget').each(function() {
+        var input = $(this).children(),
+            name = input.attr('name'),
+            placeholder = name.replace(/_/g, ' ');
+
+        if(input.val() == '') {
+            input.attr('placeholder', 'Enter a ' + placeholder);
+        }
+
+        if(input.attr('type') == 'password') {
+            input.attr('placeholder', '********');
+        }
+    });
+
 });

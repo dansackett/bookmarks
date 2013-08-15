@@ -19,13 +19,37 @@ body {
 }
 
 ::-moz-selection {
-    background: #B3D4FC;
+    background: #3792ED;
     text-shadow: none;
 }
 
 ::selection {
-    background: #B3D4FC;
+    background: #3792ED;
     text-shadow: none;
+}
+
+::-webkit-input-placeholder,
+::-webkit-input-placeholder {
+    color: #7AB5F0;
+    font-style: italic;
+}
+
+::-moz-placeholder,
+::-moz-placeholder { /* Firefox 18- */
+    color: #7AB5F0;
+    font-style: italic;
+}
+
+::-moz-placeholder,
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #7AB5F0;
+    font-style: italic;
+}
+
+::-ms-input-placeholder,
+::-ms-input-placeholder {
+    color: #7AB5F0;
+    font-style: italic;
 }
 
 hr {
@@ -92,11 +116,12 @@ i {
 }
 
 
-/* Main Items */
+/*** Main Items ***/
 .content {
     margin: 100px 200px;
 }
 
+/* Dashboard Stuff */
 .logo {
     font-size: 35px;
     font-weight: bold;
@@ -132,6 +157,66 @@ i {
 .dashboard ul li a:hover,
 .dashboard ul li .form-link button:hover {
     background: #3792ED;
+}
+
+/* Form Stuff */
+.form {
+    margin: 20px 0;
+}
+
+.field-wrapper {
+    margin: 20px 20px 20px 35px;
+}
+
+.field-label {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+
+.field-widget input,
+.field-widget textarea {
+    background: none;
+    border: none;
+    padding: 10px 20px 0 0;
+    color: #F1F1F1;
+    width: 100%;
+}
+
+.field-widget textarea {
+    height: 60px;
+}
+
+
+.field-widget input:focus,
+.field-widget textarea:focus {
+    border: none;
+    outline: 0;
+}
+
+.buttons {
+    margin: 20px 20px 20px 35px;
+}
+
+.buttons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.buttons li input,
+.buttons li a {
+    background: #114880;
+    color: #F1F1F1;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.buttons li a {
+    background: #609EDB;
 }
 
 
