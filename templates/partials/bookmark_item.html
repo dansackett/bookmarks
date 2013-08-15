@@ -1,8 +1,8 @@
-<li class="item closed" data-color="{{ bookmark.tag.hex_code }}" data-link-color="{{ bookmark.tag.hex_code }}">
+<li class="item closed">
     <div class="item-content">
-        <a class="title" style="color: #{{ bookmark.tag.hex_code }};" href="{{ bookmark.url }}">{{ bookmark.title }}</a> (<a style="color: #{{ bookmark.tag.hex_code }};" href="#" class="manage">Manage</a>)<br />
+        <a class="title" href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
         <em>{{ bookmark.description }}</em><br />
-        <strong>Tagged as:</strong> <a style="color: #{{ bookmark.tag.hex_code }};" href="{{ bookmark.tag.get_absolute_url }}">{{ bookmark.tag.title }}</a>
+        <strong>Tagged as:</strong> <a href="{{ bookmark.tag.get_absolute_url }}">{{ bookmark.tag.title }}</a>
     </div>
 </li>
 <li class="bookmark-tools closed clearfix">

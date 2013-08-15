@@ -1,6 +1,6 @@
-<li class="item closed clearfix" data-color="{{ category.2 }}" data-link-color="{{ category.2 }}">
+<li class="item closed clearfix">
     <div class="item-content">
-        <a class="title" style="color: {{ category.2 }};" href="{{ note.get_absolute_url }}">{{ note.title }}</a> (<a style="color: {{ category.2 }};" href="#" class="manage">Manage</a>)<br />
+        <a class="title" href="{{ note.get_absolute_url }}">{{ note.title }}</a><br />
         <em>{{ note.description|truncatechars:30 }}</em><br />
         <strong>Filed As:</strong> {{ category.0 }}
     </div>

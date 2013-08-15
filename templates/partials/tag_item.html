@@ -1,6 +1,6 @@
-<li class="item closed clearfix" data-color="{{ tag.hex_code }}" data-link-color="{{ tag.hex_code }}">
+<li class="item closed clearfix">
     <div class="item-content">
-        <a class="title" style="color: #{{ tag.hex_code }};" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a> (<a style="color: #{{ tag.hex_code }};" href="#" class="manage">Manage</a>)<br />
+        <a class="title" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a><br />
         <em>{{ tag.description }}</em><br />
         <strong>Number of Bookmarks:</strong> {{ tag.bookmarks_count }}
     </div>
