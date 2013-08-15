@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-star"></i> Favorited <span class="mobile-hide">Bookmarks</span>{% endblock %}
-
 {% block content %}
     {% url "favorited-bookmarks" as favorited_bookmarks %}
     <div class="toolbar">

@@ -86,12 +86,6 @@ $(document).ready(function() {
         $(this).ColorPickerSetColor(this.value);
     });
 
-    // If you click anywhere in the item div then you should get linked
-    $('.item').click(function(){
-        var url = $(this).find('.item-content').find('a').attr('href');
-        window.open(url, "_self");
-    });
-
     $('.calendar td').click(function(){
         var url = $(this).find('a').attr('href');
         window.open(url, "_self");

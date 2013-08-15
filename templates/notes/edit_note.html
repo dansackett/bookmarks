@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-list-ul"></i> Edit Note "{{ note.title }}"{% endblock %}
-
 {% block content %}
     {% url "list-categories" as list_categories %}
     {% include "partials/form.html" with action=note.get_edit_url submit_text="Submit" cancel_link=list_categories %}

@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-tag"></i> Edit Tag "{{ tag.title }}"{% endblock %}
-
 {% block content %}
 {% url "list-tags" as list_tags %}
     {% include "partials/form.html" with action=tag.get_edit_url submit_text="Submit" cancel_link=list_tags %}

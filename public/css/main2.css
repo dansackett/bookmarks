@@ -11,7 +11,7 @@ textarea {
 }
 
 body {
-    background: #FFF;
+    background: #209DE0;
     color: #444;
     height: 100%;
     font-size: 1em;
@@ -67,7 +67,6 @@ textarea {
    ========================================================================== */
 
 a {
-    color: #FB642B;
     text-decoration: underline;
 }
 

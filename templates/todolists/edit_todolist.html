@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}<i class="icon-tasks"></i> Edit Todo List "{{ todolist.title }}"{% endblock %}
-
 {% block content %}
 {% url "list-todolists" as list_todolists %}
     {% include "partials/form.html" with action=todolist.get_edit_url submit_text="Submit" cancel_link=list_todolists %}
