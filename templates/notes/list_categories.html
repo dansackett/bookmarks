@@ -4,18 +4,13 @@
 
 {% block content %}
     {% url "list-categories" as list_categories %}
-    <div class="toolbar">
-        <div class="add-item">
-            <a href="{% url 'add-note' %}"><i class="icon-plus-sign"></i> Add a Note</a>
-        </div>
-    </div>
-    <ul class="categories">
+    <div class="categories">
         {% for category, data in categories.items %}
-        <li class="item" data-color="{{ data.2 }};" data-link-color="{{ data.2 }};">
-            <span class="item-content">
-                <a style="color: {{ data.2 }};" href="{% url 'view-category' category %}"><i class="{{ data.1 }}"></i> {{ data.0 }} ({{ data.3 }})</a>
-            </span>
-        </li>
+        <div class="item-block">
+            <div class="item">
+                <a href="{% url 'view-category' category %}">{{ data.0 }}</a>
+            </div>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

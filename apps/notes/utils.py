@@ -14,17 +14,17 @@ def category_notes_count(user, category):
 
 
 def get_category_data(user):
-    # a dict with the slug as the key and a tuple as (name, icon, color, count)
+    # a dict with the slug as the key and a tuple as (name, count)
     return {
-        'no_category': ('No Category', 'icon-ban-circle', '#E64F48', category_notes_count(user, 'no_category'), 'no_category'),
-        'bar': ('Bar', 'icon-beer', '#E88B3B', category_notes_count(user, 'bar'), 'bar'),
-        'book': ('Book', 'icon-book', '#A7D4F1', category_notes_count(user, 'book'), 'book'),
-        'food': ('Food', 'icon-food', '#2581D4', category_notes_count(user, 'food'), 'food'),
-        'idea': ('Idea', 'icon-lightbulb', '#223334', category_notes_count(user, 'idea'), 'idea'),
-        'movie': ('Movie', 'icon-film', '#1A48A8', category_notes_count(user, 'movie'), 'movie'),
-        'music': ('Music', 'icon-music', '#A5249B', category_notes_count(user, 'music'), 'music'),
-        'person': ('Person', 'icon-smile', '#0AA8EF', category_notes_count(user, 'person'), 'person'),
-        'place': ('Place', 'icon-map-marker', '#C82750', category_notes_count(user, 'place'), 'place'),
+        'no_category': ('No Category', category_notes_count(user, 'no_category')),
+        'bar': ('Bar', category_notes_count(user, 'bar')),
+        'book': ('Book', category_notes_count(user, 'book')),
+        'food': ('Food', category_notes_count(user, 'food')),
+        'idea': ('Idea', category_notes_count(user, 'idea')),
+        'movie': ('Movie', category_notes_count(user, 'movie')),
+        'music': ('Music', category_notes_count(user, 'music')),
+        'person': ('Person', category_notes_count(user, 'person')),
+        'place': ('Place', category_notes_count(user, 'place')),
     }
 
 
