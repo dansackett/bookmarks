@@ -14,7 +14,7 @@ body {
     background: #2681DC;
     color: #F1F1F1;
     height: 100%;
-    font-size: 1em;
+    font-size: 16px;
     line-height: 1.5;
 }
 
@@ -73,6 +73,10 @@ fieldset {
 
 textarea {
     resize: vertical;
+}
+
+a:hover {
+    color: #9ECBF7;
 }
 
 /* ==========================================================================
@@ -159,6 +163,94 @@ i {
     background: #3792ED;
 }
 
+
+/* Item Stuff */
+.item-tools {
+    margin-left: 35px;
+}
+
+.item-tools a {
+    margin-right: 15px;
+}
+
+.items {
+    margin-top: 25px;
+}
+
+.item-block {
+    font-size: 19px;
+    margin: 5px 0 5px 25px;
+}
+
+.indv-item-tools {
+    color: #F1F1F1;
+    display: none;
+}
+
+.indv-item-tools li {
+    display: inline-block;
+}
+
+.indv-item-tools .tool {
+    background: none;
+    border: none;
+    color: #F1F1F1;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.indv-item-tools .tool:hover {
+    color: #9ECBF7;
+}
+
+.none-found {
+    margin-left: 35px;
+}
+
+.item {
+    color: #F1F1F1;
+}
+
+.item a,
+.item button {
+    background: none;
+    border: none;
+    color: #F1F1F1;
+    display: block;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    -webkit-transition: background 0.2s linear;
+       -moz-transition: background 0.2s linear;
+        -ms-transition: background 0.2s linear;
+         -o-transition: background 0.2s linear;
+            transition: background 0.2s linear;
+}
+
+.item a:hover,
+.item button:hover {
+    background: #3792ED;
+}
+
+
+/* Search Form Stuff */
+.search-box {
+    background: none;
+    border: none;
+    border-bottom: 1px dotted #F1F1F1;
+    color: #F1F1F1;
+    margin: 20px 0 20px 35px;
+    padding: 8px 8px 8px 0;
+    width: 100%;
+}
+
+.search-box:focus {
+    outline: 0;
+}
+
+
 /* Form Stuff */
 .form {
     margin: 20px 0;
@@ -203,18 +295,6 @@ i {
     margin-right: 10px;
 }
 
-.buttons li input,
-.buttons li a {
-    background: #114880;
-    color: #F1F1F1;
-    border: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-}
-
 .buttons li a {
     background: #609EDB;
 }
@@ -247,6 +327,17 @@ i {
     font-size: 19px;
     font-weight: bold;
     padding: 0;
+}
+
+.btn {
+    background: #114880;
+    color: #F1F1F1;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
 }
 
 

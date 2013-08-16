@@ -132,4 +132,36 @@ $(document).ready(function() {
         }
     });
 
+    // Hide or show individual item tools
+    $('.toggle-indv-item-tools').click(function() {
+        var iit = $('.indv-item-tools');
+        if (iit.eq(0).css('display') == 'none') {
+            iit.each(function() {
+                $(this).show();
+            });
+        }
+        else {
+            iit.each(function() {
+                $(this).hide();
+            });
+        }
+    });
+
+    // Search box will hide and show items on the page dynamically
+    $('.search-box').keyup(function(e) {
+        var term = $(this).val().toLowerCase();
+
+        $('.item-block .item').each(function() {
+            // If they press backspace, let's show pertaining options again
+            if (e.keyCode == 8) {
+                $(this).parent().show();
+            }
+
+            // If the search term doesn't match, hide it
+            if ($(this).text().toLowerCase().search(term) == -1) {
+                $(this).parent().hide();
+            }
+        });
+    });
+
 });

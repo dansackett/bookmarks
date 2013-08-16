@@ -1,23 +1,16 @@
-<li class="item closed clearfix">
-    <div class="item-content">
-        <a class="title" href="{{ todolist.get_absolute_url }}">{{ todolist.title }}</a><br />
-        <strong>Completed Tasks:</strong> {{ todolist.get_completed_tasks_count }}/{{ todolist.get_tasks_count }}
+<div class="item-block {{ todolist.pk }}">
+    <div class="item">
+        <a href="{{ todolist.get_absolute_url }}">{{ todolist.title }} ({{ todolist.get_completed_tasks_count }}/{{ todolist.get_tasks_count }})</a>
     </div>
-</li>
-<li class="tag-tools closed clearfix">
-    <ul>
-        <!-- Edit Button -->
-        <li>
-            <a class="tool" href="{{ todolist.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i> Edit</span></a>
-        </li>
-        <!-- Delete Button -->
-        <li>
-            <form method="post" action="{{ todolist.get_delete_url }}">
-                {% csrf_token %}
-                <button class="link-button tool" type="submit" onclick="return confirm('Are you sure you\'d like to delete this todo list and all of its tasks?')" />
-                    <i class="icon-remove"></i> Delete
-                </button>
-            </form>
-        </li>
-    </ul>
-</li>
+    <div class="indv-item-tools {{ todolist.pk }}">
+        <ul>
+            <li><a class="tool" href="{{ todolist.get_edit_url }}">Edit</a></li>
+            <li>
+                <form method="post" action="{{ todolist.get_delete_url }}">
+                    {% csrf_token %}
+                    <button class="tool" type="submit" />Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>

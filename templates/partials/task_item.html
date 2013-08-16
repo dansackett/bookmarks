@@ -1,31 +1,19 @@
-<li class="item closed clearfix">
-    <div class="item-content {{ task.pk }}">
-        <span {% if task.complete %}style="text-decoration: line-through;"{% endif %}>{{ task.task }}</span><br />
+<div class="item-block {{ task.pk }}">
+    <div class="item">
+        <form method="post" action="{{ task.get_complete_url }}" class="complete-task">
+            {% csrf_token %}
+            <button type="submit" {% if task.complete %}style="text-decoration: line-through;"{% endif %} />{{ task.task }}</button>
+        </form>
     </div>
-</li>
-<li class="bookmark-tools closed clearfix">
-    <ul>
-        <!-- Complete link -->
-        <li>
-            <form method="post" action="{{ task.get_complete_url }}" class="complete-task {{ task.pk }}">
-                {% csrf_token %}
-                <button class="link-button tool" type="submit" />
-                    {% if task.complete %}<i class="star icon-circle"></i>{% else %}<i class="star icon-circle-blank"></i>{% endif %} Complete
-                </button>
-            </form>
-        </li>
-        <!-- Edit Button -->
-        <li>
-            <a class="tool" href="{{ task.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i> Edit</span></a>
-        </li>
-        <!-- Delete Button -->
-        <li>
-            <form method="post" action="{{ task.get_delete_url }}">
-                {% csrf_token %}
-                <button class="link-button tool" type="submit" onclick="return confirm('Are you sure you\'d like to delete this task?')" />
-                    <i class="icon-remove"></i> Delete
-                </button>
-            </form>
-        </li>
-    </ul>
-</li>
+    <div class="indv-item-tools">
+        <ul>
+            <li><a class="tool" href="{{ task.get_edit_url }}">Edit</a></li>
+            <li>
+                <form method="post" action="{{ task.get_delete_url }}" class="delete-task">
+                    {% csrf_token %}
+                    <button class="tool" type="submit" />Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
