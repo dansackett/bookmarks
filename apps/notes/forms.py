@@ -22,7 +22,9 @@ class NewNoteForm(BaseNoteForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        self.category = kwargs.pop('category', None)
         super(NewNoteForm, self).__init__(*args, **kwargs)
+        self.fields['category'].initial = self.category
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

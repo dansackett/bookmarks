@@ -2,8 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
-from bookmarks.models import Bookmark
-from bookmarks.utils import search_bookmarks
+from mydash.utils import render_json
 from notes.models import Note
 from notes.forms import NewNoteForm, EditNoteForm
 from notes.utils import search_notes, get_category_data
@@ -23,7 +22,7 @@ def view_category(request, category, template_name='notes/list_notes.html'):
     """Show a list of notes for a category"""
     notes = Note.objects.filter(user=request.user, category=category)
 
-    category = get_category_data(request.user)[category]
+    category_title = get_category_data(request.user)[category][0]
 
     if request.POST:
         notes = search_notes(request.POST.get('query', None), notes)
@@ -31,6 +30,7 @@ def view_category(request, category, template_name='notes/list_notes.html'):
     context = {
         'notes': notes,
         'category': category,
+        'category_title': category_title,
     }
     return render(request, template_name, context)
 
@@ -51,9 +51,10 @@ def view_note(request, category, slug, template_name='notes/view_note.html'):
     return render(request, template_name, context)
 
 
-def add_note(request, form_class=NewNoteForm, template_name='notes/add_note.html'):
+def add_note(request, category, form_class=NewNoteForm,
+             template_name='notes/add_note.html'):
     """Add a new note"""
-    form = form_class(request.POST or None, user=request.user)
+    form = form_class(request.POST or None, category=category, user=request.user)
     if request.method == 'POST' and form.is_valid():
         form.save()
         category = form.cleaned_data.get('category')
@@ -90,5 +91,6 @@ def edit_note(request, category, slug, form_class=EditNoteForm,
 def delete_note(request, category, slug):
     """Delete a note"""
     note = Note.objects.get(user=request.user, slug=slug)
+    note_pk = note.pk
     note.delete()
-    return redirect('list-categories')
+    return render_json(note_pk)
