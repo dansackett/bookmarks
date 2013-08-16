@@ -3,6 +3,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
+from mydash.utils import render_json
 from bookmarks.models import Bookmark
 from bookmarks.forms import NewBookmarkForm, EditBookmarkForm
 from bookmarks.utils import search_bookmarks
@@ -78,7 +79,7 @@ def favorite_bookmark(request, slug, tag_slug):
     bookmark = Bookmark.objects.get(user=request.user, tag=tag, slug=slug)
     bookmark.favorited = not bookmark.favorited
     bookmark.save()
-    return HttpResponse(bookmark.pk)
+    return render_json(bookmark.pk)
 
 
 @require_POST

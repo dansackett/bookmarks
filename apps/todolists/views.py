@@ -2,6 +2,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
+from mydash.utils import render_json
 from todolists.models import TodoList, Task
 from todolists.forms import (
     NewTodoListForm,
@@ -33,7 +34,7 @@ def view_todolist(request, slug, template_name='todolists/view_todolist.html'):
         raise Http404
 
     tasks = Task.objects.filter(user=request.user, todolist=todolist)
-    tasks = tasks.order_by('-modified_on')
+    tasks = tasks.order_by('created_on')
 
     context = {
         'tasks': tasks,
@@ -127,8 +128,9 @@ def delete_task(request, slug, task_slug):
     """Delete a task"""
     todolist = TodoList.objects.get(user=request.user, slug=slug)
     task = Task.objects.get(user=request.user, slug=task_slug, todolist=todolist)
+    task_pk = task.pk
     task.delete()
-    return redirect('view-todolist', todolist.slug)
+    return render_json(task_pk)
 
 
 @require_POST
@@ -138,4 +140,4 @@ def complete_task(request, slug, task_slug):
     task = Task.objects.get(user=request.user, slug=task_slug, todolist=todolist)
     task.complete = not task.complete
     task.save()
-    return HttpResponse(task.pk)
+    return render_json(task.pk)
