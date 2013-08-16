@@ -16,6 +16,7 @@ body {
     height: 100%;
     font-size: 16px;
     line-height: 1.5;
+    text-shadow: 1px 1px 1px #1860A8;
 }
 
 ::-moz-selection {
@@ -129,7 +130,6 @@ i {
 .logo {
     font-size: 35px;
     font-weight: bold;
-    text-shadow: 1px 1px 1px #1860A8;
 }
 
 .logo .welcome {
@@ -148,7 +148,6 @@ i {
     font-size: 19px;
     padding: 10px;
     text-align: left;
-    text-shadow: 1px 1px 1px #1860A8;
     width: 100%;
     -webkit-transition: background 0.2s linear;
        -moz-transition: background 0.2s linear;
@@ -232,6 +231,72 @@ i {
 .item a:hover,
 .item button:hover {
     background: #3792ED;
+}
+
+.item-extra-info {
+    padding-left: 10px;
+}
+
+/* Reminders Stuff */
+.calendar {
+    margin-left: 35px;
+}
+
+.calendar table {
+    border: 1px solid #9ECBF7;
+    width: 100%;
+}
+
+.calendar table thead {
+    background: #9ECBF7;
+    border-bottom: 1px solid #9ECBF7;
+    font-size: 18px;
+}
+
+.calendar table th {
+    border-right: 1px solid #9ECBF7;
+}
+
+.calendar table tr {
+    border: 1px solid #9ECBF7;
+}
+
+.calendar table td {
+    border: 1px solid #9ECBF7;
+    text-align: center;
+}
+
+.calendar table a {
+    display: inline-block;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.calendar table td.reminder a {
+    background: #9ECBF7;
+}
+
+.calendar table td.reminder a:hover,
+.calendar table td.today a {
+    background: #1E63A8;
+}
+
+.calendar .reminder-date-form {
+    float: left;
+    margin-top: 20px;
+}
+
+.calendar .reminder-choice {
+    float: right;
+    margin-top: 20px;
+}
+
+.calendar .reminder-choice li {
+    display: inline-block;
+}
+
+.calendar .reminder-choice .previous {
+    margin-right: 50px;
 }
 
 

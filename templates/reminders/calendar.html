@@ -1,19 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="toolbar">
-        <div class="add-item">
-            <a href="{% url 'add-reminder' %}"><i class="icon-plus-sign"></i> Add a Reminder</a>
-        </div>
-        <div class="reminder-choice clearfix">
-            <ul>
-                <li><a href="{% url 'list-reminders' %}"><i class="icon-list"></i> List View</a></li>
-                <li><a href="{% url 'calendar' %}"><i class="icon-calendar"></i> Calendar View</a></li>
-            </ul>
-        </div>
-        <h1>{{ m }} {{ year }}</h1>
+    <div class="item-tools">
+        <a href="{% url 'add-reminder' %}">Add a Reminder</a>
+        <a href="{% url 'list-reminders' %}">List View</a>
+        <a href="{% url 'calendar' %}">Calendar View</a>
     </div>
-    <div class="calendar">
+    <div class="calendar clearfix">
+        <h1>{{ m }} {{ year }}</h1>
         <table>
             <thead>
                 <th>Sun<span class="mobile-hide">day</span></th>
@@ -37,8 +31,6 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
-    <div class="toolbar">
         <form class="reminder-date-form" action="" method="post">
             {% csrf_token %}
             <select name="month" class="month-select">
@@ -51,12 +43,12 @@
                 <option value="{{ year }}">{{ year }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn">Submit</button>
         </form>
         <div class="reminder-choice clearfix next-previous">
             <ul>
-                <li><a class="previous" href="{{ previous_month }}"><i class="icon-arrow-left"></i> Previous</a></li>
-                <li><a class="next" href="{{ next_month }}">Next <i class="icon-arrow-right"></i></a></li>
+                <li><a class="previous btn" href="{{ previous_month }}"><i class="icon-arrow-left"></i>Previous</a></li>
+                <li><a class="next btn" href="{{ next_month }}">Next<i style="margin-left: 10px;" class="icon-arrow-right"></i></a></li>
             </ul>
         </div>
     </div>

@@ -1,23 +1,17 @@
-<li class="item closed">
-    <div class="item-content">
-        <a class="title" href="{{ reminder.get_absolute_url }}">{{ reminder.title }}</a><br />
-        <em>{{ reminder.description }}</em><br />
-        <strong>Scheduled For:</strong> {{ reminder.date }}
+<div class="item-block {{ reminder.pk }}">
+    <div class="item">
+        <a class="title" href="{{ reminder.get_absolute_url }}">{{ reminder.title }} ({{ reminder.date }})</a>
+        <div class="item-extra-info">{{ reminder.description }}</div>
     </div>
-</li>
-<li class="tag-tools closed clearfix">
-    <ul>
-        <li>
-            <a href="{{ reminder.get_edit_url }}"><span class="link-button tool"><i class="icon-pencil"></i> Edit</span></a>
-        </li>
-        <!-- Delete link -->
-        <li>
-            <form method="post" action="{{ reminder.get_delete_url }}">
-                {% csrf_token %}
-                <button class="link-button tool" type="submit" onclick="return confirm('Are you sure you\'d like to delete this reminder?')" />
-                    <i class="icon-remove"></i> Delete
-                </button>
-            </form>
-        </li>
-    </ul>
-</li>
+    <div class="indv-item-tools">
+        <ul>
+            <li><a class="tool" href="{{ reminder.get_edit_url }}">Edit</a></li>
+            <li>
+                <form method="post" action="{{ reminder.get_delete_url }}">
+                    {% csrf_token %}
+                    <button class="link-button tool" type="submit" />Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
