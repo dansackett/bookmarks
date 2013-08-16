@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}Reminders - Edit Reminder{% endblock %}
+
 {% block content %}
     {% url 'list-reminders' as list_reminders %}
     {% include "partials/form.html" with action=reminder.get_edit_url submit_text="Submit" cancel_link=list_reminders %}

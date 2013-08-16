@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}Reminders - {{ date }}{% endblock %}
+
 {% block content %}
 <div class="item-tools">
     <a href="{% url 'add-reminder-for-day' year=date.year month=date.month day=date.day %}">Add a Reminder</a>

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}Notes - Edit Note {% endblock %}
+
 {% block content %}
     {% url "list-categories" as list_categories %}
     {% include "partials/form.html" with action=note.get_edit_url submit_text="Submit" cancel_link=list_categories %}

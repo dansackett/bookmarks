@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}Notes - Add a Note {% endblock %}
+
 {% block content %}
     {% url 'add-note' as add_note %}
     {% url 'list-categories' as list_categories %}
