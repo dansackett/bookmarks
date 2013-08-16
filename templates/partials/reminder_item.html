@@ -7,9 +7,9 @@
         <ul>
             <li><a class="tool" href="{{ reminder.get_edit_url }}">Edit</a></li>
             <li>
-                <form method="post" action="{{ reminder.get_delete_url }}">
+                <form method="post" action="{{ reminder.get_delete_url }}" class="delete-form">
                     {% csrf_token %}
-                    <button class="link-button tool" type="submit" />Delete</button>
+                    <button class="tool" type="submit" />Delete</button>
                 </form>
             </li>
         </ul>

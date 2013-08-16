@@ -9,7 +9,7 @@
         <ul>
             <li><a class="tool" href="{{ task.get_edit_url }}">Edit</a></li>
             <li>
-                <form method="post" action="{{ task.get_delete_url }}" class="delete-task">
+                <form method="post" action="{{ task.get_delete_url }}" class="delete-form">
                     {% csrf_token %}
                     <button class="tool" type="submit" />Delete</button>
                 </form>

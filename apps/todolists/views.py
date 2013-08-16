@@ -81,8 +81,9 @@ def edit_todolist(request, slug, form_class=EditTodoListForm,
 def delete_todolist(request, slug):
     """Delete a todolist"""
     todolist = TodoList.objects.get(user=request.user, slug=slug)
+    todolist_pk = todolist.pk
     todolist.delete()
-    return redirect('list-todolists')
+    return render_json(todolist_pk)
 
 
 def add_task(request, slug, form_class=NewTaskForm,

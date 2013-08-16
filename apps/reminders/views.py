@@ -6,6 +6,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
+from mydash.utils import render_json
 from reminders.models import Reminder
 from reminders.forms import NewReminderForm, EditReminderForm
 from reminders.utils import search_reminders, get_next_and_previous, get_months
@@ -161,5 +162,6 @@ def dismiss_reminder(request, slug):
 def delete_reminder(request, slug):
     """Delete a reminder"""
     reminder = Reminder.objects.get(user=request.user, slug=slug)
+    reminder_pk = reminder.pk
     reminder.delete()
-    return redirect('list-reminders')
+    return render_json(reminder_pk)
