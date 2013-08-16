@@ -54,25 +54,12 @@ $(document).ready(function() {
 
     ajax_submit('.complete-task', complete_task);
 
-    // Delete Task Callback
-    function delete_task(response) {
-        var task_items = $('.' + response);
-        task_items.each(function() {
-            $(this).hide();
-        });
+    // Delete Item Callback
+    function delete_item(response) {
+        $('.' + response).hide();
     };
 
-    ajax_submit('.delete-task', delete_task);
-
-    // Delete Todolist Callback
-    function delete_todolist(response) {
-        var todolists = $('.' + response);
-        tasks.each(function() {
-            $(this).hide();
-        });
-    };
-
-    ajax_submit('.delete-todolist', delete_todolist);
+    ajax_submit('.delete-form', delete_item);
 
 
     ///////////////////////////////////////////
