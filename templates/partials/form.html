@@ -39,17 +39,9 @@
 
     <div class="buttons clearfix">
         <ul>
-            <li>
-                <input type="submit" name="submit" value="{{ submit_text|default:'Submit' }}" />
-            </li>
-            <li>
-                {% if cancel != 'None' %}
-                    <a href="{{ cancel_link }}">Cancel</a>
-                {% endif %}
-            </li>
-            <li>
-                {% block extra_buttons %}{% endblock %}
-            </li>
+            <li><input type="submit" class="btn" name="submit" value="{{ submit_text|default:'Submit' }}" /></li>
+            <li>{% if cancel != 'None' %}<a class="btn" href="{{ cancel_link }}">Cancel</a>{% endif %}</li>
+            <li>{% block extra_buttons %}{% endblock %}</li>
         </ul>
     </div>
 </form>
