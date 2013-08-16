@@ -24,7 +24,7 @@
         <div class="content">
             {% if user.is_authenticated %}
                 <div class="logo">
-                    <a href="{% url 'home' %}"><i class="icon-pushpin"></i>MyDash: <span class="welcome">{% if user.first_name %}{{ user.first_name }}{% if user.last_name %} {{ user.last_name }}{% endif %}{% else %}{{ user.username }}{% endif %}</span></a>
+                    <a href="{% url 'home' %}"><i class="icon-pushpin"></i>MyDash: <span class="welcome">{% block title %}{% endblock %}</span></a>
                 </div>
             {% endif %}
             {% block content%}
