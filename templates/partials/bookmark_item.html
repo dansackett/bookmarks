@@ -1,33 +1,27 @@
-<li class="item closed">
-    <div class="item-content">
-        <a class="title" href="{{ bookmark.url }}">{{ bookmark.title }}</a><br />
-        <em>{{ bookmark.description }}</em><br />
-        <strong>Tagged as:</strong> <a href="{{ bookmark.tag.get_absolute_url }}">{{ bookmark.tag.title }}</a>
+<div class="item-block">
+    <div class="item">
+        <a class="title" href="{{ bookmark.url }}">{{ bookmark.title }}</a>
+        <div class="item-extra-info">
+            <em>{{ bookmark.description }}</em><br />
+        </div>
     </div>
-</li>
-<li class="bookmark-tools closed clearfix">
-    <ul>
-        <!-- Favorite link -->
-        <li>
-            <form method="post" action="{{ bookmark.get_favorite_url }}" class="favorite-bookmark {{ bookmark.pk }}">
-                {% csrf_token %}
-                <button class="link-button tool" type="submit" />
-                    {% if bookmark.favorited %}<i class="star icon-star"></i>{% else %}<i class="star icon-star-empty"></i>{% endif %} Favorite
-                </button>
-            </form>
-        </li>
-        <!-- Edit link -->
-        <li>
-            <a class="tool" href="{{ bookmark.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i> Edit</span></a>
-        </li>
-        <!-- Delete link -->
-        <li>
-            <form method="post" action="{{ bookmark.get_delete_url }}">
-                {% csrf_token %}
-                <button class="link-button tool" type="submit" onclick="return confirm('Are you sure you\'d like to delete this bookmark?')" />
-                    <i class="icon-remove"></i> Delete
-                </button>
-            </form>
-        </li>
-    </ul>
-</li>
+    <div class="indv-item-tools">
+        <ul>
+            <li>
+                <form method="post" action="{{ bookmark.get_favorite_url }}" class="favorite-bookmark {{ bookmark.pk }}">
+                    {% csrf_token %}
+                    <button class="link-button tool" type="submit" />
+                        {% if bookmark.favorited %}<i class="star icon-star"></i>{% else %}<i class="star icon-star-empty"></i>{% endif %}Favorite
+                    </button>
+                </form>
+            </li>
+            <li><a class="tool" href="{{ bookmark.get_edit_url }}">Edit</a></li>
+            <li>
+                <form method="post" action="{{ bookmark.get_delete_url }}" class="delete-form">
+                    {% csrf_token %}
+                    <button class="tool" type="submit" />Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -5,3 +5,5 @@
 - Sorting categories for bookmarks?
 - Exporting bookmarks?
 - Google integration?
+- Cancel edit bookmark should go back to tag, add too
+- Better editing concept, links should stand out more too..
