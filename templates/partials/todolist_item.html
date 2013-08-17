@@ -1,6 +1,6 @@
 <div class="item-block {{ todolist.pk }}">
     <div class="item">
-        <a href="{{ todolist.get_absolute_url }}">{{ todolist.title }} ({{ todolist.get_completed_tasks_count }}/{{ todolist.get_tasks_count }})</a>
+        <a href="{{ todolist.get_absolute_url }}">{{ todolist.title }} <span class="count">{{ todolist.get_completed_tasks_count }}/{{ todolist.get_tasks_count }}</span></a>
     </div>
     <div class="indv-item-tools {{ todolist.pk }}">
         <ul>

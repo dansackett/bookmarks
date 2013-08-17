@@ -7,10 +7,7 @@ class Tag(models.Model):
     """Tags models"""
     title = models.CharField(max_length=100, verbose_name='Tag Name')
     slug = models.SlugField()
-    description = models.TextField(blank=True, null=True, verbose_name='Notes')
     user = models.ForeignKey(User)
-    hex_code = models.CharField(max_length=6, blank=True, null=True,
-                                verbose_name='Hover Color', default='FB642B')
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
 

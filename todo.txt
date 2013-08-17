@@ -1,9 +1,6 @@
 - Categories for reminders ie. Work, Travel, Fun, etc
-- Deleting notes should go to note category
-- Adding bookmark needs to ackowledge both notes and non-notes
-- Bookmarks need to display tags, bookmarks, and favorited in a clean way
-- Sorting categories for bookmarks?
 - Exporting bookmarks?
 - Google integration?
 - Cancel edit bookmark should go back to tag, add too
-- Better editing concept, links should stand out more too..
+- Select Box color concept
+- iCheck needs editing

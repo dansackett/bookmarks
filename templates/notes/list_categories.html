@@ -8,7 +8,7 @@
         {% for category, data in categories.items %}
         <div class="item-block">
             <div class="item">
-                <a href="{% url 'view-category' category %}">{{ data.0 }}</a>
+                <a href="{% url 'view-category' category %}">{{ data.0 }} <span class="count">{{ data.1 }}</span></a>
             </div>
         </div>
     {% endfor %}
