@@ -1,24 +1,22 @@
 {% extends 'base.html' %}
 
+{% block title %}Bookmarks - Filed Under "{{ tag.title }}"{% endblock %}
+
 {% block content %}
-<div class="toolbar">
-    <div class="add-item">
-        <a href="{% url 'add-bookmark' %}"><i class="icon-plus-sign"></i> Add a Bookmark</a>
-    </div>
-    <div class="back-button">
-        <a href="{% url 'list-tags' %}"><i class="icon-arrow-left"></i> Back to Tags</a>
-    </div>
+<div class="item-tools">
+    <a href="{% url 'add-bookmark' %}">Add a Bookmark</a>
+    <a href="{% url 'list-tags' %}">View Tags</a>
+    <a href="{% url 'list-bookmarks' %}">View All Bookmarks</a>
+    <a href="{% url 'favorited-bookmarks' %}">View Favorited Bookmarks</a>
+    {% if bookmarks %}<a href="#" class="toggle-indv-item-tools">Edit Items</a>{% endif %}
 </div>
 {% url "view-tag" tag.slug as view_tag %}
-{% include "partials/search.html" with url=view_tag %}
-<ul>
-{% for bookmark in bookmarks %}
-    {% include "partials/bookmark_item.html" %}
-{% empty %}
-    <li class="none-found">
-        No bookmarks found for that tag :(<br />
-        <span class="description">Go ahead and add one!</span>
-    </li>
-{% endfor %}
-</ul>
+{% include "partials/search.html" %}
+<div class="items">
+    {% for bookmark in bookmarks %}
+        {% include "partials/bookmark_item.html" %}
+    {% empty %}
+        <div class="none-found">No bookmarks found for that tag</div>
+    {% endfor %}
+</div>
 {% endblock %}
