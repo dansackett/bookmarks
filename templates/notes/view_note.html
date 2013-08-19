@@ -6,6 +6,8 @@
 {% url "list-notes" as list_notes %}
 <div class="item-tools">
     <a href="{% url 'add-note' note.category %}">Add a Note</a>
+    <a href="{% url 'view-category' note.category %}">Go Back</a>
+    <a href="{% url 'list-categories' %}">View All Categories</a>
     <a href="#" class="toggle-indv-item-tools">Edit Note</a>
 </div>
 {% include "partials/search.html" %}

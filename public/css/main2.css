@@ -217,6 +217,11 @@ i {
     color: #F1F1F1;
 }
 
+.item h2 {
+    line-height: 0;
+    margin-left: 10px;
+}
+
 .item a,
 .item button {
     background: none;
