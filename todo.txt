@@ -4,3 +4,4 @@
 - Cancel edit bookmark should go back to tag, add too
 - Select Box color concept
 - iCheck needs editing
+- Notes view needs fixed

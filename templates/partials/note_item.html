@@ -1,6 +1,6 @@
 <div class="item-block {{ note.pk }}">
     <div class="item">
-        <a href="{{ note.get_absolute_url }}">{{ note.title }} ({{ category.0 }})</a>
+        <a href="{{ note.get_absolute_url }}">{{ note.title }}</a>
         <div class="item-extra-info">
             <em>{{ note.description|truncatechars:30 }}</em>
         </div>

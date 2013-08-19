@@ -34,3 +34,8 @@ class Note(models.Model):
     def get_delete_url(self):
         """Return the delete link for a note"""
         return ('delete-note', (), {'category': self.category, 'slug': self.slug})
+
+    @permalink
+    def get_category_url(self):
+        """Return the category link for a note"""
+        return ('view-category', (), {'category': self.category})

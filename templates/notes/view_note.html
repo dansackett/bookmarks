@@ -1,34 +1,33 @@
 {% extends 'base.html' %}
 
+{% block title %}Notes - {{ note.title }}{% endblock %}
+
 {% block content %}
-<ul>
-<div class="toolbar">
-    <div class="back-button">
-        <a href="{% url 'view-category' category.4 %}"><i class="icon-arrow-left"></i> Back to Category "{{ category.0 }}"</a>
+{% url "list-notes" as list_notes %}
+<div class="item-tools">
+    <a href="{% url 'add-note' note.category %}">Add a Note</a>
+    <a href="#" class="toggle-indv-item-tools">Edit Note</a>
+</div>
+{% include "partials/search.html" %}
+<div class="items">
+    <div class="item-block">
+        <div class="item">
+            <h2>{{ note.title }}</h2>
+            <div class="item-extra-info">
+                {{ note.description|linebreaks }}
+            </div>
+        </li>
+        <div class="indv-item-tools">
+            <ul>
+                <li><a class="tool" href="{{ note.get_edit_url }}">Edit</a></li>
+                <li>
+                    <form method="post" action="{{ note.get_delete_url }}">
+                        {% csrf_token %}
+                        <button class="link-button tool" type="submit" />Delete</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
-<li class="tag-item clearfix" style="background: {{ category.2 }};">
-    <div class="item-content">
-        <span class="title">{{ note.title }}</span> (<a style="color: #FFF;" href="#" class="manage">Manage</a>)<br />
-        {{ note.description|linebreaks }}
-    </div>
-</li>
-<li class="tag-tools closed clearfix">
-    <ul>
-        <!-- Edit Button -->
-        <li>
-            <a class="tool" href="{{ note.get_edit_url }}"><span class="link-button"><i class="icon-pencil"></i> Edit</span></a>
-        </li>
-        <!-- Delete Button -->
-        <li>
-            <form method="post" action="{{ note.get_delete_url }}">
-                {% csrf_token %}
-                <button class="link-button tool" type="submit" onclick="return confirm('Are you sure you\'d like to delete this note?')" />
-                    <i class="icon-remove"></i> Delete
-                </button>
-            </form>
-        </li>
-    </ul>
-</li>
-</ul>
 {% endblock %}
