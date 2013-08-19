@@ -206,7 +206,7 @@ i {
 }
 
 .indv-item-tools .tool:hover {
-    color: #9ECBF7;
+    color: #B8D7F5;
 }
 
 .none-found {
@@ -245,6 +245,7 @@ i {
 .count {
     float: right;
 }
+
 
 /* Reminders Stuff */
 .calendar {
@@ -298,7 +299,7 @@ i {
 
 .calendar .reminder-choice {
     float: right;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .calendar .reminder-choice li {
