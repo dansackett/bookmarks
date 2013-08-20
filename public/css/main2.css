@@ -604,7 +604,7 @@ i {
         display: block;
     }
 
-    .item a, .item button {
+    .item a {
         width: auto;
     }
 
@@ -616,6 +616,16 @@ i {
 
     .search-box {
         width: 90%;
+    }
+
+    .count {
+        display: block;
+        float: none;
+        width: 100%;
+    }
+
+    .dashboard ul li a {
+        width: auto;
     }
 }
 
