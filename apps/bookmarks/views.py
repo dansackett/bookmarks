@@ -39,10 +39,13 @@ def list_favorited_bookmarks(request, template_name='bookmarks/list_favorited_bo
 def add_bookmark(request, tag_slug=None, form_class=NewBookmarkForm,
                  template_name='bookmarks/add_bookmark.html'):
     """Add a new bookmark"""
-    try:
-        tag = Tag.objects.get(user=request.user, slug=tag_slug)
-    except ObjectDoesNotExist:
-        raise Http404
+    if tag_slug:
+        try:
+            tag = Tag.objects.get(user=request.user, slug=tag_slug)
+        except ObjectDoesNotExist:
+            raise Http404
+    else:
+        tag = None
 
     form = form_class(request.POST or None, tag=tag, user=request.user)
     if request.method == 'POST' and form.is_valid():

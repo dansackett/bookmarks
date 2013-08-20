@@ -4,6 +4,10 @@
 
 {% block content %}
     {% url 'add-bookmark' tag.slug as add_bookmark %}
-    {% url 'view-tag' tag.slug as view_tag %}
+    {% if tag %}
+        {% url 'view-tag' tag.slug as view_tag %}
+    {% else %}
+        {% url 'list-bookmarks' as view_tag %}
+    {% endif %}
     {% include "partials/form.html" with action=add_bookmark submit_text="Submit" cancel_link=view_tag %}
 {% endblock %}
