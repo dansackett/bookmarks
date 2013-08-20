@@ -178,6 +178,10 @@ i {
     margin-right: 15px;
 }
 
+.item-tools a.toggle-menu {
+    display: none;
+}
+
 .items {
     margin-top: 25px;
 }
@@ -575,34 +579,102 @@ i {
    ========================================================================== */
 
 
-@media screen and (max-width: 54em) {
-    .home .information .info-item {
-        width: 100%;
+@media screen and (max-width: 62em) {
+    .content .logo .welcome {
+        display: block;
+        font-size: 18px;
+        margin-left: 33px;
+    }
+
+    .content {
+        margin: 40px;
+    }
+
+    .content .logo {
+        margin-bottom: 20px;
+    }
+
+    .item-tools a {
+        display: none;
+        margin-bottom: 3px;
+        padding: 5px 0;
+    }
+
+    .item-tools a.toggle-menu {
+        display: block;
+    }
+
+    .item a, .item button {
+        width: auto;
+    }
+
+    .calendar .reminder-choice,
+    .calendar .reminder-date-form {
+        display: block;
+        float: none;
+    }
+
+    .search-box {
+        width: 90%;
     }
 }
 
-@media screen and (max-width: 38em) {
-    .content,
-    .home .information .info-item,
-    .home .form {
+@media screen and (max-width: 54em) {
+
+    .home {
         width: 100%;
     }
 
-    .page-title {
-        padding-right: 0;
+    .home .header div {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    .home .logo-auth {
+        text-align: center;
+    }
+
+    .home .description {
+        margin: 40px 0;
+    }
+
+    .home .description h1 {
+        font-size: 22px;
+        line-height: 0;
+    }
+
+    .home .description h2,
+    .home .information .info-item {
+        padding: 0 40px;
+        text-align: center;
+        width: auto;
+    }
+
+    .home .information .info-item {
+        margin: 10px 0;
+    }
+
+    .home .information .left {
+        margin-right: 0;
+    }
+
+    .home h3 {
+        line-height: 0;
     }
 
     .mobile-hide {
         display: none;
     }
 
-    .search-form input[type="text"] {
-        width: 50%;
+    .content {
+        margin: 20px;
     }
 
-    .content {
-        border-left: none;
-        border-right: none;
+    .content .logo .welcome {
+        display: block;
+        font-size: 18px;
+        margin-left: 33px;
     }
 }
 

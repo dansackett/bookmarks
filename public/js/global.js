@@ -151,4 +151,18 @@ $(document).ready(function() {
         });
     });
 
+    // Create menu link that's hidden
+    $('.item-tools').prepend("<a href='#' class='toggle-menu'>Menu</a>");
+
+    $('.toggle-menu').click(function() {
+        var links = $('.item-tools a');
+        if(links.eq(1).css('display') == 'none') {
+            links.css('display', 'block');
+        }
+        else {
+            links.css('display', 'none');
+            $(this).css('display', 'block');
+        }
+    });
+
 });
