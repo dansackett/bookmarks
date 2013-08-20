@@ -16,6 +16,7 @@ class NewBookmarkForm(BaseBookmarkForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        self.tag = kwargs.pop('tag', None)
         super(NewBookmarkForm, self).__init__(*args, **kwargs)
 
         self.tags_error = {'required': 'You have to choose a tag first!'}
@@ -23,6 +24,7 @@ class NewBookmarkForm(BaseBookmarkForm):
         tags = Tag.objects.filter(user=self.user)
         self.fields['tag'].choices = [(tag.pk, tag.title) for tag in tags]
         self.fields['url'].label = 'URL'
+        self.fields['tag'].initial = self.tag
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

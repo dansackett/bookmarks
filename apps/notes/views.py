@@ -62,6 +62,7 @@ def add_note(request, category, form_class=NewNoteForm,
 
     context = {
         'form': form,
+        'category': category,
     }
     return render(request, template_name, context)
 

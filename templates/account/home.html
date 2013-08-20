@@ -2,44 +2,41 @@
 
 {% block home %}
 <div class="home">
-    <div class="header">
-        <div class="header-content">
-            <h1><i class="icon-pushpin"></i><br />MyDash</h1>
-            <h2>All Your Tools In One Place</h2>
+    <div class="header clearfix">
+        <div class="logo"><i class="icon-pushpin"></i>MyDash</div>
+        <div class="nav">
             <a href="{% url 'login' %}">Login</a>
             <a href="{% url 'register' %}">Register</a>
         </div>
     </div>
     <div class="description">
-        <h3>Keep Yourself Organized Online</h3>
-        <p>MyDash is your one stop management dashboard on the web. Store your
+        <h1>All Your Tools In One Place</h1>
+        <h2>MyDash is your one stop management dashboard on the web. Store your
         bookmarks, reminders, and notes all in one place to make life simple
-        again.</p>
+        again.</h2>
     </div>
     <div class="information clearfix">
-        <div class="info-item">
-            <h3><i class="icon-bookmark"></i><br />Manage Bookmarks</h3>
+        <div class="info-item left">
+            <h3><i class="icon-bookmark"></i>Manage Bookmarks</h3>
             <p>Store your bookmarks and manage them anywhere. Group your
-            links with color-coded categories and search for them when your
-            lists start to fill up.</p>
+            links with categories and search for them when your lists start to fill up.</p>
         </div>
-        <div class="info-item">
-            <h3><i class="icon-bell-alt"></i><br />Set Reminders</h3>
-            <p>Stop forgetting things and set reminders in MyDash. Set the
+        <div class="info-item right">
+            <h3><i class="icon-bell-alt"></i>Set Reminders</h3>
+            <p>Stop forgetting things. Set the
             time, leave yourself notes and when it's time to remember,
-            we'll email you all you need to know.</p>
+            we'll email you everything you need to know.</p>
         </div>
-        <div class="info-item">
-            <h3><i class="icon-list-ul"></i><br />Create Notes</h3>
-            <p>Easily create notes about a new restaurant recommendation or jot
+        <div class="info-item left">
+            <h3><i class="icon-list-ul"></i>Create Notes</h3>
+            <p>Create notes about a restaurant recommendation or jot
             down your idea for the next big application. We'll remember it
             so you don't have to.</p>
         </div>
-        <div class="info-item">
-            <h3><i class="icon-tasks"></i><br />Todo Lists</h3>
-            <p>Have something you want to do? Todo lists are perfect
-            for keeping your tasks in order. With MyDash you can create and
-            complete tasks to stay on track</p>
+        <div class="info-item right">
+            <h3><i class="icon-tasks"></i>Todo Lists</h3>
+            <p>Make lists and stay on track with MyDash. Create todo lists and
+            access them whenever you need to check off the next task.</p>
         </div>
     </div>
 </div>

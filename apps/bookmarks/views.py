@@ -36,16 +36,22 @@ def list_favorited_bookmarks(request, template_name='bookmarks/list_favorited_bo
     return render(request, template_name, context)
 
 
-def add_bookmark(request, form_class=NewBookmarkForm,
+def add_bookmark(request, tag_slug=None, form_class=NewBookmarkForm,
                  template_name='bookmarks/add_bookmark.html'):
     """Add a new bookmark"""
-    form = form_class(request.POST or None, user=request.user)
+    try:
+        tag = Tag.objects.get(user=request.user, slug=tag_slug)
+    except ObjectDoesNotExist:
+        raise Http404
+
+    form = form_class(request.POST or None, tag=tag, user=request.user)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        return redirect('list-bookmarks')
+        return redirect('view-tag', tag_slug)
 
     context = {
         'form': form,
+        'tag': tag,
     }
     return render(request, template_name, context)
 

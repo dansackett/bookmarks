@@ -1,7 +1,9 @@
 <div class="item-block {{ reminder.pk }}">
     <div class="item">
         <a class="title" href="{{ reminder.get_absolute_url }}">{{ reminder.title }} ({{ reminder.date }})</a>
-        <div class="item-extra-info">{{ reminder.description }}</div>
+        {% if reminder.description %}
+            <div class="item-extra-info">{{ reminder.description }}</div>
+        {% endif %}
     </div>
     <div class="indv-item-tools">
         <ul>

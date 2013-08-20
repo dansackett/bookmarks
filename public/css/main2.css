@@ -127,7 +127,8 @@ i {
 }
 
 /* Dashboard Stuff */
-.logo {
+.logo,
+.logo-auth {
     font-size: 35px;
     font-weight: bold;
 }
@@ -137,7 +138,8 @@ i {
     font-weight: normal;
 }
 
-.logo a {
+.logo a,
+.logo-auth a {
     color: #F1F1F1;
 }
 
@@ -380,6 +382,58 @@ i {
     background: #609EDB;
 }
 
+.home {
+    margin: 20px auto;
+    width: 800px;
+}
+
+.home .logo {
+    font-size: 28px;
+    float: left;
+}
+
+.home .nav {
+    float: right;
+    margin: 10px 0;
+}
+
+.home .nav a {
+    margin-left: 20px;
+}
+
+.home .description {
+    margin: 100px 0 100px 0;
+    text-align: center;
+}
+
+.home .description h1 {
+    font-size: 24px;
+}
+
+.home .description h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.home .information .info-item {
+    float: left;
+    width: 350px;
+}
+
+.home .information .left {
+    margin-right: 100px;
+}
+
+.home .information h3 {
+    margin: 0;
+}
+
+.footer {
+    font-size: 14px;
+    text-align: center;
+}
+
+
 
 /* Timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
@@ -416,6 +470,7 @@ i {
     border: none;
     font-weight: bold;
     padding: 10px 20px;
+    text-shadow: 1px 1px 1px #1860A8;
     -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
             border-radius: 5px;

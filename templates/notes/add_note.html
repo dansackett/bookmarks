@@ -4,6 +4,6 @@
 
 {% block content %}
     {% url 'add-note' as add_note %}
-    {% url 'list-categories' as list_categories %}
-    {% include "partials/form.html" with action=add_note submit_text="Submit" cancel_link=list_categories %}
+    {% url 'view-category' category as view_category %}
+    {% include "partials/form.html" with action=add_note submit_text="Submit" cancel_link=view_category %}
 {% endblock %}

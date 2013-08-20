@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="item-tools">
-    <a href="{% url 'add-bookmark' %}">Add a Bookmark</a>
+    <a href="{% url 'add-bookmark-for-tag' tag.slug %}">Add a Bookmark</a>
     <a href="{% url 'list-tags' %}">View Tags</a>
     <a href="{% url 'list-bookmarks' %}">View All Bookmarks</a>
     <a href="{% url 'favorited-bookmarks' %}">View Favorited Bookmarks</a>
