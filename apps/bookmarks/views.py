@@ -49,8 +49,8 @@ def add_bookmark(request, tag_slug=None, form_class=NewBookmarkForm,
 
     form = form_class(request.POST or None, tag=tag, user=request.user)
     if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('view-tag', tag_slug)
+        bookmark = form.save()
+        return redirect('view-tag', bookmark.tag.slug)
 
     context = {
         'form': form,
