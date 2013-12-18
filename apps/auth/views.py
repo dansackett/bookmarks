@@ -5,14 +5,17 @@ from django.views.decorators.http import require_POST
 from auth.forms import LoginForm, RegistrationForm
 
 
-def login(request, template_name='auth/login.html', form_class=LoginForm):
+def login(request):
     """Renders the home/login template"""
-    form = form_class(request.POST or None)
     error = ''
+
+    form = LoginForm(request.POST or None)
+
     if request.method == 'POST' and form.is_valid():
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
         user = auth.authenticate(username=username, password=password)
+
         if user:
             auth.login(request, user)
             return redirect('user-home')
@@ -23,7 +26,7 @@ def login(request, template_name='auth/login.html', form_class=LoginForm):
         'form': form,
         'error': error,
     }
-    return render(request, template_name, context)
+    return render(request, 'auth/login.html', context)
 
 
 @require_POST
@@ -33,21 +36,23 @@ def logout(request):
     return redirect('home')
 
 
-def register(request, template_name='auth/register.html',
-             form_class=RegistrationForm):
+def register(request):
     """Allow a user to register for the site"""
-    form = form_class(request.POST or None)
+    form = RegistrationForm(request.POST or None)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
         user = auth.authenticate(username=username, password=password)
+
         if user:
             auth.login(request, user)
             return redirect('user-home')
+
         return redirect('login')
 
     context = {
         'form': form,
     }
-    return render(request, template_name, context)
+    return render(request, 'auth/register.html', context)

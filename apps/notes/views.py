@@ -1,5 +1,4 @@
-from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
 from mydash.utils import render_json
@@ -8,17 +7,17 @@ from notes.forms import NewNoteForm, EditNoteForm
 from notes.utils import search_notes, get_category_data
 
 
-def list_categories(request, template_name='notes/list_categories.html'):
+def list_categories(request):
     """Show a list of notes categories"""
     category_data = get_category_data(request.user)
 
     context = {
         'categories': category_data,
     }
-    return render(request, template_name, context)
+    return render(request, 'notes/list_categories.html', context)
 
 
-def view_category(request, category, template_name='notes/list_notes.html'):
+def view_category(request, category):
     """Show a list of notes for a category"""
     notes = Note.objects.filter(user=request.user, category=category)
 
@@ -32,15 +31,12 @@ def view_category(request, category, template_name='notes/list_notes.html'):
         'category': category,
         'category_title': category_title,
     }
-    return render(request, template_name, context)
+    return render(request, 'notes/list_notes.html', context)
 
 
-def view_note(request, category, slug, template_name='notes/view_note.html'):
+def view_note(request, category, slug):
     """Show a note"""
-    try:
-        note = Note.objects.get(user=request.user, category=category, slug=slug)
-    except Note.DoesNotExist:
-        raise Http404
+    note = get_object_or_404(Note, user=request.user, category=category, slug=slug)
 
     category = get_category_data(request.user)[category]
 
@@ -48,13 +44,13 @@ def view_note(request, category, slug, template_name='notes/view_note.html'):
         'note': note,
         'category': category,
     }
-    return render(request, template_name, context)
+    return render(request, 'notes/view_note.html', context)
 
 
-def add_note(request, category, form_class=NewNoteForm,
-             template_name='notes/add_note.html'):
+def add_note(request, category):
     """Add a new note"""
-    form = form_class(request.POST or None, category=category, user=request.user)
+    form = NewNoteForm(request.POST or None, category=category, user=request.user)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         category = form.cleaned_data.get('category')
@@ -64,18 +60,15 @@ def add_note(request, category, form_class=NewNoteForm,
         'form': form,
         'category': category,
     }
-    return render(request, template_name, context)
+    return render(request, 'notes/add_note.html', context)
 
 
-def edit_note(request, category, slug, form_class=EditNoteForm,
-             template_name='notes/edit_note.html'):
+def edit_note(request, category, slug):
     """Edit an existing note"""
-    try:
-        note = Note.objects.get(user=request.user, slug=slug)
-    except Note.DoesNotExist:
-        raise Http404
+    note = get_object_or_404(Note, user=request.user, slug=slug)
 
-    form = form_class(request.POST or None, user=request.user, instance=note)
+    form = EditNoteForm(request.POST or None, user=request.user, instance=note)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         category = form.cleaned_data.get('category')
@@ -85,13 +78,14 @@ def edit_note(request, category, slug, form_class=EditNoteForm,
         'note': note,
         'form': form,
     }
-    return render(request, template_name, context)
+    return render(request, 'notes/edit_note.html', context)
 
 
 @require_POST
 def delete_note(request, category, slug):
     """Delete a note"""
-    note = Note.objects.get(user=request.user, slug=slug)
+    note = get_object_or_404(Note, user=request.user, slug=slug)
+
     note_pk = note.pk
     note.delete()
     return render_json(note_pk)

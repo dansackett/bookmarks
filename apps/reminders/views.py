@@ -1,9 +1,8 @@
 from datetime import datetime
 from calendar import Calendar, SUNDAY
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404, HttpResponse
-from django.shortcuts import render, redirect
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
 from mydash.utils import render_json
@@ -12,7 +11,7 @@ from reminders.forms import NewReminderForm, EditReminderForm
 from reminders.utils import search_reminders, get_next_and_previous, get_months
 
 
-def list_reminders(request, template_name='reminders/list_reminders.html'):
+def list_reminders(request):
     """Show a list of all reminders for a user"""
     reminders = Reminder.objects.filter(user=request.user, sent=False)
     reminders = reminders.order_by('date')
@@ -23,26 +22,30 @@ def list_reminders(request, template_name='reminders/list_reminders.html'):
     context = {
         'reminders': reminders,
     }
-    return render(request, template_name, context)
+    return render(request, 'reminders/list_reminders.html', context)
 
 
-def reminders_calendar(request, year=datetime.now().year, month=datetime.now().month,
-                       template_name='reminders/calendar.html'):
+def reminders_calendar(request, year=datetime.now().year, month=datetime.now().month):
     """Show a calendar of all reminders for a user"""
     month = int(month)
     year = int(year)
     months = get_months()
-    years = [x for x in range(2013, 2030)]
-    m = months[str(month)]
-    # create a calendar starting with Sunday from last month
-    cal = Calendar(SUNDAY)
-    # get all the days in the calendar month and year specified
-    days = [day for day in cal.itermonthdates(year, month)]
-    # group the days into weeks going from Sunday to Saturday
-    weeks = [days[i * 7:(i + 1) * 7] for i in range((len(days) / 7 + 1))]
     today = datetime.now().date()
+
+    # Set a set of year between now and 20 years in the future
+    years = [x for x in range(datetime.now().year, datetime.now().year + 20)]
+    # Get the selected month
+    m = months[str(month)]
+    # Create a calendar starting with Sunday from the last month
+    cal = Calendar(SUNDAY)
+    # Get all the days in the calendar month and year specified
+    days = [day for day in cal.itermonthdates(year, month)]
+    # Group the days into weeks going from Sunday to Saturday
+    weeks = [days[i * 7:(i + 1) * 7] for i in range((len(days) / 7 + 1))]
+    # Find the next and previous months
     next_month, previous_month = get_next_and_previous(year, month)
 
+    # Get all of the reminders that happen in the current month
     reminders = Reminder.objects.filter(user=request.user, sent=False)
     reminder_dates = [reminder.date.date() for reminder in reminders
                       if reminder.date.date().month == month]
@@ -64,17 +67,17 @@ def reminders_calendar(request, year=datetime.now().year, month=datetime.now().m
         'reminders': reminders,
         'reminder_dates': reminder_dates,
     }
-    return render(request, template_name, context)
+    return render(request, 'reminders/calendar.html', context)
 
 
-def view_day_calendar(request, year, month, day,
-                      template_name='reminders/view_reminders_for_day.html'):
+def view_day_calendar(request, year, month, day):
     """Show a specific day from the calendar"""
     try:
         date = datetime(int(year), int(month), int(day)).date()
     except ValueError:
         raise Http404
 
+    # Get reminders for the current day
     reminders = Reminder.objects.filter(user=request.user, sent=False)
     reminders_today = [reminder for reminder in reminders
                        if reminder.date.date() == date]
@@ -83,23 +86,23 @@ def view_day_calendar(request, year, month, day,
         'reminders': reminders_today,
         'date': date,
     }
-    return render(request, template_name, context)
+    return render(request, 'reminders/view_reminders_for_day.html', context)
 
 
-def view_reminder(request, slug, template_name='reminders/view_reminder.html'):
+def view_reminder(request, slug):
     """Show a reminder"""
-    reminder = Reminder.objects.get(user=request.user, slug=slug)
+    reminder = get_object_or_404(Reminder, user=request.user, slug=slug)
 
     context = {
         'reminder': reminder,
     }
-    return render(request, template_name, context)
+    return render(request, 'reminders/view_reminder.html', context)
 
 
-def add_reminder(request, form_class=NewReminderForm,
-                 template_name='reminders/add_reminder.html'):
+def add_reminder(request):
     """Add a new reminder"""
-    form = form_class(request.POST or None, user=request.user)
+    form = NewReminderForm(request.POST or None, user=request.user)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('list-reminders')
@@ -107,18 +110,18 @@ def add_reminder(request, form_class=NewReminderForm,
     context = {
         'form': form,
     }
-    return render(request, template_name, context)
+    return render(request, 'reminders/add_reminder.html', context)
 
 
-def add_reminder_for_day(request, year, month, day, form_class=NewReminderForm,
-                         template_name='reminders/add_reminder.html'):
+def add_reminder_for_day(request, year, month, day):
     """Add a new reminder for a specific day"""
     try:
         date = datetime(int(year), int(month), int(day)).date()
     except ValueError:
         raise Http404
 
-    form = form_class(request.POST or None, user=request.user, date=date)
+    form = NewReminderForm(request.POST or None, user=request.user, date=date)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('list-reminders')
@@ -126,18 +129,15 @@ def add_reminder_for_day(request, year, month, day, form_class=NewReminderForm,
     context = {
         'form': form,
     }
-    return render(request, template_name, context)
+    return render(request, 'reminders/add_reminder.html', context)
 
 
-def edit_reminder(request, slug, form_class=EditReminderForm,
-                  template_name='reminders/edit_reminder.html'):
+def edit_reminder(request, slug):
     """Edit an existing reminder"""
-    try:
-        reminder = Reminder.objects.get(user=request.user, slug=slug)
-    except ObjectDoesNotExist:
-        raise Http404
+    reminder = get_object_or_404(Reminder, user=request.user, slug=slug)
 
-    form = form_class(request.POST or None, user=request.user, instance=reminder)
+    form = EditReminderForm(request.POST or None, user=request.user, instance=reminder)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('list-reminders')
@@ -146,22 +146,24 @@ def edit_reminder(request, slug, form_class=EditReminderForm,
         'form': form,
         'reminder': reminder,
     }
-    return render(request, template_name, context)
+    return render(request, 'reminders/edit_reminder.html', context)
 
 
 @require_POST
 def dismiss_reminder(request, slug):
     """Dismiss a reminder"""
-    reminder = Reminder.objects.get(user=request.user, slug=slug)
+    reminder = get_object_or_404(Reminder, user=request.user, slug=slug)
+
     reminder.dismissed = not reminder.dismissed
     reminder.save()
-    return HttpResponse(reminder.pk)
+    return render_json(reminder.pk)
 
 
 @require_POST
 def delete_reminder(request, slug):
     """Delete a reminder"""
-    reminder = Reminder.objects.get(user=request.user, slug=slug)
+    reminder = get_object_or_404(Reminder, user=request.user, slug=slug)
+
     reminder_pk = reminder.pk
     reminder.delete()
     return render_json(reminder_pk)

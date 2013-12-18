@@ -1,5 +1,4 @@
-from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
 from bookmarks.models import Bookmark
@@ -9,7 +8,7 @@ from tags.forms import NewTagForm, EditTagForm
 from tags.utils import search_tags
 
 
-def list_tags(request, template_name='tags/list_tags.html'):
+def list_tags(request):
     """Show a list of tags"""
     tags = Tag.objects.filter(user=request.user)
 
@@ -19,16 +18,12 @@ def list_tags(request, template_name='tags/list_tags.html'):
     context = {
         'tags': tags,
     }
-    return render(request, template_name, context)
+    return render(request, 'tags/list_tags.html', context)
 
 
-def view_tag(request, slug, template_name='tags/view_tag.html'):
+def view_tag(request, slug):
     """Show a tag's bookmarks"""
-    try:
-        tag = Tag.objects.get(user=request.user, slug=slug)
-    except Tag.DoesNotExist:
-        raise Http404
-
+    tag = get_object_or_404(Tag, user=request.user, slug=slug)
     bookmarks = Bookmark.objects.filter(user=request.user, tag=tag)
 
     if request.POST:
@@ -38,13 +33,13 @@ def view_tag(request, slug, template_name='tags/view_tag.html'):
         'bookmarks': bookmarks,
         'tag': tag,
     }
-    return render(request, template_name, context)
+    return render(request, 'tags/view_tag.html', context)
 
 
-def add_tag(request, form_class=NewTagForm,
-            template_name='tags/add_tag.html'):
+def add_tag(request):
     """Add a new tag"""
-    form = form_class(request.POST or None, user=request.user)
+    form = NewTagForm(request.POST or None, user=request.user)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('list-tags')
@@ -52,18 +47,15 @@ def add_tag(request, form_class=NewTagForm,
     context = {
         'form': form,
     }
-    return render(request, template_name, context)
+    return render(request, 'tags/add_tag.html', context)
 
 
-def edit_tag(request, slug, form_class=EditTagForm,
-             template_name='tags/edit_tag.html'):
+def edit_tag(request, slug):
     """Edit an existing tag"""
-    try:
-        tag = Tag.objects.get(user=request.user, slug=slug)
-    except Tag.DoesNotExist:
-        raise Http404
+    tag = get_object_or_404(Tag, user=request.user, slug=slug)
 
-    form = form_class(request.POST or None, user=request.user, instance=tag)
+    form = EditTagForm(request.POST or None, user=request.user, instance=tag)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('list-tags')
@@ -72,12 +64,12 @@ def edit_tag(request, slug, form_class=EditTagForm,
         'tag': tag,
         'form': form,
     }
-    return render(request, template_name, context)
+    return render(request, 'tags/edit_tag.html', context)
 
 
 @require_POST
 def delete_tag(request, slug):
     """Delete a tag"""
-    tag = Tag.objects.get(user=request.user, slug=slug)
+    tag = get_object_or_404(Tag, user=request.user, slug=slug)
     tag.delete()
     return redirect('list-tags')
