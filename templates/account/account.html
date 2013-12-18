@@ -6,24 +6,24 @@
     <div class="dashboard">
         <ul>
             <li class="item">
-                <a href="{% url 'edit-profile' %}"><i class="icon-user"></i>Profile</a><br />
+                <a href="{% url 'edit-profile' %}"><i class="fa fa-user"></i>Profile</a><br />
             </li>
             <li class="item">
-                <a href="{% url 'list-bookmarks' %}"><i class="icon-bookmark"></i>Bookmarks</a><br />
+                <a href="{% url 'list-bookmarks' %}"><i class="fa fa-bookmark"></i>Bookmarks</a><br />
             </li>
             <li class="item">
-                <a href="{% url 'calendar' %}"><i class="icon-bell-alt"></i>Reminders</a><br />
+                <a href="{% url 'calendar' %}"><i class="fa fa-bell"></i>Reminders</a><br />
             </li>
             <li class="item">
-                <a href="{% url 'list-categories' %}"><i class="icon-list-ul"></i>Notes</a><br />
+                <a href="{% url 'list-categories' %}"><i class="fa fa-list-ul"></i>Notes</a><br />
             </li>
             <li class="item">
-                <a href="{% url 'list-todolists' %}"><i class="icon-tasks"></i>Todo Lists</a><br />
+                <a href="{% url 'list-todolists' %}"><i class="fa fa-tasks"></i>Todo Lists</a><br />
             </li>
             <li class="item">
                 <form action="{% url 'logout' %}" class="form-link" method="post">
                     {% csrf_token %}
-                    <button type="submit"><i class="icon-remove-sign"></i>Logout</button>
+                    <button type="submit"><i class="fa fa-sign-out"></i>Logout</button>
                 </form>
             </li>
         </ul>
