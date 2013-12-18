@@ -1,19 +1,12 @@
-<div class="item-block {{ task.pk }}">
-    <div class="item">
+<div class="item-block row {{ task.pk }}">
+    <div class="item col-xs-11">
         <form method="post" action="{{ task.get_complete_url }}" class="complete-task">
             {% csrf_token %}
-            <button type="submit" {% if task.complete %}style="text-decoration: line-through;"{% endif %} />{{ task.task }}</button>
+            <button type="submit" {% if task.complete %}style="text-decoration: line-through;"{% endif %} />{{ task.task }}</button>  (<a href="{{ task.get_edit_url }}">Edit</a>)
         </form>
     </div>
-    <div class="indv-item-tools">
-        <ul>
-            <li><a class="tool" href="{{ task.get_edit_url }}">Edit</a></li>
-            <li>
-                <form method="post" action="{{ task.get_delete_url }}" class="delete-form">
-                    {% csrf_token %}
-                    <button class="tool" type="submit" />Delete</button>
-                </form>
-            </li>
-        </ul>
-    </div>
+    <form method="post" action="{{ task.get_delete_url }}" class="delete-form delete-item col-xs-1">
+        {% csrf_token %}
+        <button type="submit" /><i class="fa fa-times"></i></button>
+    </form>
 </div>

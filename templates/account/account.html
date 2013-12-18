@@ -1,31 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}{% if user.first_name %}{{ user.first_name }}{% if user.last_name %} {{ user.last_name }}{% endif %}{% else %}{{ user.username }}{% endif %}{% endblock %}
-
 {% block content %}
-    <div class="dashboard">
-        <ul>
-            <li class="item">
-                <a href="{% url 'edit-profile' %}"><i class="fa fa-user"></i>Profile</a><br />
-            </li>
-            <li class="item">
-                <a href="{% url 'list-bookmarks' %}"><i class="fa fa-bookmark"></i>Bookmarks</a><br />
-            </li>
-            <li class="item">
-                <a href="{% url 'calendar' %}"><i class="fa fa-bell"></i>Reminders</a><br />
-            </li>
-            <li class="item">
-                <a href="{% url 'list-categories' %}"><i class="fa fa-list-ul"></i>Notes</a><br />
-            </li>
-            <li class="item">
-                <a href="{% url 'list-todolists' %}"><i class="fa fa-tasks"></i>Todo Lists</a><br />
-            </li>
-            <li class="item">
-                <form action="{% url 'logout' %}" class="form-link" method="post">
-                    {% csrf_token %}
-                    <button type="submit"><i class="fa fa-sign-out"></i>Logout</button>
-                </form>
-            </li>
-        </ul>
+<div class="col-lg-12">
+    <div class="page-header">
+        <h1>Dashboard <small>{% if user.first_name %}{{ user.first_name }}{% if user.last_name %} {{ user.last_name }}{% endif %}{% else %}{{ user.username }}{% endif %}</small></h1>
     </div>
+
+    <div class="items">
+        <p class="none-found">Dashboard</p>
+    </div>
+</div>
 {% endblock %}

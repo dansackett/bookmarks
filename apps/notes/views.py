@@ -67,6 +67,8 @@ def edit_note(request, category, slug):
     """Edit an existing note"""
     note = get_object_or_404(Note, user=request.user, slug=slug)
 
+    category = note.category
+
     form = EditNoteForm(request.POST or None, user=request.user, instance=note)
 
     if request.method == 'POST' and form.is_valid():
@@ -77,6 +79,7 @@ def edit_note(request, category, slug):
     context = {
         'note': note,
         'form': form,
+        'category': category,
     }
     return render(request, 'notes/edit_note.html', context)
 

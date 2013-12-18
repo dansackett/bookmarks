@@ -1,16 +1,12 @@
-<div class="item-block {{ todolist.pk }}">
-    <div class="item">
-        <a href="{{ todolist.get_absolute_url }}">{{ todolist.title }} <span class="count">{{ todolist.get_completed_tasks_count }}/{{ todolist.get_tasks_count }}</span></a>
+<div class="item-block row">
+    <div class="left-tool col-xs-1">
+        <span class="count">{{ todolist.get_completed_tasks_count }}/{{ todolist.get_tasks_count }}</span>
     </div>
-    <div class="indv-item-tools {{ todolist.pk }}">
-        <ul>
-            <li><a class="tool" href="{{ todolist.get_edit_url }}">Edit</a></li>
-            <li>
-                <form method="post" action="{{ todolist.get_delete_url }}" class="delete-form">
-                    {% csrf_token %}
-                    <button class="tool" type="submit" />Delete</button>
-                </form>
-            </li>
-        </ul>
+    <div class="item col-xs-10">
+        <a class="title" href="{{ todolist.get_absolute_url }}">{{ todolist.title }}</a> (<a href="{{ todolist.get_edit_url }}">Edit</a>)
     </div>
+    <form method="post" action="{{ todolist.get_delete_url }}" class="delete-form delete-item col-xs-1">
+        {% csrf_token %}
+        <button type="submit" /><i class="fa fa-times"></i></button>
+    </form>
 </div>

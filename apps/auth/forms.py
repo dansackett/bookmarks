@@ -12,6 +12,12 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput,
                                error_messages={'required': 'Password is required.'})
 
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
 
 class RegistrationForm(forms.Form):
     help_text = {
@@ -25,6 +31,12 @@ class RegistrationForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput,
                                help_text=help_text['password'])
     confirm_password = forms.CharField(widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
 
     def clean_username(self):
         username = self.cleaned_data.get('username')

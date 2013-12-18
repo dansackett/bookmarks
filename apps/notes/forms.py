@@ -26,6 +26,9 @@ class NewNoteForm(BaseNoteForm):
         super(NewNoteForm, self).__init__(*args, **kwargs)
         self.fields['category'].initial = self.category
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
     def clean_title(self):
         title = self.cleaned_data.get('title')
 
@@ -51,6 +54,8 @@ class EditNoteForm(BaseNoteForm):
         super(EditNoteForm, self).__init__(*args, **kwargs)
         self.fields['category'].initial = self.instance.category
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

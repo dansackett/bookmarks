@@ -79,26 +79,6 @@ $(document).ready(function() {
         sliderAccessArgs: { touchonly: false }
     });
 
-    // Set initial color picked color to color already selected
-    var initial_color = $('#id_hex_code').val();
-    $('#id_hex_code').css('background', '#' + initial_color);
-
-    // jquery color picker
-    $('#id_hex_code').ColorPicker({
-        onChange: function(hsb, hex, rgb) {
-            $('#id_hex_code').css('backgroundColor', '#' + hex);
-            $('#id_hex_code').val(hex);
-        },
-    })
-    .bind('keyup', function(){
-        $(this).ColorPickerSetColor(this.value);
-    });
-
-    $('.calendar td').click(function(){
-        var url = $(this).find('a').attr('href');
-        window.open(url, "_self");
-    });
-
 
     ///////////////////////////////////////////
     ////////////// App Functions //////////////
@@ -151,18 +131,12 @@ $(document).ready(function() {
         });
     });
 
-    // Create menu link that's hidden
-    $('.item-tools').prepend("<a href='#' class='toggle-menu'>Menu</a>");
-
-    $('.toggle-menu').click(function() {
-        var links = $('.item-tools a');
-        if(links.eq(1).css('display') == 'none') {
-            links.css('display', 'block');
-        }
-        else {
-            links.css('display', 'none');
-            $(this).css('display', 'block');
-        }
+    $('.search-box').parents().eq(1).submit(function() {
+        return false;
     });
 
+
+    ///////////////////////////////////////////
+    //////////// General Functions ////////////
+    ///////////////////////////////////////////
 });

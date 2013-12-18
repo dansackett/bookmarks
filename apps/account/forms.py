@@ -23,6 +23,9 @@ class ProfileForm(forms.Form):
         kwargs['initial'] = self._build_initial()
         super(ProfileForm, self).__init__(*args, **kwargs)
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
     def _build_initial(self):
         user = self.user
         initial = {

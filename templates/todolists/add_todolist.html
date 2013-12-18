@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Todo Lists - Add Todolist {% endblock %}
-
 {% block content %}
-    {% url 'add-todolist' as add_todolist %}
-    {% url 'list-todolists' as list_todolists %}
-    {% include "partials/form.html" with action=add_todolist submit_text="Submit" cancel_link=list_todolists %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Todo Lists <small>Add List</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'list-todolists' %}">View All Lists</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% url 'add-todolist' as add_todolist %}
+        {% url 'list-todolists' as list_todolists %}
+        {% include "partials/form.html" with action=add_todolist submit_text="Submit" cancel_link=list_todolists %}
+    </div>
+</div>
 {% endblock %}

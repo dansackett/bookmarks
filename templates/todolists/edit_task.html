@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Todo Lists - Edit Task{% endblock %}
-
 {% block content %}
-{% url "view-todolist" todolist.slug as view_todolist %}
-    {% include "partials/form.html" with action=task.get_edit_url submit_text="Submit" cancel_link=view_todolist %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Todo Lists <small>Edit Task</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'view-todolist' todolist.slug %}">View List</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% url "view-todolist" todolist.slug as view_todolist %}
+        {% include "partials/form.html" with action=task.get_edit_url submit_text="Submit" cancel_link=view_todolist %}
+    </div>
+</div>
 {% endblock %}

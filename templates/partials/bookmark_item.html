@@ -1,30 +1,23 @@
-<div class="item-block">
-    <div class="item">
+<div class="item-block row">
+    <div class="left-tool double col-xs-1">
+        <form method="post" action="{{ bookmark.get_favorite_url }}" class="favorite-bookmark {{ bookmark.pk }}">
+            {% csrf_token %}
+            <button class="link-button tool" type="submit" />
+                {% if bookmark.favorited %}<i class="star fa fa-star"></i>{% else %}<i class="star fa fa-star-o"></i>{% endif %}
+            </button>
+        </form>
+    </div>
+    <div class="item col-xs-10">
         <span class="hidden" >{{ bookmark.tag }}</span>
-        <a class="title" href="{{ bookmark.url }}" target="_blank">{{ bookmark.title }}</a>
+        <a class="title" href="{{ bookmark.url }}" target="_blank">{{ bookmark.title }}</a> (<a href="{{ bookmark.get_edit_url }}">Edit</a>)
         {% if bookmark.description %}
             <div class="item-extra-info">
                 <em>{{ bookmark.description }}</em><br />
             </div>
         {% endif %}
     </div>
-    <div class="indv-item-tools">
-        <ul>
-            <li>
-                <form method="post" action="{{ bookmark.get_favorite_url }}" class="favorite-bookmark {{ bookmark.pk }}">
-                    {% csrf_token %}
-                    <button class="link-button tool" type="submit" />
-                        {% if bookmark.favorited %}<i class="star icon-star"></i>{% else %}<i class="star icon-star-empty"></i>{% endif %}Favorite
-                    </button>
-                </form>
-            </li>
-            <li><a class="tool" href="{{ bookmark.get_edit_url }}">Edit</a></li>
-            <li>
-                <form method="post" action="{{ bookmark.get_delete_url }}" class="delete-form">
-                    {% csrf_token %}
-                    <button class="tool" type="submit" />Delete</button>
-                </form>
-            </li>
-        </ul>
-    </div>
+    <form method="post" action="{{ bookmark.get_delete_url }}" class="delete-form delete-item double col-xs-1">
+        {% csrf_token %}
+        <button type="submit" /><i class="fa fa-times"></i></button>
+    </form>
 </div>

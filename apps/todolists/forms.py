@@ -17,6 +17,9 @@ class NewTodoListForm(BaseTodoListForm):
         self.user = kwargs.pop('user', None)
         super(NewTodoListForm, self).__init__(*args, **kwargs)
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
     def clean_title(self):
         title = self.cleaned_data.get('title')
 
@@ -40,6 +43,9 @@ class EditTodoListForm(BaseTodoListForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(EditTodoListForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
@@ -75,6 +81,9 @@ class NewTaskForm(BaseTaskForm):
         self.todolist = kwargs.pop('todolist', None)
         super(NewTaskForm, self).__init__(*args, **kwargs)
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
     def clean_task(self):
         task = self.cleaned_data.get('task')
 
@@ -100,6 +109,9 @@ class EditTaskForm(BaseTaskForm):
         self.user = kwargs.pop('user', None)
         self.todolist = kwargs.pop('todolist', None)
         super(EditTaskForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
 
     def clean_task(self):
         task = self.cleaned_data.get('task')

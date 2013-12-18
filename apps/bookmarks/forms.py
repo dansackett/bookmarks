@@ -26,6 +26,9 @@ class NewBookmarkForm(BaseBookmarkForm):
         self.fields['url'].label = 'URL'
         self.fields['tag'].initial = self.tag
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
     def clean_title(self):
         title = self.cleaned_data.get('title')
 
@@ -51,6 +54,9 @@ class EditBookmarkForm(BaseBookmarkForm):
         super(EditBookmarkForm, self).__init__(*args, **kwargs)
         tags = Tag.objects.filter(user=self.user)
         self.fields['tag'].choices = [(tag.pk, tag.title) for tag in tags]
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

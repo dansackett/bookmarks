@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}Bookmarks - Edit Bookmark{% endblock %}
-
 {% block content %}
-    {% include "partials/form.html" with action=bookmark.get_edit_url submit_text="Submit" cancel_link=bookmark.get_tag_url %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Bookmarks <small>Edit Bookmark</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'list-bookmarks' %}">View All Bookmarks</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% include "partials/form.html" with action=bookmark.get_edit_url submit_text="Submit" cancel_link=bookmark.get_tag_url %}
+    </div>
+</div>
 {% endblock %}

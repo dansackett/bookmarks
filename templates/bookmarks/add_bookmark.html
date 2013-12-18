@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}Bookmarks - Add Bookmark{% endblock %}
-
 {% block content %}
-    {% url 'add-bookmark' tag.slug as add_bookmark %}
-    {% if tag %}
-        {% url 'view-tag' tag.slug as view_tag %}
-    {% else %}
-        {% url 'list-bookmarks' as view_tag %}
-    {% endif %}
-    {% include "partials/form.html" with action=add_bookmark submit_text="Submit" cancel_link=view_tag %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Bookmarks <small>Add Bookmark</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'list-bookmarks' %}">View All Bookmarks</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% url 'add-bookmark' tag.slug as add_bookmark %}
+        {% if tag %}
+            {% url 'view-tag' tag.slug as view_tag %}
+        {% else %}
+            {% url 'list-bookmarks' as view_tag %}
+        {% endif %}
+        {% include "partials/form.html" with action=add_bookmark submit_text="Submit" cancel_link=view_tag %}
+    </div>
+</div>
 {% endblock %}

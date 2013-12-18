@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}Bookmark Tags{% endblock %}
-
 {% block content %}
-{% url "list-tags" as list_tags %}
-<div class="item-tools">
-    <a href="{% url 'add-tag' %}">Add a Tag</a>
-    <a href="{% url 'list-bookmarks' %}">View All Bookmarks</a>
-    <a href="{% url 'favorited-bookmarks' %}">View Favorited Bookmarks</a>
-    {% if tags %}<a href="#" class="toggle-indv-item-tools">Edit Items</a>{% endif %}
-</div>
-{% include "partials/search.html" %}
-<div class="items">
-    {% for tag in tags %}
-        {% include "partials/tag_item.html" %}
-    {% empty %}
-        <div class="none-found">No tags found</div>
-    {% endfor %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Bookmarks <small>View Tags</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'add-tag' %}">Add a Tag</a>
+        </div>
+    </div>
+
+    {% include "partials/search.html" %}
+
+    <div class="items container">
+        {% for tag in tags %}
+            {% include "partials/tag_item.html" %}
+        {% empty %}
+            <div class="none-found">No tags found</div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

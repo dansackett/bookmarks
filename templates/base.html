@@ -9,27 +9,64 @@
 
         <link rel="shortcut icon" type="image/x-icon" href="{{ MEDIA_URL }}favicon.ico">
 
+        <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600'>
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/normalize.css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/grey.css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/custom-theme/jquery-ui-1.10.3.custom.min.css">
-        <link rel="stylesheet" href="{{ MEDIA_URL }}css/main2.css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         {% block home %}{% endblock %}
-        <div class="content">
-            {% if user.is_authenticated %}
-                <div class="logo">
-                    <a href="{% url 'home' %}"><i class="icon-pushpin"></i>MyDash: <span class="welcome">{% block title %}{% endblock %}</span></a>
+
+        {% if user.is_authenticated %}
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-thumb-tack"></i> MyDash</a>
                 </div>
-            {% endif %}
-            {% block content%}
-                <p>Sorry, no content!</p>
-            {% endblock %}
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'edit-profile' %}">Profile</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bookmarks <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'list-bookmarks' %}">View All Bookmarks</a></li>
+                                <li><a href="{% url 'favorited-bookmarks' %}">View Favorited Bookmarks</a></li>
+                                <li><a href="{% url 'list-tags' %}">View Tags</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'calendar' %}">Reminders</a></li>
+                        <li><a href="{% url 'list-categories' %}">Notes</a></li>
+                        <li><a href="{% url 'list-todolists' %}">Todo Lists</a></li>
+                    </ul>
+                    <form action="{% url 'logout' %}" method="post" class="navbar-form navbar-right" role="search">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fa fa-lock"></i> Logout</button>
+                    </form>
+                </div>
+            </div>
         </div>
+        {% endif %}
+
+        <div class="container">
+            <div class="row">
+                {% block content%}
+                    <p>Sorry, no content!</p>
+                {% endblock %}
+            </div>
+        </div>
+
         {% block footer %}
         {% endblock %}
 
@@ -37,6 +74,7 @@
         <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
         <script src="{{ MEDIA_URL }}js/jquery.icheck.min.js"></script>
         <script src="{{ MEDIA_URL }}js/jquery-ui-timepicker.min.js"></script>
+        <script src="{{ MEDIA_URL }}js/bootstrap.min.js"></script>
         <script src="{{ MEDIA_URL }}js/global.js"></script>
 
         <script type="text/javascript">

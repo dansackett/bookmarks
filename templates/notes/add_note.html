@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %}Notes - Add a Note {% endblock %}
-
 {% block content %}
-    {% url 'add-note' as add_note %}
+<div class="col-lg-12">
     {% url 'view-category' category as view_category %}
-    {% include "partials/form.html" with action=add_note submit_text="Submit" cancel_link=view_category %}
+
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Notes <small>Add Note</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{{ view_category }}">View Notes for "{{ category.title }}"</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% url 'add-note' as add_note %}
+        {% include "partials/form.html" with action=add_note submit_text="Submit" cancel_link=view_category %}
+    </div>
+</div>
 {% endblock %}

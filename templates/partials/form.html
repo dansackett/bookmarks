@@ -1,18 +1,14 @@
-<form action="{{ action }}" method="{{ method|default:'post' }}" class="form">
+<form action="{{ action }}" method="{{ method|default:'post' }}" role="form">
     {% csrf_token %}
     {% if form.non_field_errors %}
         <div class="non-field-errors">
             {{ form.non_field_errors }}
-            <ul>
-                <li>{{ error }}</li>
-            </ul>
+            <ul><li>{{ error }}</li></ul>
         </div>
     {% elif error %}
         <div class="non-field-errors">
             {{ form.non_field_errors }}
-            <ul>
-                <li>{{ error }}</li>
-            </ul>
+            <ul><li>{{ error }}</li></ul>
         </div>
     {% endif %}
 
@@ -21,27 +17,21 @@
     {% endfor %}
 
     {% for field in form.visible_fields %}
-        <div class="field-wrapper{% if field.errors|length %} error{% endif %} clearfix">
-            <div class="field-label">{{ field.label_tag }}:</div>
-            <div class="field-widget">{{ field }}</div>
-            <div class="field-additional">
-                <div class="field-help-text">{{ field.help_text }}</div>
-                {% if field.errors %}
-                <div class="field-errors">
-                    {% for error in field.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-                {% endif %}
+        <div class="form-group{% if field.errors|length %} error{% endif %} clearfix">
+            {{ field.label_tag }}
+            {{ field }}
+            <p class="help-block">{{ field.help_text }}</p>
+            {% if field.errors %}
+            <div class="field-errors">
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
     {% endfor %}
+    <button type="submit" class="btn btn-green">{{ submit_text|default:'Submit' }}</button>
+    {% if cancel != 'None' %}<a class="btn btn-red" href="{{ cancel_link }}">Cancel</a>{% endif %}
 
-    <div class="buttons clearfix">
-        <ul>
-            <li><input type="submit" class="btn" name="submit" value="{{ submit_text|default:'Submit' }}" /></li>
-            <li>{% if cancel != 'None' %}<a class="btn" href="{{ cancel_link }}">Cancel</a>{% endif %}</li>
-            <li>{% block extra_buttons %}{% endblock %}</li>
-        </ul>
-    </div>
+    {% block extra_buttons %}{% endblock %}
 </form>

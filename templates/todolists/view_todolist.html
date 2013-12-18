@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Todo Lists - {{ todolist.title }}{% endblock %}
-
 {% block content %}
-<div class="item-tools">
-    <a href="{% url 'add-task' todolist.slug %}">Add a Task</a>
-    <a href="{% url 'list-todolists' %}">Back to Todo Lists</a>
-    {% if tasks %}<a href="#" class="toggle-indv-item-tools">Edit Items</a>{% endif %}
-</div>
-<div class="items">
-    {% for task in tasks %}
-        {% include "partials/task_item.html" %}
-    {% empty %}
-        <div class="none-found">No tasks found</div>
-    {% endfor %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Todo Lists <small>{{ todolist.title }}</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'add-task' todolist.slug %}">Add a Task</a>
+        </div>
+    </div>
+
+    <div class="items container">
+        {% for task in tasks %}
+            {% include "partials/task_item.html" %}
+        {% empty %}
+            <div class="none-found">No tasks found</div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

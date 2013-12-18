@@ -21,6 +21,9 @@ class NewReminderForm(BaseReminderForm):
         super(NewReminderForm, self).__init__(*args, **kwargs)
         self.fields['date'].initial = self.date
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
     def clean_title(self):
         title = self.cleaned_data.get('title')
 
@@ -43,6 +46,9 @@ class EditReminderForm(BaseReminderForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(EditReminderForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
