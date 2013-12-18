@@ -1,10 +1,10 @@
 -r base.txt
 
-Werkzeug==0.6.2
-cov-core==1.7
-coverage==3.6
-django-debug-toolbar
-django-extensions==1.1.1
-pytest==2.3.4
-pytest-cov==1.6
-pytest-django==2.2.0
+Werkzeug
+cov-core
+coverage
+-e git+https://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar
+django-extensions
+pytest
+pytest-cov
+pytest-django

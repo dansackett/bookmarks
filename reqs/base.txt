@@ -1,6 +1,4 @@
-Django==1.5
+Django==1.6.1
 MySQL-python==1.2.3
-South==0.7.6
-py==1.4.13
-wsgiref==0.1.2
-Fabric==1.6.0
+South==0.8.2
+Fabric
