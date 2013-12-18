@@ -8,3 +8,4 @@ django-extensions
 pytest
 pytest-cov
 pytest-django
+Fabric
