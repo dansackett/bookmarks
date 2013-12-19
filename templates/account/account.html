@@ -20,13 +20,13 @@
             <div class="col-sm-2 dashboard-stat">
                 <a href="{% url "list-bookmarks" %}">
                     <span class="count">{{ bookmarks_count }}</span>
-                    <span class="type">Bookmark{% if bookmarks_count != 0 %}s{% endif %}</span>
+                    <span class="type">Bookmark{% if bookmarks_count != 1 %}s{% endif %}</span>
                 </a>
             </div>
             <div class="col-sm-2 dashboard-stat">
                 <a href="{% url "list-tags" %}">
                     <span class="count">{{ tags_count }}</span>
-                    <span class="type">Tag{% if tags_count != 0 %}s{% endif %}</span>
+                    <span class="type">Tag{% if tags_count != 1 %}s{% endif %}</span>
                 </a>
             </div>
             <div class="col-sm-2 dashboard-stat">
@@ -38,19 +38,19 @@
             <div class="col-sm-2 dashboard-stat">
                 <a href="{% url "calendar" %}">
                     <span class="count">{{ reminders_count }}</span>
-                    <span class="type">Reminder{% if reminders_count != 0 %}s{% endif %}</span>
+                    <span class="type">Reminder{% if reminders_count != 1 %}s{% endif %}</span>
                 </a>
             </div>
             <div class="col-sm-2 dashboard-stat">
                 <a href="{% url "list-categories" %}">
                     <span class="count">{{ notes_count }}</span>
-                    <span class="type">Note{% if notes_count != 0 %}s{% endif %}</span>
+                    <span class="type">Note{% if notes_count != 1 %}s{% endif %}</span>
                 </a>
             </div>
             <div class="col-sm-2 dashboard-stat">
                 <a href="{% url "list-todolists" %}">
                     <span class="count">{{ todolists_count }}</span>
-                    <span class="type">Todo List{% if todolists_count != 0 %}s{% endif %}</span>
+                    <span class="type">Todo List{% if todolists_count != 1 %}s{% endif %}</span>
                 </a>
             </div>
         </div>
