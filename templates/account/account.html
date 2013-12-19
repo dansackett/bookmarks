@@ -10,7 +10,7 @@
     <div class="items container today-reminders">
         <h2>You have {% if reminders|length > 1 %}Reminders{% else %}a Reminder{% endif %} set for Today</h2>
         {% for reminder in reminders %}
-        <p>{{ reminder.title }}</p>
+        <p><a href="{{ reminder.get_absolute_url }}">{{ reminder.title }}</a></p>
         {% endfor %}
     </div>
     {% endif %}

@@ -170,6 +170,27 @@ select {
     background-color: #F96B5C;
 }
 
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border: none;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #F96B5C;
+    border: none;
+    outline: none;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFF;
+}
+
+.container>.navbar-header,
+.container>.navbar-collapse {
+    padding: 0 20px;
+}
+
 .navbar-brand {
     font-weight: 700;
 }
@@ -366,6 +387,10 @@ select {
 .today-reminders{
     margin-bottom: 30px;
     padding: 20px;
+}
+
+.today-reminders h2 {
+    margin-top: 0;
 }
 
 .calendar-header {
@@ -645,10 +670,41 @@ select {
    ========================================================================== */
 
 
-@media screen and (max-width: 62em) {
+@media screen and (max-width: 50em) {
+    .page-header .pull-left {
+        display: block;
+        float: none !important;
+    }
+
+    .page-header .pull-right {
+        display: block;
+        float: none !important;
+        margin-bottom: 20px;
+    }
 }
 
 @media screen and (max-width: 54em) {
+
+    .today-reminders h2 {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .dashboard-stat {
+        border-left: none;
+        border-top: 1px solid #DDD;
+        padding: 10px 0;
+    }
+
+    .dashboard-stat:first-child {
+        border-top: none;
+        padding: 0 0 10px 0;
+    }
+
+    .reminder-date-form select,
+    .reminder-date-form input {
+        margin-bottom: 10px;
+    }
 }
 
 
