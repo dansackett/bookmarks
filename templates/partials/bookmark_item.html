@@ -1,4 +1,4 @@
-<div class="item-block row">
+<div class="item-block row {{ bookmark.pk }}">
     <div class="left-tool double col-xs-1">
         <form method="post" action="{{ bookmark.get_favorite_url }}" class="favorite-bookmark {{ bookmark.pk }}">
             {% csrf_token %}

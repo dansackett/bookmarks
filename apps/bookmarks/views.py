@@ -90,5 +90,6 @@ def delete_bookmark(request, slug, tag_slug):
     tag = get_object_or_404(Tag, user=request.user, slug=tag_slug)
     bookmark = get_object_or_404(Bookmark, user=request.user, tag=tag, slug=slug)
 
+    bookmark_pk = bookmark.pk
     bookmark.delete()
-    return redirect('list-bookmarks')
+    return render_json(bookmark_pk)

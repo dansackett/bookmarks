@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Reminders - Add Reminder{% endblock %}
-
 {% block content %}
-    {% url 'add-reminder' as add_reminder %}
-    {% url 'list-reminders' as list_reminders %}
-    {% include "partials/form.html" with action=add_reminder submit_text="Submit" cancel_link=list_reminders %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Reminders <small>Add Reminder</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'list-reminders' %}">View List</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% url 'add-reminder' as add_reminder %}
+        {% if date %}
+            {% url 'calendar' as calendar %}
+            {% include "partials/form.html" with action=add_reminder submit_text="Submit" cancel_link=calendar %}
+        {% else %}
+            {% url 'list-reminders' as list_reminders %}
+            {% include "partials/form.html" with action=add_reminder submit_text="Submit" cancel_link=list_reminders %}
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

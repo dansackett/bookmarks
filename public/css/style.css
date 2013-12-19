@@ -163,6 +163,23 @@ select {
     margin: 0;
 }
 
+.dashboard-stats {
+    padding: 20px;
+}
+
+.dashboard-stat {
+    border-left: 1px solid #DDD;
+    text-align: center;
+}
+
+.dashboard-stat:first-child {
+    border-left: none;
+}
+
+.dashboard-stat .count {
+    display: block;
+}
+
 .items {
     background: #FFF;
     border: 1px solid #DDD;
@@ -224,70 +241,81 @@ select {
 
 
 /* Reminders Stuff */
-.calendar {
-    margin-left: 35px;
+.calendar-header {
+    padding: 20px;
+}
+
+.calendar-header div {
+    margin: 0;
+    padding: 0;
+}
+
+.calendar-title h2 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.calendar-table {
+    margin: 20px;
 }
 
 .calendar table {
-    border: 1px solid #9ECBF7;
-    width: 100%;
+    border: 1px solid #CCC;
 }
 
 .calendar table thead {
-    background: #9ECBF7;
-    border-bottom: 1px solid #9ECBF7;
+    background: #DDD;
+    border-bottom: 1px solid #DDD;
     font-size: 18px;
 }
 
 .calendar table th {
-    border-right: 1px solid #9ECBF7;
+    border-right: 1px solid #CCC;
+    text-align: center;
 }
 
 .calendar table tr {
-    border: 1px solid #9ECBF7;
+    border: 1px solid #CCC;
 }
 
 .calendar table td {
-    border: 1px solid #9ECBF7;
+    border: 1px solid #CCC;
     text-align: center;
 }
 
 .calendar table a {
+    color: #171D1F;
     display: inline-block;
     padding: 20px 0;
     width: 100%;
 }
 
 .calendar table td.reminder a {
-    background: #9ECBF7;
-    color: #F1F1F1;
+    background: #CCC;
+    color: #171D1F;
 }
 
 .calendar table td a:hover,
 .calendar table td.today a {
-    background: #1E63A8;
+    background: #54BB87;
+    color: #FFF;
+}
+
+.calendar-form {
+    margin: 20px;
 }
 
 .calendar .reminder-date-form {
-    float: left;
-    margin-top: 20px;
+    padding: 0;
 }
 
-.calendar .reminder-choice {
-    float: right;
-    margin-top: 30px;
-}
-
-.calendar .reminder-choice li {
-    display: inline-block;<i class="fa fa-times"></i>
-}
-
-.calendar .reminder-choice .previous {
-    margin-right: 50px;
+.calendar .next {
+    text-align: right;
 }
 
 
-/* Seasearch-form rch Form Stuff */
+/* Search Form Stuff */
 .search-form.col-xs-12 {
     padding: 0;
 }
@@ -299,6 +327,19 @@ select {
 
 
 /* Form Stuff */
+.completed {
+    background: #EEE;
+}
+
+.completed button {
+    color: #BBB;
+    text-decoration: line-through;
+}
+
+.complete-task button {
+    background: none;
+    border: none;
+}
 
 
 /* Timepicker */

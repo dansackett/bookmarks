@@ -27,14 +27,14 @@ $(document).ready(function() {
         var current_class = icon.attr('class');
 
         // If bookmark is currently starred, change to un-starred
-        if (current_class == 'star icon-star'){
-            icon.removeClass('icon-star');
-            icon.addClass('icon-star-empty');
+        if (current_class == 'star fa fa-star'){
+            icon.removeClass('fa-star');
+            icon.addClass('fa-star-o');
         }
         // If bookmark is not currently starred, change to
         else {
-            icon.removeClass('icon-star-empty');
-            icon.addClass('icon-star');
+            icon.removeClass('fa-star-o');
+            icon.addClass('fa-star');
         }
     };
 
@@ -44,11 +44,11 @@ $(document).ready(function() {
     function complete_task(response) {
         var task = $('.' + response + ' .item button');
 
-        if (task.css('text-decoration') == 'line-through') {
-            task.css('text-decoration', 'none');
+        if (task.parents().eq(2).hasClass('completed')) {
+            task.parents().eq(2).removeClass('completed');
         }
         else {
-            task.css('text-decoration', 'line-through');
+            task.parents().eq(2).addClass('completed');
         }
     };
 
@@ -68,8 +68,8 @@ $(document).ready(function() {
 
     // Use iCheck for checkboxes
     $('input').iCheck({
-        checkboxClass: 'icheckbox_square-grey',
-        radioClass: 'iradio_square-grey',
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green',
     });
 
     // jquery UI datepicker

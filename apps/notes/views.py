@@ -65,7 +65,7 @@ def add_note(request, category):
 
 def edit_note(request, category, slug):
     """Edit an existing note"""
-    note = get_object_or_404(Note, user=request.user, slug=slug)
+    note = get_object_or_404(Note, user=request.user, category=category, slug=slug)
 
     category = note.category
 
@@ -87,7 +87,7 @@ def edit_note(request, category, slug):
 @require_POST
 def delete_note(request, category, slug):
     """Delete a note"""
-    note = get_object_or_404(Note, user=request.user, slug=slug)
+    note = get_object_or_404(Note, user=request.user, category=category, slug=slug)
 
     note_pk = note.pk
     note.delete()

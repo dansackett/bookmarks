@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
+from mydash.utils import render_json
 from bookmarks.models import Bookmark
 from bookmarks.utils import search_bookmarks
 from tags.models import Tag
@@ -71,5 +72,7 @@ def edit_tag(request, slug):
 def delete_tag(request, slug):
     """Delete a tag"""
     tag = get_object_or_404(Tag, user=request.user, slug=slug)
+
+    tag_pk = tag.pk
     tag.delete()
-    return redirect('list-tags')
+    return render_json(tag_pk)

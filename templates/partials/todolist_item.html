@@ -1,4 +1,4 @@
-<div class="item-block row">
+<div class="item-block row {{ todolist.pk }}">
     <div class="left-tool col-xs-1">
         <span class="count">{{ todolist.get_completed_tasks_count }}/{{ todolist.get_tasks_count }}</span>
     </div>

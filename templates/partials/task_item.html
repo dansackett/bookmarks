@@ -1,8 +1,8 @@
-<div class="item-block row {{ task.pk }}">
+<div class="item-block row {{ task.pk }} {{ task.complete|yesno:'completed,' }}">
     <div class="item col-xs-11">
         <form method="post" action="{{ task.get_complete_url }}" class="complete-task">
             {% csrf_token %}
-            <button type="submit" {% if task.complete %}style="text-decoration: line-through;"{% endif %} />{{ task.task }}</button>  (<a href="{{ task.get_edit_url }}">Edit</a>)
+            <button type="submit">{{ task.task }}</button>  (<a href="{{ task.get_edit_url }}">Edit</a>)
         </form>
     </div>
     <form method="post" action="{{ task.get_delete_url }}" class="delete-form delete-item col-xs-1">

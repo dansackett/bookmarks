@@ -128,6 +128,7 @@ def add_reminder_for_day(request, year, month, day):
 
     context = {
         'form': form,
+        'date': date,
     }
     return render(request, 'reminders/add_reminder.html', context)
 

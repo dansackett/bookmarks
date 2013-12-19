@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}Reminders - List View{% endblock %}
-
 {% block content %}
-{% url "list-reminders" as list_reminders %}
-<div class="item-tools">
-    <a href="{% url 'add-reminder' %}">Add a Reminder</a>
-    <a href="{% url 'list-reminders' %}">List View</a>
-    <a href="{% url 'calendar' %}">Calendar View</a>
-    {% if reminders %}<a href="#" class="toggle-indv-item-tools">Edit Items</a>{% endif %}
-</div>
-{% include "partials/search.html" %}
-<div class="items">
-    {% for reminder in reminders %}
-        {% include "partials/reminder_item.html" %}
-    {% empty %}
-        <div class="none-found">No reminders found</div>
-    {% endfor %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Reminders <small>List View</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'add-reminder' %}">Add Reminder</a>
+        </div>
+    </div>
+
+    {% include "partials/search.html" %}
+
+    <div class="items container">
+        {% for reminder in reminders %}
+            {% include "partials/reminder_item.html" %}
+        {% empty %}
+            <div class="none-found">No reminders found</div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

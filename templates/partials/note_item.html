@@ -2,7 +2,7 @@
     <div class="item col-xs-11">
         <a class="title" href="{{ note.get_absolute_url }}">{{ note.title }}</a> (<a href="{{ note.get_edit_url }}">Edit</a>)
     </div>
-    <form method="post" action="{{ bookmark.get_delete_url }}" class="delete-form delete-item col-xs-1">
+    <form method="post" action="{{ note.get_delete_url }}" class="delete-form delete-item col-xs-1">
         {% csrf_token %}
         <button type="submit" /><i class="fa fa-times"></i></button>
     </form>

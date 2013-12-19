@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Reminders - Edit Reminder{% endblock %}
-
 {% block content %}
-    {% url 'list-reminders' as list_reminders %}
-    {% include "partials/form.html" with action=reminder.get_edit_url submit_text="Submit" cancel_link=list_reminders %}
+<div class="col-lg-12">
+    <div class="page-header clearfix container">
+        <h1 class="pull-left">Reminders <small>Edit Reminder</small></h1>
+        <div class="pull-right">
+            <a class="btn btn-green" href="{% url 'list-reminders' %}">View List</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% url 'list-reminders' as list_reminders %}
+        {% include "partials/form.html" with action=reminder.get_edit_url submit_text="Submit" cancel_link=list_reminders %}
+    </div>
+</div>
 {% endblock %}

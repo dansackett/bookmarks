@@ -6,8 +6,45 @@
         <h1>Dashboard <small>{% if user.first_name %}{{ user.first_name }}{% if user.last_name %} {{ user.last_name }}{% endif %}{% else %}{{ user.username }}{% endif %}</small></h1>
     </div>
 
-    <div class="items">
-        <p class="none-found">Dashboard</p>
+    <div class="container">
+        <div class="items row dashboard-stats">
+            <div class="col-sm-2 dashboard-stat">
+                <a href="{% url "list-bookmarks" %}">
+                    <span class="count">{{ bookmarks_count }}</span>
+                    <span class="type">Bookmarks</span>
+                </a>
+            </div>
+            <div class="col-sm-2 dashboard-stat">
+                <a href="{% url "list-tags" %}">
+                    <span class="count">{{ tags_count }}</span>
+                    <span class="type">Tags</span>
+                </a>
+            </div>
+            <div class="col-sm-2 dashboard-stat">
+                <a href="{% url "favorited-bookmarks" %}">
+                    <span class="count">{{ favorited_count }}</span>
+                    <span class="type">Favorited</span>
+                </a>
+            </div>
+            <div class="col-sm-2 dashboard-stat">
+                <a href="{% url "calendar" %}">
+                    <span class="count">{{ reminders_count }}</span>
+                    <span class="type">Reminders</span>
+                </a>
+            </div>
+            <div class="col-sm-2 dashboard-stat">
+                <a href="{% url "list-categories" %}">
+                    <span class="count">{{ notes_count }}</span>
+                    <span class="type">Notes</span>
+                </a>
+            </div>
+            <div class="col-sm-2 dashboard-stat">
+                <a href="{% url "list-todolists" %}">
+                    <span class="count">{{ todolists_count }}</span>
+                    <span class="type">Todo Lists</span>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
