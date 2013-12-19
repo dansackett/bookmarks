@@ -150,7 +150,22 @@ select {
     color: #545D61;
 }
 
-.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    color: #FFF;
+    background-color: #F96B5C;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: #FFF;
+    background-color: #F96B5C;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>.open>a:focus {
     color: #FFF;
     background-color: #F96B5C;
 }
@@ -279,6 +294,8 @@ select {
 
 .dashboard-stat .count {
     display: block;
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .items {
@@ -342,6 +359,11 @@ select {
 
 
 /* Reminders Stuff */
+.today-reminders{
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
 .calendar-header {
     padding: 20px;
 }

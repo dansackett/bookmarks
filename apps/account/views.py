@@ -1,8 +1,11 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect
 
 from account.forms import ProfileForm
 
 from tags.models import Tag
+from reminders.models import Reminder
 
 
 def home(request):
@@ -14,9 +17,11 @@ def home(request):
 def dashboard(request):
     """Renders the home template for logged in users"""
     tags = Tag.objects.filter(user=request.user)
+    reminders = Reminder.objects.filter(date=datetime.now().date())
 
     context = {
         'tags': tags,
+        'reminders': reminders,
     }
     return render(request, 'account/account.html', context)
 

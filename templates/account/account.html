@@ -6,6 +6,15 @@
         <h1>Dashboard <small>{% if user.first_name %}{{ user.first_name }}{% if user.last_name %} {{ user.last_name }}{% endif %}{% else %}{{ user.username }}{% endif %}</small></h1>
     </div>
 
+    {% if reminders %}
+    <div class="items container today-reminders">
+        <h2>You have {% if reminders|length > 1 %}Reminders{% else %}a Reminder{% endif %} set for Today</h2>
+        {% for reminder in reminders %}
+        <p>{{ reminder.title }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="container">
         <div class="items row dashboard-stats">
             <div class="col-sm-2 dashboard-stat">

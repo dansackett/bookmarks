@@ -37,24 +37,24 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="{% url 'edit-profile' %}">Profile</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bookmarks <b class="caret"></b></a>
+                        <li{% if full_path == '/account/profile/edit/' %} class="active"{% endif %}><a href="{% url 'edit-profile' %}">Profile</a></li>
+                        <li class="dropdown{% if full_path|slice:"1:10" == 'bookmarks' %} active{% elif full_path|slice:"1:5" == 'tags' %} active{% endif %}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bookmarks<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'list-bookmarks' %}">View All Bookmarks</a></li>
                                 <li><a href="{% url 'favorited-bookmarks' %}">View Favorited Bookmarks</a></li>
                                 <li><a href="{% url 'list-tags' %}">View Tags</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown{% if full_path|slice:"1:10" == 'reminders' %} active{% endif %}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reminders <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'calendar' %}">View Calendar</a></li>
                                 <li><a href="{% url 'list-reminders' %}">View List</a></li>
                             </ul>
                         </li>
-                        <li><a href="{% url 'list-categories' %}">Notes</a></li>
-                        <li><a href="{% url 'list-todolists' %}">Todo Lists</a></li>
+                        <li{% if full_path|slice:"1:6" == 'notes' %} class="active"{% endif %}><a href="{% url 'list-categories' %}">Notes</a></li>
+                        <li{% if full_path|slice:"1:10" == 'todolists' %} class="active"{% endif %}><a href="{% url 'list-todolists' %}">Todo Lists</a></li>
                     </ul>
                     <form action="{% url 'logout' %}" method="post" class="navbar-form navbar-right" role="search">
                         {% csrf_token %}
