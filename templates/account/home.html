@@ -3,49 +3,44 @@
 {% block home %}
 <div class="home">
     <div class="header clearfix">
-        <div class="logo"><i class="icon-pushpin"></i>MyDash</div>
-        <div class="nav">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
+        <div class="logo">
+            <h1><a href="{% url 'home' %}">MyDash</a></h1>
+            <h2>All Your Tools in One Place</h2>
+            <div class="nav">
+                <a class="btn btn-lg btn-outline" href="{% url 'register' %}">Sign Up</a>
+            </div>
         </div>
     </div>
-    <div class="description">
-        <h1>All Your Tools In One Place</h1>
-        <h2>MyDash is your one stop management dashboard on the web. Store your
-        bookmarks, reminders, and notes all in one place to make life simple
-        again.</h2>
+    <div class="container">
+        <div class="row">
+            <div class="description col-xs-12">
+                <h3>MyDash lets you store your bookmarks, reminders, and notes all in one place to make life simple again.</h3>
+            </div>
+        </div>
     </div>
-    <div class="information clearfix">
-        <div class="info-item left">
-            <h3><i class="fa fa-bookmark"></i>Manage Bookmarks</h3>
-            <p>Store your bookmarks and manage them anywhere. Group your
-            links with categories and search for them when your lists start to fill up.</p>
-        </div>
-        <div class="info-item right">
-            <h3><i class="fa fa-bell"></i>Set Reminders</h3>
-            <p>Stop forgetting things. Set the
-            time, leave yourself notes and when it's time to remember,
-            we'll email you everything you need to know.</p>
-        </div>
-        <div class="info-item left">
-            <h3><i class="fa fa-list-ul"></i>Create Notes</h3>
-            <p>Create notes about a restaurant recommendation or jot
-            down your idea for the next big application. We'll remember it
-            so you don't have to.</p>
-        </div>
-        <div class="info-item right">
-            <h3><i class="fa fa-tasks"></i>Todo Lists</h3>
-            <p>Make lists and stay on track with MyDash. Create todo lists and
-            access them whenever you need to check off the next task.</p>
+    <div class="full-width">
+        <div class="container">
+            <div class="information row">
+                <div class="info-item col-sm-3">
+                    <h3><i class="fa fa-bookmark"></i><br /> Manage Bookmarks</h3>
+                    <p>Access your bookmarks anywhere. Group your links and search for them when things start to fill up.</p>
+                </div>
+                <div class="info-item col-sm-3">
+                    <h3><i class="fa fa-bell"></i><br /> Set Reminders</h3>
+                    <p>Stop forgetting things. Set the time, leave yourself notes and we'll email you about it.</p>
+                </div>
+                <div class="info-item col-sm-3">
+                    <h3><i class="fa fa-list-ul"></i><br /> Create Notes</h3>
+                    <p>Create notes about a restaurant recommendation or for your big idea. We'll keep them safe.</p>
+                </div>
+                <div class="info-item col-sm-3">
+                    <h3><i class="fa fa-tasks"></i><br /> Todo Lists</h3>
+                    <p>Make lists and access them from anywhere. Check off tasks as you go to stay on top of things.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block content %}{% endblock %}
-
-{% block footer %}
-    <div class="footer">
-        &copy; {% now "Y" %} MyDash &middot; Developed by <a href="http://www.theorvillagroup.com">The Orvilla Group<a/>
-    </div>
-{% endblock %}

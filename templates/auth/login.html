@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
 
 {% block home %}
-<div class="home">
-    <div class="logo-auth">
-        <a href="{% url 'home' %}"><i class="icon-pushpin"></i>MyDash</a>
+<div class="home login">
+    <div class="header clearfix">
+        <div class="logo">
+            <h1><a href="{% url 'home' %}">MyDash</a></h1>
+            <h2>All Your Tools in One Place</h2>
+        </div>
     </div>
-    {% url "login" as login %}
-    {% include "partials/login_form.html" with url=login submit_text="Login" cancel="None" %}
+    <div class="container">
+        <div class="row">
+            <div class="description col-xs-12">
+                {% url "login" as login %}
+                {% include "partials/login_form.html" with url=login submit_text="Login" cancel="None" %}
+                <a href="{% url 'register' %}">Don't have an account?</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

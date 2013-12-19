@@ -17,7 +17,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    padding: 40px 0;
 }
 
 ::-moz-selection {
@@ -90,7 +89,16 @@ a:hover {
 
 /* General */
 a {
+    color: #F96B5C;
     text-decoration: none;
+}
+
+a:hover,
+a:visited,
+a:active,
+a:focus {
+    color: #F96B5C;
+    text-decoration: underline;
 }
 
 ul {
@@ -112,6 +120,10 @@ select {
 
 
 /* Main Items */
+.admin {
+    margin: 40px auto;
+}
+
 .content {
     margin: 100px 200px;
 }
@@ -153,6 +165,95 @@ select {
     color: #FFF;
     font-weight: 700;
 }
+
+.footer {
+    background: #171D1F;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer a {
+    color: #FFF;
+}
+
+/* Home Stuff */
+.home .header {
+    background: url('../images/woods.jpg') no-repeat bottom center;
+    background-size: cover;
+    background-attachment: fixed;
+    border-top: 10px solid #171D1F;
+    height: 700px;
+    padding: 250px 0 0 0;
+    text-align: center;
+    width: 100%;
+}
+
+.home .header .logo {
+    color: #FFF;
+    display: inline-block;
+    font-weight: 700;
+    padding: 15px 40px;
+}
+
+.home .header .logo h1 {
+    font-size: 50px;
+    margin: 0 0 10px 0;
+}
+
+.home .header .logo h1 a {
+    color: #FFF;
+    font-weight: 700;
+}
+
+.home .header .logo h1 a:hover {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.home .header .logo h2 {
+    color: #CCC;
+    font-size: 22px;
+    margin: 0;
+}
+
+.home .nav {
+    margin-top: 30px;
+}
+
+.home .nav a {
+    margin-right: 20px;
+}
+
+.home .description {
+    padding: 40px;
+    text-align: center;
+}
+
+.home.login .description {
+    text-align: left;
+}
+
+.home .description h3 {
+    color: #4A4A4A;
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+.home .full-width {
+    background: #F96B5C;
+    color: #FFF;
+    width: 100%;
+}
+
+.home .information {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.info-item i {
+    margin-bottom: 10px;
+}
+
 
 /* Dashboard Stuff */
 .container {
@@ -398,6 +499,18 @@ select {
     border: 1px solid #C4C4C4;
     color: #4E5356;
     font-weight: bold;
+}
+
+.btn-outline {
+    border: 3px solid #FFF;
+    border-radius: 0;
+    color: #FFF;
+    font-weight: 700;
+    padding: 10px 30px;
+}
+
+.btn-outline:hover {
+    background: rgba(0, 0, 0, .5);
 }
 
 .btn:hover,

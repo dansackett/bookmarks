@@ -63,18 +63,24 @@
                 </div>
             </div>
         </div>
-        {% endif %}
 
-        <div class="container">
+        <div class="container admin">
             <div class="row">
                 {% block content%}
                     <p>Sorry, no content!</p>
                 {% endblock %}
             </div>
         </div>
+        {% endif %}
 
-        {% block footer %}
-        {% endblock %}
+
+        {% if not user.is_authenticated %}
+            {% block footer %}
+                <div class="footer text-muted">
+                    &copy; {% now "Y" %} MyDash &middot; Developed by <a href="http://sackettsolutions.com">Dan Sackett<a/>
+                </div>
+            {% endblock %}
+        {% endif %}
 
         <script>window.jQuery || document.write('<script src="{{ MEDIA_URL }}/js/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
